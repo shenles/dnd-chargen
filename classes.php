@@ -10,19 +10,19 @@
     
    <body>
    
-   <h1>Dungeons & Dragons Database</h1>
+   <h1>D&D 5e Classes</h1>
  
    <!-- bootstrap navbar --> 
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-         <a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item">
+         <a class="nav-link" href="index.php">Home</a></li>
         <li class="nav-item">
          <a class="nav-link" href="addchar.php">Create New Character</a></li>
         <li class="nav-item">
          <a class="nav-link" href="viewchars.php">View Saved Characters</a></li>
-        <li class="nav-item">
+        <li class="nav-item active">
          <a class="nav-link" href="classes.php">Classes</a></li>
         <li class="nav-item">
          <a class="nav-link" href="races.php">Races</a></li>
@@ -38,11 +38,24 @@
     </div>   
    </nav>
 
-   <div class="homepage-info">
-   <p>Welcome to the Dungeons & Dragons Database. Here you can look up  
-      information from the D&D 5e basic rules.</p>
-   <p>Use the navigation bar to access the desired pages.</p> 
-   </div>
+        <div class="entitytable">
+         <h2>View existing classes</h2>
+         <table>
+         <tr>
+            <th>Class name</th>
+            <th>Hit dice</th>
+            <th>HP at lvl 1</th>
+            <th>HP gain per lvl</th>
+            <th>Armor proficiencies</th>
+            <th>Weapon proficiencies</th>
+            <th>Tool proficiencies</th>
+            <th>Save proficiencies</th>
+            <th>Skill proficiencies</th>
+            <th>Starting equipment</th>
+ 
+         </tr>
+         </table>
+        </div>
 
    </body>
 </html>
