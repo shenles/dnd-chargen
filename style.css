@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+body {
+    margin-top: 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+.navbar-nav > li {
+    padding-left: 25px;
+}
+
+h2 {
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+h3 {
+    color: gray; 
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.p-unique {
+   font-size: 2em;
+   margin-top: 30px; 
+}
+
+.d-unique {
+   margin-top: 25px;
+}
+
+.homepage-info {
+    margin-top: 40px;
+    margin-left: 50px;
+}
+
+
+.addform {
+    margin-left: 50px;
+}
+
+table {
+    margin-left: 50px;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: left;
+}
