@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html lang="en">
    <head>
    <title>D&D Database</title>
@@ -17,7 +19,7 @@
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-         <a class="nav-link" href="#">Home</a></li>
+         <a class="nav-link" href="index.php">Home</a></li>
         <li class="nav-item">
          <a class="nav-link" href="addchar.php">Create New Character</a></li>
         <li class="nav-item">
@@ -32,6 +34,8 @@
          <a class="nav-link" href="weapons.php">Weapons</a></li>
         <li class="nav-item">
          <a class="nav-link" href="armor.php">Armor</a></li>
+        <li class="nav-item">
+         <a class="nav-link" href="equipment.php">Equipment</a></li>
         <li class="nav-item">
          <a class="nav-link" href="spells.php">Spells</a></li>  
       </ul>

@@ -34,16 +34,18 @@
         <li class="nav-item">
          <a class="nav-link" href="armor.php">Armor</a></li>
         <li class="nav-item">
+         <a class="nav-link" href="equipment.php">Equipment</a></li>
+        <li class="nav-item">
          <a class="nav-link" href="spells.php">Spells</a></li>  
       </ul>
     </div>   
    </nav>
 
    <div class="entitytable">
-   <h2>View existing classes</h2>
+   <h2>View classes</h2>
      <table>
        <tr>
-            <th>Class name</th>
+            <th>Class</th>
             <th>Hit dice</th>
             <th>HP at lvl 1</th>
             <th>HP gain per lvl</th>
