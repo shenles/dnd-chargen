@@ -1,10 +1,3 @@
-<?php
-   $url = getenv('JAWSDB_MARIA_URL');
-
-   echo $url;
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -46,9 +39,23 @@
     </div>   
    </nav>
 
-        <div class="entitytable">
-         <h2>View existing classes</h2>
-         <table>
+   <?php
+
+      $url = getenv('JAWSDB_MARIA_URL');
+      $dbparts = parse_url($url);
+
+      $hostname = $dbparts['host'];
+      $username = $dbparts['user'];
+      $password = $dbparts['pass'];
+      $database = ltrim($dbparts['path'],'/');
+
+      echo $hostname . $username . $password . $database;
+
+   ?>
+
+   <div class="entitytable">
+   <h2>View existing classes</h2>
+      <table>
          <tr>
             <th>Class name</th>
             <th>Hit dice</th>
@@ -63,8 +70,8 @@
             <th>Specialization</th> 
          </tr>
 
-         </table>
-        </div>
+      </table>
+   </div>
 
    </body>
 </html>
