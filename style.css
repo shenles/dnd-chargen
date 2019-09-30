@@ -6,7 +6,7 @@ body {
 
 h1 {
     margin-bottom: 30px;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .navbar-nav > li {
@@ -14,13 +14,13 @@ h1 {
 }
 
 h2 {
-    margin-left: 50px;
+    margin-left: 40px;
     margin-top: 30px;
 }
 
 h3 {
     color: gray; 
-    margin-left: 50px;
+    margin-left: 40px;
     margin-top: 10px;
 }
 
@@ -35,16 +35,16 @@ h3 {
 
 .homepage-info {
     margin-top: 40px;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 
 .addform {
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 table {
-    margin-left: 50px;
+    margin-left: 40px;
     border-collapse: collapse;
 }
 
