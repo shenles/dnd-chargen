@@ -49,7 +49,10 @@
       $password = $dbparts['pass'];
       $database = ltrim($dbparts['path'],'/');
 
-      echo $hostname . $username . $password . $database;
+      echo $hostname;
+      echo $username;
+      echo $password;
+      echo $database;
 
    ?>
 
