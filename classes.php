@@ -49,13 +49,14 @@
       $password = $dbparts['pass'];
       $database = ltrim($dbparts['path'],'/');
 
-      echo $hostname;
-      echo "\n";
-      echo $username;
-      echo "\n";
-      echo $password;
-      echo "\n";
-      echo $database;
+      // Create connection
+      $conn = new mysqli($hostname, $username, $password, $database);
+
+      // Check connection
+      if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+      }
+      echo "Connection was successfully established!";
 
    ?>
 
