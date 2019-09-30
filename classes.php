@@ -57,6 +57,12 @@
          die("Connection failed: " . $conn->connect_error);
       }
 
+      $sql = "SELECT * FROM classes";
+      $result = $conn->query($sql);
+      while ($row = $result->fetch_assoc()) {
+          echo $row;
+      }
+
    ?>
 
    <div class="entitytable">
@@ -87,8 +93,6 @@
       if (!$stmt->bind_result($name,$hitdice,$hplvlone,$hpgain,$armorprofs,$weaponprofs,$toolprofs,$saveprofs,$skillprofs,$startequip,$specialize)) { echo "Bind failed"; }
 
       while ($stmt->fetch()) {
-
-         echo $name;
 
          //echo "<tr>\n<td>" . $name . "</td>\n<td>" . $hitdice . "</td>\n<td>" . $hplvlone . "</td>\n<td>" . $hpgain . "</td>\n<td>" . $armorprofs . "</td>\n<td>" . $weaponprofs . "</td>\n<td>" . $toolprofs . "</td>\n<td>" . $saveprofs . "</td>\n<td>" . $skillprofs . "</td>\n<td>" . $startequip . "</td>\n<td>" . $specialize . "</td>\n</tr>\n";
       } 
