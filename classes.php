@@ -56,7 +56,6 @@
       if ($conn->connect_error) {
          die("Connection failed: " . $conn->connect_error);
       }
-      echo "Connection was successfully established!";
 
    ?>
 
@@ -76,6 +75,24 @@
             <th>Starting equipment</th>
             <th>Specialization</th> 
          </tr>
+
+      <?php
+
+      $stmt = $mysql->prepare("SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,startequip,specialize FROM classes"
+
+      if (!$stmt) {  echo "Prepare failed"; }
+
+      if (!$stmt->execute()) {  echo "Execute failed"; }
+
+      if (!$stmt->bind_result($name,$hitdice,$hplvlone,$hpgain,$armorprofs,$weaponprofs,$toolprofs,$saveprofs,$skillprofs,$startequip,$specialize)) { echo "Bind failed"; }
+
+      while ($stmt->fetch()) {
+         echo "<tr>\n<td>" . $name . "</td>\n<td>" . $hitdice . "</td>\n<td>" . $hplvlone . "</td>\n<td>" . $hpgain . "</td>\n<td>" . $armorprofs . "</td>\n<td>" . $weaponprofs . "</td>\n<td>" . $toolprofs . "</td>\n<td>" . $saveprofs . "</td>\n<td>" . $skillprofs . "</td>\n<td>" . $startequip . "</td>\n<td>" . $specialize . "</td>\n</tr>\n";
+      } 
+
+      $stmt->close();
+
+      ?>
 
       </table>
    </div>
