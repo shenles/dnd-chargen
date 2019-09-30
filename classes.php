@@ -50,8 +50,11 @@
       $database = ltrim($dbparts['path'],'/');
 
       echo $hostname;
+      echo "\n";
       echo $username;
+      echo "\n";
       echo $password;
+      echo "\n";
       echo $database;
 
    ?>
