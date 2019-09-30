@@ -78,7 +78,7 @@
 
       <?php
 
-      $stmt = $mysql->prepare("SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,startequip,specialize FROM classes"
+      $stmt = $mysql->prepare("SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,startequip,specialize FROM classes");
 
       if (!$stmt) {  echo "Prepare failed"; }
 
