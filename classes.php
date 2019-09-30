@@ -1,17 +1,8 @@
 <?php
    $url = getenv('JAWSDB_MARIA_URL');
-   $dbparts = parse_url($url);
 
-   $hostname = $dbparts['host'];
-   $username = $dbparts['user'];
-   $password = $dbparts['pass'];
-   $database = ltrim($dbparts['path'],'/');
+   echo $url;
 
-   $conn = new mysqli($hostname, $username, $password, $database);
-
-   if ($conn->connect_error) {
-       die("Connection failed: " . $conn->connect_error);
-   }
 ?>
 
 <!DOCTYPE html>
@@ -71,19 +62,6 @@
             <th>Starting equipment</th>
             <th>Specialization</th> 
          </tr>
-
-         <?php
-            $sql = "SELECT name, hitdice, hplvlone, hpgain, armorprofs, weaponprofs, toolprofs, saveprofs, skillprofs, startequip, specialize FROM classes";
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["startequip"] . "</td>\n<td>" . $row["specialize"] . "</td>\n</tr>\n";
-            } else {
-               echo "0 results";
-            }
-            $conn->close();
-         ?>
 
          </table>
         </div>
