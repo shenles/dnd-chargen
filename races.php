@@ -11,7 +11,7 @@
     
    <body>
    
-   <h1>D&D 5e Classes</h1>
+   <h1>D&D 5e Races</h1>
  
    <!-- bootstrap navbar --> 
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,9 +23,9 @@
          <a class="nav-link" href="addchar.php">Create New Character</a></li>
         <li class="nav-item">
          <a class="nav-link" href="viewchars.php">View Saved Characters</a></li>
-        <li class="nav-item active">
-         <a class="nav-link" href="classes.php">Classes</a></li>
         <li class="nav-item">
+         <a class="nav-link" href="classes.php">Classes</a></li>
+        <li class="nav-item active">
          <a class="nav-link" href="races.php">Races</a></li>
         <li class="nav-item">
          <a class="nav-link" href="backgrounds.php">Backgrounds</a></li>
@@ -44,17 +44,16 @@
    <div class="entitytable">
      <table>
        <tr>
-            <th>Class</th>
-            <th>Hit dice</th>
-            <th>HP at lvl 1</th>
-            <th>HP gain per lvl</th>
-            <th>Armor proficiencies</th>
-            <th>Weapon proficiencies</th>
-            <th>Tool proficiencies</th>
-            <th>Save proficiencies</th>
-            <th>Skill proficiencies</th>
-            <th>Starting equipment</th>
-            <th>Specialization</th>
+            <th>Race</th>
+            <th>Size</th>
+            <th>Speed</th>
+            <th>Darkvision</th>
+            <th>Languages</th>
+            <th>Base race</th>
+            <th>Subraces</th>
+            <th>Ability score increases</th>
+            <th>Proficiencies</th>
+            <th>Other racial traits</th>
        </tr>
 
       <?php
@@ -75,10 +74,10 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,startequip,specialize FROM classes";
+        $sql = "SELECT name,size,speed,darkvision,languages,baserace,subraces,abilities,profs,traits FROM races";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["startequip"] . "</td>\n<td>" . $row["specialize"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["size"] . "</td>\n<td>" . $row["speed"] . "</td>\n<td>" . $row["darkvision"] . "</td>\n<td>" . $row["languages"] . "</td>\n<td>" . $row["baserace"] . "</td>\n<td>" . $row["subraces"] . "</td>\n<td>" . $row["abilities"] . "</td>\n<td>" . $row["profs"] . "</td>\n<td>" . $row["traits"] . "</td>\n</tr>\n";
         }
 
      ?>
