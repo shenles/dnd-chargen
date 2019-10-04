@@ -72,10 +72,10 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,level,school,casting,spellrange,components,materials,duration,ritual FROM spells";
+        $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["materials"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
         }
 
      ?>
