@@ -46,6 +46,7 @@
        <tr>
             <th>Spell</th>
             <th>Level</th>
+            <th>School</th> 
             <th>Casting time</th>
             <th>Range</th>
             <th>Components</th>
