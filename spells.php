@@ -42,33 +42,33 @@
    </nav>
 
    <div class="homepage-info">
-     <p><h4>Filter results</h4></p>
+     <h4>Filter results</h4>
      <p>By school</p>
    </div> 
      <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
      <div>
-        <input type="radio" id="abjuration" name="school" value="abjuration" checked>
+        <input type="radio" id="abjuration" name="school" value="Abjuration">
         <label for="abjuration">Abjuration</label>
 
-        <input type="radio" id="conjuration" name="school" value="conjuration">
+        <input type="radio" id="conjuration" name="school" value="Conjuration">
         <label for="conjuration">Conjuration</label>
 
-        <input type="radio" id="divination" name="school" value="divination">
+        <input type="radio" id="divination" name="school" value="Divination">
         <label for="divination">Divination</label>
 
-        <input type="radio" id="enchantment" name="school" value="enchantment">
+        <input type="radio" id="enchantment" name="school" value="Enchantment">
         <label for="enchantment">Enchantment</label>
 
-        <input type="radio" id="evocation" name="school" value="evocation">
+        <input type="radio" id="evocation" name="school" value="Evocation">
         <label for="evocation">Evocation</label>
 
-        <input type="radio" id="illusion" name="school" value="illusion">
+        <input type="radio" id="illusion" name="school" value="Illusion">
         <label for="illusion">Illusion</label>
 
-        <input type="radio" id="necromancy" name="school" value="necromancy">
+        <input type="radio" id="necromancy" name="school" value="Necromancy">
         <label for="necromancy">Necromancy</label>
 
-        <input type="radio" id="transmutation" name="school" value="transmutation">
+        <input type="radio" id="transmutation" name="school" value="Transmutation">
         <label for="transmutation">Transmutation</label>
 
      </div>
@@ -117,6 +117,7 @@
         } else {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?";
+            echo "Displaying " . $school . "spells"; 
         } 
 
         $result = $conn->query($sql);
