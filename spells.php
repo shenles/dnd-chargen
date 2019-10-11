@@ -7,6 +7,7 @@
 
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
    <link rel="stylesheet" type="text/css" href="./style.css"> 
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> 
    </head>
     
    <body>
@@ -43,9 +44,9 @@
 
    <div class="homepage-info">
      <h4>Filter results</h4>
-     <p>By school</p>
+     <p>By school:</p>
    </div> 
-     <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
+     <form class="filterform" id="spellsbyschool" method="post">
      <div>
         <input type="radio" id="abjuration" name="school" value="Abjuration">
         <label for="abjuration">Abjuration</label>
@@ -72,10 +73,11 @@
         <label for="transmutation">Transmutation</label>
 
      </div>
-     <input type="submit" value="Submit">
+     <input type="submit" id="submitfilterspell" onclick="submitFilterSpell();" value="Submit" />
      </form>
 
-   <div class="entitytable">
+   <br />
+   <div class="entitytable" id="spellresults">
      <table>
        <tr>
             <th>Spell</th>
@@ -107,32 +109,33 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        // Check for filtered results
-        $school = $_POST["school"];
-
-        if ($school == NULL) {
-
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
-
-        } else {
-
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?";
-            echo "Displaying " . $school . " spells"; 
-        } 
+        $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
 
         $result = $conn->query($sql);
-
-        $row = $result->fetch_assoc();
-        echo $row;
 
         while ($row = $result->fetch_assoc()) {
             echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
         }
 
+        mysqli_close($conn);
+
      ?>
 
      </table>
    </div>
+
+   <script>
+
+       function submitFilterSpell() {
+           var school = $("input[type=radio]:checked").val(); 
+           $.post("submit.php", { school: school },
+               function(data) {
+                   $("#spellresults").html(data);
+                   $("#spellsbyschool")[0].reset();
+               }); 
+       }
+
+   </script>
 
    </body>
 </html>
