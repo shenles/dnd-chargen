@@ -128,7 +128,7 @@
         } elseif ($level != NULL) {
 
             $levelstring = strval($level);
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(level, '{$level}') > 0"; 
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(level, '{$levelstring}') > 0"; 
         } 
 
         $result = $conn->query($sql);

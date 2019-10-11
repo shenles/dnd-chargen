@@ -43,6 +43,10 @@ h3 {
     margin-left: 40px;
 }
 
+input[type=submit] {
+    padding-left: 10px;
+}
+
 table {
     margin-left: 40px;
     border-collapse: collapse;
