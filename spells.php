@@ -44,7 +44,7 @@
    <div class="homepage-info">
      <h4>Filter results</h4>
      <p>By school:</p>
-     <form class="filterform" id="spellsbyschool" method="post" action="filterresults.php">
+     <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
         <input type="radio" id="abjuration" name="school" value="Abjuration">
         <label for="abjuration">Abjuration</label>
 
@@ -106,13 +106,23 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
+        $school = $_POST['school'];
+
+        if ($school == NULL) {
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
+
+        } else {
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(school, '{$school}') > 0"; 
+        } 
 
         $result = $conn->query($sql);
 
         while ($row = $result->fetch_assoc()) {
             echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
         }
+
+        mysqli_close($conn);
 
      ?>
 
