@@ -119,22 +119,23 @@
 
         if ($school == NULL && $level == NULL) {
 
-            $stmt = $mysqli->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells');
+            $stmt = $mysql->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells');
 
         } elseif ($school != NULL) {
-            $stmt = $mysqli->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school = ?');
+            $stmt = $mysql->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school = ?');
             $stmt->bind_param('s', $school); 
  
         } elseif ($level != NULL) {
-            $stmt = $mysqli->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = ?');
+            $stmt = $mysql->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = ?');
             $stmt->bind_param('i', $level);
         } 
 
         $stmt->execute();
-        $result = $stmt->get_result(); 
-
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
+        $stmt->store_result(); 
+        $stmt->bind_result($name, $level, $school, $casting, $spellrange, $components, $material, $duration, $ritual); 
+ 
+        while ($stmt->fetch()) {
+            echo "<tr>\n<td>" . $name . "</td>\n<td>" . $level. "</td>\n<td>" . $school . "</td>\n<td>" . $casting . "</td>\n<td>" . $spellrange . "</td>\n<td>" . $components . "</td>\n<td>" . $material . "</td>\n<td>" . $duration . "</td>\n<td>" . $ritual . "</td>\n</tr>\n";
         }
 
         $stmt->close();
