@@ -119,14 +119,14 @@
 
         if ($school == NULL && $level == NULL) {
 
-            $stmt = $mysqli->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells");
+            $stmt = $mysql->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells");
 
         } elseif ($school != NULL) {
-            $stmt = $mysqli->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?");
+            $stmt = $mysql->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?");
             $stmt->bind_param("s", $school); 
  
         } elseif ($level != NULL) {
-            $stmt = $mysqli->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level=?");
+            $stmt = $mysql->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level=?");
             $stmt->bind_param("i", $level);
         } 
 
