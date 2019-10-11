@@ -43,8 +43,8 @@
 
    <div class="homepage-info">
      <h4>Filter results</h4>
-
-     <p>By school:</p>
+     <p></p>
+     By school:
      <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
         <input type="radio" id="abjuration" name="school" value="Abjuration">
         <label for="abjuration">Abjuration</label>
@@ -72,10 +72,11 @@
 
      <input type="submit" id="submitfilterschool" value="Filter by school" />
      </form>
+     <p></p>
 
-     <p>By level (0-9):</p>
+     By level (0-9):
      <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
-        <input type="number" id="picklevelfilter" name="level" min="0" max="9">
+        <input type="number" id="picklevelfilter" name="chooselevel" min="0" max="9">
      <input type="submit" id="submitfilterlevel" value="Filter by level" />
      </form>
 
@@ -115,7 +116,7 @@
         }
 
         $school = $_POST['school'];
-        $level = $_POST['level'];
+        $level = $_POST['chooselevel'];
 
         if ($school == NULL && $level == NULL) {
 
