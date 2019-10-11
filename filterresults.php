@@ -42,38 +42,9 @@
    </nav>
 
    <div class="homepage-info">
-     <h4>Filter results</h4>
-     <p>By school:</p>
-     <form class="filterform" id="spellsbyschool" method="post" action="filterresults.php">
-        <input type="radio" id="abjuration" name="school" value="Abjuration">
-        <label for="abjuration">Abjuration</label>
-
-        <input type="radio" id="conjuration" name="school" value="Conjuration">
-        <label for="conjuration">Conjuration</label>
-
-        <input type="radio" id="divination" name="school" value="Divination">
-        <label for="divination">Divination</label>
-
-        <input type="radio" id="enchantment" name="school" value="Enchantment">
-        <label for="enchantment">Enchantment</label>
-
-        <input type="radio" id="evocation" name="school" value="Evocation">
-        <label for="evocation">Evocation</label>
-
-        <input type="radio" id="illusion" name="school" value="Illusion">
-        <label for="illusion">Illusion</label>
-
-        <input type="radio" id="necromancy" name="school" value="Necromancy">
-        <label for="necromancy">Necromancy</label>
-
-        <input type="radio" id="transmutation" name="school" value="Transmutation">
-        <label for="transmutation">Transmutation</label>
-
-     <input type="submit" id="submitfilterspell" value="Submit" />
-     </form>
+     <h4>Displaying results</h4>
    </div>
 
-   <br />
    <div class="entitytable" id="spellresults">
      <table>
        <tr>
@@ -106,7 +77,11 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
+        $school = $_POST["school"];
+
+        if ($school) {
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?";
+        }
 
         $result = $conn->query($sql);
 
