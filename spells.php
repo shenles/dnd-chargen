@@ -127,9 +127,10 @@
  
         } elseif ($level != NULL) {
 
-            $lvlstring = strval($level);
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(level, '{$lvlstring}') > 0"; 
+            echo $level;
+            if (is_numeric($level)) { echo "is number"; } else { echo "not number"; } 
 
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = {$level}; 
         } 
 
 
