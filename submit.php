@@ -4,6 +4,7 @@
 
         if ($school != NULL) {
             $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?";
+            echo $school;
         }
 
         $result = $conn->query($sql);
