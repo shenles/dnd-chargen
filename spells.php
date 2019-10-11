@@ -41,6 +41,40 @@
     </div>   
    </nav>
 
+   <div class="homepage-info">
+     <p><h4>Filter results</h4></p>
+     <p>By school</p>
+   </div> 
+     <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
+     <div>
+        <input type="radio" id="abjuration" name="school" value="abjuration" checked>
+        <label for="abjuration">Abjuration</label>
+
+        <input type="radio" id="conjuration" name="school" value="conjuration">
+        <label for="conjuration">Conjuration</label>
+
+        <input type="radio" id="divination" name="school" value="divination">
+        <label for="divination">Divination</label>
+
+        <input type="radio" id="enchantment" name="school" value="enchantment">
+        <label for="enchantment">Enchantment</label>
+
+        <input type="radio" id="evocation" name="school" value="evocation">
+        <label for="evocation">Evocation</label>
+
+        <input type="radio" id="illusion" name="school" value="illusion">
+        <label for="illusion">Illusion</label>
+
+        <input type="radio" id="necromancy" name="school" value="necromancy">
+        <label for="necromancy">Necromancy</label>
+
+        <input type="radio" id="transmutation" name="school" value="transmutation">
+        <label for="transmutation">Transmutation</label>
+
+     </div>
+     <input type="submit" value="Submit">
+     </form>
+
    <div class="entitytable">
      <table>
        <tr>
@@ -73,8 +107,20 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
+        // Check for filtered results
+        $school = $_POST["school"];
+
+        if ($school == NULL) {
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
+
+        } else {
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?";
+        } 
+
         $result = $conn->query($sql);
+
         while ($row = $result->fetch_assoc()) {
             echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
         }
