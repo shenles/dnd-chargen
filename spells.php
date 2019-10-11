@@ -80,6 +80,37 @@
      <input type="submit" id="submitfilterlevel" value="Filter by level" />
      </form>
 
+     <p></p>
+     By class:
+     <form class="filterform" id="spellsbyclass" method="post" action="spells.php">
+        <input type="radio" id="bard" name="chooseclass" value="Bard">
+        <label for="bard">Bard</label>
+
+        <input type="radio" id="cleric" name="chooseclass" value="Cleric">
+        <label for="cleric">Cleric</label>
+
+        <input type="radio" id="druid" name="chooseclass" value="Druid">
+        <label for="druid">Druid</label>
+
+        <input type="radio" id="paladin" name="chooseclass" value="Paladin">
+        <label for="paladin">Paladin</label>
+
+        <input type="radio" id="ranger" name="chooseclass" value="Ranger">
+        <label for="ranger">Ranger</label>
+
+        <input type="radio" id="sorcerer" name="chooseclass" value="Sorcerer">
+        <label for="sorcerer">Sorcerer</label>
+
+        <input type="radio" id="warlock" name="chooseclass" value="Warlock">
+        <label for="warlock">Warlock</label>
+
+        <input type="radio" id="wizard" name="chooseclass" value="Wizard">
+        <label for="wizard">Wizard</label>
+
+     <input type="submit" id="submitfilterclass" value="Filter by class" />
+     </form>
+
+
    </div>
 
    <br />
@@ -117,8 +148,9 @@
 
         $school = $_POST['school'];
         $level = $_POST['chooselevel'];
+        $spellclass = $_POST['chooseclass'];
 
-        if ($school == NULL && $level == NULL) {
+        if (($school == NULL && $level == NULL) && $spellclass == NULL) {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
 
@@ -130,6 +162,11 @@
 
             $levelstring = strval($level);
             $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(level, '{$levelstring}') > 0"; 
+
+        } elseif ($spellclass != NULL) {
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(class, '{$spellclass}') > 0";
+
         } 
 
         $result = $conn->query($sql);
