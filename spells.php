@@ -73,9 +73,9 @@
      <input type="submit" id="submitfilterschool" value="Filter by school" />
      </form>
 
-     <p>By level:</p>
+     <p>By level (0-9):</p>
      <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
-        <input type="number" id="picklevelfilter" name="picklevelfilter" min="0" max="9">
+        <input type="number" id="picklevelfilter" name="level" min="0" max="9">
      <input type="submit" id="submitfilterlevel" value="Filter by level" />
      </form>
 
