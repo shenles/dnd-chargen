@@ -119,21 +119,25 @@
 
         if ($school == NULL && $level == NULL) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
+            $stmt = $mysqli->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells');
 
         } elseif ($school != NULL) {
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(school, '{$school}') > 0"; 
+            $stmt = $mysqli->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school = ?');
+            $stmt->bind_param('s', $school); 
+ 
         } elseif ($level != NULL) {
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = {$level}";
+            $stmt = $mysqli->prepare('SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = ?');
+            $stmt->bind_param('i', $level);
         } 
 
-        $result = $conn->query($sql);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
 
         while ($row = $result->fetch_assoc()) {
             echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
         }
 
-        mysqli_close($conn);
+        $stmt->close();
 
      ?>
 
