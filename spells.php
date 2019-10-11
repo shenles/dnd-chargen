@@ -128,7 +128,7 @@
         } elseif ($level != NULL) {
 
             $lvlstring = strval($level);
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = {$lvlstring}"; 
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(level, '{$lvlstring}') > 0"; 
 
         } 
 
