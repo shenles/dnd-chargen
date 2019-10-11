@@ -43,6 +43,7 @@
 
    <div class="homepage-info">
      <h4>Filter results</h4>
+
      <p>By school:</p>
      <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
         <input type="radio" id="abjuration" name="school" value="Abjuration">
@@ -69,8 +70,15 @@
         <input type="radio" id="transmutation" name="school" value="Transmutation">
         <label for="transmutation">Transmutation</label>
 
-     <input type="submit" id="submitfilterspell" value="Submit" />
+     <input type="submit" id="submitfilterschool" value="Filter by school" />
      </form>
+
+     <p>By level:</p>
+     <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
+        <input type="number" id="picklevelfilter" name="picklevelfilter" min="0" max="9">
+     <input type="submit" id="submitfilterlevel" value="Filter by level" />
+     </form>
+
    </div>
 
    <br />
@@ -107,13 +115,16 @@
         }
 
         $school = $_POST['school'];
+        $level = $_POST['level'];
 
-        if ($school == NULL) {
+        if ($school == NULL && $level == NULL) {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
 
-        } else {
+        } elseif ($school != NULL) {
             $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(school, '{$school}') > 0"; 
+        } elseif ($level != NULL) {
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = $level";
         } 
 
         $result = $conn->query($sql);
