@@ -119,25 +119,27 @@
 
         if ($school == NULL && $level == NULL) {
 
-            $stmt = $mysql->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells");
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells";
 
         } elseif ($school != NULL) {
-            $stmt = $mysql->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE school=?");
-            $stmt->bind_param("s", $school); 
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE INSTR(school, '{$school}') > 0";
  
         } elseif ($level != NULL) {
-            $stmt = $mysql->prepare("SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level=?");
-            $stmt->bind_param("i", $level);
+
+            $lvlstring = strval($level);
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,duration,ritual FROM spells WHERE level = {$lvlstring}"; 
+
         } 
 
-        $stmt->execute();
-        $stmt->bind_result($name, $level, $school, $casting, $spellrange, $components, $material, $duration, $ritual); 
- 
-        while ($stmt->fetch()) {
-            echo "<tr>\n<td>" . $name . "</td>\n<td>" . $level. "</td>\n<td>" . $school . "</td>\n<td>" . $casting . "</td>\n<td>" . $spellrange . "</td>\n<td>" . $components . "</td>\n<td>" . $material . "</td>\n<td>" . $duration . "</td>\n<td>" . $ritual . "</td>\n</tr>\n";
+
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
         }
 
-        $stmt->close();
+        mysqli_close($conn);
 
      ?>
 
