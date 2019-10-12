@@ -46,8 +46,9 @@ input[type=submit] {
     margin-left: 12px;
 }
 
-.tooltip-color + .tooltip {
+.tooltip-inner {
     background-color: #1c1c1d;
+    color: #fff;
 }
 
 table {
