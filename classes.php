@@ -77,7 +77,7 @@
         $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,specialize,descrip,spellsavedc,spellattackmod FROM classes";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td data-toggle=\"popover\" title=\"" . $row["name"] . "\" data-content=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["specialize"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"popover\" title=\"" . $row["name"] . "\" data-content=\"" . $row["descrip"] . "\"><a>" . $row["name"] . "</a></td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["specialize"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n</tr>\n";
         }
 
      ?>
