@@ -42,17 +42,31 @@
      <p></p>
      By category:
      <form class="filterform" id="equipbytype" method="post" action="equipment.php">
+        <input type="radio" id="simplemelee" name="equiptype" value="simple+melee">
+        <label for="simplemelee">simple melee weapons</label>
+
+        <input type="radio" id="simpleranged" name="equiptype" value="simple+ranged">
+        <label for="simpleranged">simple ranged weapons</label>
+
         <input type="radio" id="simpleweapon" name="equiptype" value="simple">
-        <label for="simpleweapon">simple weapons</label>
+        <label for="simpleweapon">all simple weapons</label>
+        <p></p>
+
+        <input type="radio" id="martialmelee" name="equiptype" value="martial+melee">
+        <label for="martialmelee">martial melee weapons</label>
+
+        <input type="radio" id="martialranged" name="equiptype" value="martial+ranged">
+        <label for="martialranged">martial ranged weapons</label>
 
         <input type="radio" id="martialweapon" name="equiptype" value="martial">
-        <label for="martialweapon">martial weapons</label>
+        <label for="martialweapon">all martial weapons</label>
+        <p></p>
 
         <input type="radio" id="meleeweapon" name="equiptype" value="melee">
-        <label for="meleeweapon">melee weapons</label>
+        <label for="meleeweapon">all melee weapons</label>
 
         <input type="radio" id="rangedweapon" name="equiptype" value="ranged">
-        <label for="rangedweapon">ranged weapons</label>
+        <label for="rangedweapon">all ranged weapons</label>
 
         <input type="radio" id="allweapons" name="equiptype" value="weapon">
         <label for="allweapons">all weapons</label>
@@ -66,10 +80,9 @@
 
         <input type="radio" id="allarmor" name="equiptype" value="armor">
         <label for="allarmor">all armor</label>
-        <p></p>
 
         <input type="radio" id="otherequip" name="equiptype" value="other">
-        <label for="otherequip">other equipment</label>
+        <label for="otherequip">all other equipment</label>
 
      <input type="submit" id="submitfilterequip" value="Filter by category" />
      </form>
