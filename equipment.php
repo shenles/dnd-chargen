@@ -29,10 +29,6 @@
          <a class="nav-link" href="races.php">Races</a></li>
         <li class="nav-item">
          <a class="nav-link" href="backgrounds.php">Backgrounds</a></li>
-        <li class="nav-item">
-         <a class="nav-link" href="weapons.php">Weapons</a></li>
-        <li class="nav-item">
-         <a class="nav-link" href="armor.php">Armor</a></li>
         <li class="nav-item active">
          <a class="nav-link" href="equipment.php">Equipment</a></li>
         <li class="nav-item">
@@ -51,6 +47,12 @@
 
         <input type="radio" id="martialweapon" name="equiptype" value="martial">
         <label for="martialweapon">martial weapons</label>
+
+        <input type="radio" id="meleeweapon" name="equiptype" value="melee">
+        <label for="meleeweapon">melee weapons</label>
+
+        <input type="radio" id="rangedweapon" name="equiptype" value="ranged">
+        <label for="rangedweapon">ranged weapons</label>
 
         <input type="radio" id="allweapons" name="equiptype" value="weapon">
         <label for="allweapons">all weapons</label>
