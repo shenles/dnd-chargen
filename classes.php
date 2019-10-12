@@ -51,9 +51,9 @@
             <th>Tool proficiencies</th>
             <th>Save proficiencies</th>
             <th>Skill proficiencies</th>
-            <th>Specialization</th>
+            <th>Spell attack modifier</th> 
             <th>Spell save DC</th>
-            <th>Spell attack modifier</th>
+            <th>Specialization</th>
        </tr>
 
       <?php
@@ -77,7 +77,7 @@
         $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,specialize,descrip,spellsavedc,spellattackmod FROM classes";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td><a data-toggle=\"popover\" data-placement=\"top\" data-content=\"" . $row["descrip"] . "\">" . $row["name"] . "</a></td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["specialize"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["specialize"] . "</td>\n</tr>\n";
         }
 
      ?>
@@ -87,7 +87,7 @@
 
    <script>
        $(document).ready(function(){
-           $('[data-toggle="popover"]').popover();
+           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
        });
    
    </script>
