@@ -46,6 +46,10 @@ input[type=submit] {
     margin-left: 12px;
 }
 
+input[type=radio] { 
+    margin-left: 6px;
+}
+
 table {
     margin-left: 40px;
     border-collapse: collapse;
