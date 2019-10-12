@@ -70,13 +70,6 @@
      </form>
      <p></p>
 
-     By level (0-9):
-     <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
-        <input type="number" id="picklevelfilter" name="chooselevel" min="0" max="9">
-     <input type="submit" id="submitfilterlevel" value="Filter by level" />
-     </form>
-
-     <p></p>
      By class:
      <form class="filterform" id="spellsbyclass" method="post" action="spells.php">
         <input type="radio" id="bard" name="chooseclass" value="Bard">
@@ -106,6 +99,12 @@
      <input type="submit" id="submitfilterclass" value="Filter by class" />
      </form>
      <p></p>
+
+     By level (0-9):
+     <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
+        <input type="number" id="picklevelfilter" name="chooselevel" min="0" max="9">
+     <input type="submit" id="submitfilterlevel" value="Filter by level" />
+     </form>
 
      By letter (A-Z):
      <form class="filterform" id="spellsbyletter" method="post" action="spells.php">
