@@ -31,6 +31,8 @@
         <li class="nav-item">
          <a class="nav-link" href="backgrounds.php">Backgrounds</a></li>
         <li class="nav-item">
+         <a class="nav-link" href="features.php">Features & Traits</a></li>
+        <li class="nav-item">
          <a class="nav-link" href="equipment.php">Equipment</a></li>
         <li class="nav-item">
          <a class="nav-link" href="spells.php">Spells</a></li>  

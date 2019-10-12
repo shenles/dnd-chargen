@@ -11,7 +11,7 @@
     
    <body>
    
-   <h1>D&D 5e Equipment</h1>
+   <h1>D&D 5e Features & Traits</h1>
  
    <!-- bootstrap navbar --> 
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,9 +29,9 @@
          <a class="nav-link" href="races.php">Races</a></li>
         <li class="nav-item">
          <a class="nav-link" href="backgrounds.php">Backgrounds</a></li>
-        <li class="nav-item">
-         <a class="nav-link" href="features.php">Features & Traits</a></li>
         <li class="nav-item active">
+         <a class="nav-link" href="features.php">Features & Traits</a></li>
+        <li class="nav-item">
          <a class="nav-link" href="equipment.php">Equipment</a></li>
         <li class="nav-item">
          <a class="nav-link" href="spells.php">Spells</a></li>  

@@ -11,7 +11,7 @@
     
    <body>
    
-   <h1>D&D 5e Races</h1>
+   <h1>D&D 5e Backgrounds</h1>
  
    <!-- bootstrap navbar --> 
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,9 +25,9 @@
          <a class="nav-link" href="viewchars.php">View Saved Characters</a></li>
         <li class="nav-item">
          <a class="nav-link" href="classes.php">Classes</a></li>
-        <li class="nav-item active">
-         <a class="nav-link" href="races.php">Races</a></li>
         <li class="nav-item">
+         <a class="nav-link" href="races.php">Races</a></li>
+        <li class="nav-item active">
          <a class="nav-link" href="backgrounds.php">Backgrounds</a></li>
         <li class="nav-item">
          <a class="nav-link" href="features.php">Features & Traits</a></li>
@@ -42,16 +42,18 @@
    <div class="entitytable">
      <table>
        <tr>
-            <th>Race</th>
-            <th>Size</th>
-            <th>Speed</th>
-            <th>Darkvision</th>
-            <th>Languages</th>
-            <th>Base race</th>
-            <th>Subraces</th>
-            <th>Ability score increases</th>
-            <th>Proficiencies</th>
-            <th>Other racial traits</th>
+            <th>Class</th>
+            <th>Hit dice</th>
+            <th>HP at lvl 1</th>
+            <th>HP gain per lvl</th>
+            <th>Armor proficiencies</th>
+            <th>Weapon proficiencies</th>
+            <th>Tool proficiencies</th>
+            <th>Save proficiencies</th>
+            <th>Skill proficiencies</th>
+            <th>Specialization</th>
+            <th>Spell save DC</th>
+            <th>Spell attack modifier</th>
        </tr>
 
       <?php
@@ -72,16 +74,27 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,size,speed,darkvision,languages,baserace,subraces,abilities,profs,traits FROM races";
+        $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,specialize,descrip,spellsavedc,spellattackmod FROM classes";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td>" . $row["name"] . "</td>\n<td>" . $row["size"] . "</td>\n<td>" . $row["speed"] . "</td>\n<td>" . $row["darkvision"] . "</td>\n<td>" . $row["languages"] . "</td>\n<td>" . $row["baserace"] . "</td>\n<td>" . $row["subraces"] . "</td>\n<td>" . $row["abilities"] . "</td>\n<td>" . $row["profs"] . "</td>\n<td>" . $row["traits"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["specialize"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n</tr>\n";
         }
 
      ?>
 
      </table>
    </div>
+
+   <script>
+       $(document).ready(function(){
+           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
+       });
+   
+   </script>
+
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
    </body>
 </html>
