@@ -78,6 +78,9 @@
         <input type="radio" id="medarmor" name="equiptype" value="medium">
         <label for="medarmor">medium armor</label>
 
+        <input type="radio" id="heavyarmor" name="equiptype" value="heavy">
+        <label for="heavyarmor">heavy armor</label>
+
         <input type="radio" id="allarmor" name="equiptype" value="armor">
         <label for="allarmor">all armor</label>
 
@@ -99,11 +102,75 @@
             <th>Armor Category</th>
             <th>Damage</th>
             <th>AC</th>
-            <th>Strength</th>
             <th>Stealth</th>
             <th>Properties</th>
-            <th>Contents</th>
+            <th>Notes</th>
        </tr>
+
+      <?php
+        $url = getenv('JAWSDB_MARIA_URL');
+        $dbparts = parse_url($url);
+        $hostname = $dbparts['host'];
+        $username = $dbparts['user'];
+        $password = $dbparts['pass'];
+        $database = ltrim($dbparts['path'],'/');
+
+        // Create connection
+        $conn = new mysqli($hostname, $username, $password, $database);
+
+        // Check connection
+        if ($conn->connect_error) {
+           die("Connection failed: " . $conn->connect_error);
+        }
+
+        $category = $_POST['equiptype'];
+
+        switch ($category) {
+
+            case "light":
+            case "medium":
+            case "heavy":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE INSTR(armorcat, '{$category}') > 0"; 
+                break;
+            case "armor":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE armorcat IS NOT NULL";
+                break;
+            case "weapon":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE weaponcat IS NOT NULL";
+                break; 
+            case "other": 
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE weaponcat IS NULL and armorcat IS NULL";
+                break;
+            case "simple":
+            case "martial":
+            case "melee":
+            case "ranged":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE INSTR(weaponcat, '{$category}') > 0";
+                break;
+            case "simple+melee":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE INSTR(weaponcat, 'simple') > 0 and INSTR(weaponcat, 'melee') > 0"; 
+                break;
+            case "simple+ranged":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE INSTR(weaponcat, 'simple') > 0 and INSTR(weaponcat, 'ranged') > 0";      
+                break;
+            case "martial+melee":
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE INSTR(weaponcat, 'martial') > 0 and INSTR(weaponcat, 'melee') > 0";      
+                break;
+            case "martial+ranged": 
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment WHERE INSTR(weaponcat, 'martial') > 0 and INSTR(weaponcat, 'ranged') > 0";
+                break;
+            default: 
+                $sql = "SELECT name,cost,weaponcat,armorcat,dmg,ac,stealth,properties,propertydescrip,descrip FROM equipment"; 
+        }
+
+
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch_assoc()) {
+
+            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</span></td>\n<td>" . $row["cost"] . "</td>\n<td>" . $row["weaponcat"] . "</td>\n<td>" . $row["armorcat"] . "</td>\n<td>" . $row["dmg"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["stealth"] . "</td>\n<td>" . $row["properties"] . "</td>\n<td>" . $row["propertydescrip"] . "</td>\n</tr>\n";
+
+        }
 
      </table>
    </div>
