@@ -50,8 +50,12 @@ input[type=radio] {
     margin-left: 6px;
 }
 
-#spellsbylevel, #spellsbyletter {
-    display: inline-block;
+#spellsbylevel {
+    float: left;
+}
+
+#spellsbyletter {
+    float: left;
 }
 
 table {

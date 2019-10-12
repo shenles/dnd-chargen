@@ -100,6 +100,7 @@
      </form>
      <p></p>
 
+     <div> 
      By level (0-9):
      <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
         <input type="number" id="picklevelfilter" name="chooselevel" min="0" max="9">
@@ -138,6 +139,7 @@
 
      <input type="submit" id="submitfilterletter" value="Filter by letter" />
      </form>
+     </div>
 
    </div>
 
