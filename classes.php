@@ -30,10 +30,6 @@
         <li class="nav-item">
          <a class="nav-link" href="backgrounds.php">Backgrounds</a></li>
         <li class="nav-item">
-         <a class="nav-link" href="weapons.php">Weapons</a></li>
-        <li class="nav-item">
-         <a class="nav-link" href="armor.php">Armor</a></li>
-        <li class="nav-item">
          <a class="nav-link" href="equipment.php">Equipment</a></li>
         <li class="nav-item">
          <a class="nav-link" href="spells.php">Spells</a></li>  
