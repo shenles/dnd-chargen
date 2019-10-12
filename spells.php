@@ -172,7 +172,7 @@
         $result = $conn->query($sql);
 
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td><div class=\"tooltip\">" . $row["name"] . "<span class=\"tooltiptext\">" . $row["descrip"] . "</span>\n</div></td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["cancast"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td><span class=\"tooltip\">" . $row["name"] . "<span class=\"tooltiptext\">" . $row["descrip"] . "</span>\n</span></td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["cancast"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
 
         }
 
