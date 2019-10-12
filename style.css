@@ -46,10 +46,9 @@ input[type=submit] {
     margin-left: 12px;
 }
 
-.tooltip-inner {
-    background-color: #1c1c1d;
-    color: #fff;
-}
+.spellname {
+    text-decoration-style: dotted;
+} 
 
 table {
     margin-left: 40px;
