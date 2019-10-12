@@ -184,7 +184,7 @@
    <script>
 
        $(document).ready(function(){
-           $('[data-toggle="tooltip"]').tooltip( {delay: 0, placement: 'top'} );
+           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
        });
    
    </script>
