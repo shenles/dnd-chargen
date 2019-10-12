@@ -93,16 +93,16 @@
    <div class="entitytable" id="equipresults">
      <table>
        <tr>
-            <th>Spell</th>
-            <th>Level</th>
-            <th>School</th> 
-            <th>Casting time</th>
-            <th>Range</th>
-            <th>Components</th>
-            <th>Materials</th>
-            <th>Classes</th>
-            <th>Duration</th>
-            <th>Ritual</th>
+            <th>Item</th>
+            <th>Cost</th>
+            <th>Weapon Category</th> 
+            <th>Armor Category</th>
+            <th>Damage</th>
+            <th>AC</th>
+            <th>Strength</th>
+            <th>Stealth</th>
+            <th>Properties</th>
+            <th>Contents</th>
        </tr>
 
      </table>

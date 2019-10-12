@@ -179,8 +179,9 @@
         $school = $_POST['school'];
         $level = $_POST['chooselevel'];
         $spellclass = $_POST['chooseclass'];
+        $firstletter = $_POST['chooseletter']; 
 
-        if (($school == NULL && $level == NULL) && $spellclass == NULL) {
+        if (($school == NULL && $level == NULL) && ($spellclass == NULL && $firstletter == NULL)) {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells";
 
@@ -196,6 +197,10 @@
         } elseif ($spellclass != NULL) {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells WHERE INSTR(cancast, '{$spellclass}') > 0";
+
+        } elseif ($firstletter != NULL) {
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells WHERE name LIKE '{$firstletter}%'"; 
 
         } 
 
