@@ -46,36 +46,13 @@ input[type=submit] {
     margin-left: 12px;
 }
 
-.tooltip {
-    border-bottom: 1px dotted black;
+.tooltip-color + .tooltip > .tooltip-inner {
+    background-color: #1c1c1d;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 450px;
-    background-color: #555;
-    color: #fff;
-    position: relative;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: relative;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
+.tooltip-color + .tooltip > .tooltip-arrow {
+    background-color: #1c1c1d;
+} 
 
 table {
     margin-left: 40px;

@@ -172,7 +172,7 @@
         $result = $conn->query($sql);
 
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["cancast"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"tooltip\" data-placement=\"top\" class=\"tooltip-color\" title=\"" . $row["descrip"] . "\">" . $row["name"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["cancast"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
 
         }
 
@@ -184,7 +184,7 @@
    <script>
 
        $(document).ready(function(){
-           $('[data-toggle="tooltip"]').tooltip();
+           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
        });
    
    </script>
