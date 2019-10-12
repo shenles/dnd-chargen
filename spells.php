@@ -123,6 +123,7 @@
             <th>Casting time</th>
             <th>Range</th>
             <th>Components</th>
+            <th>Materials</th>
             <th>Classes</th>
             <th>Duration</th>
             <th>Ritual</th>

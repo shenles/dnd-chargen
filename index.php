@@ -44,7 +44,7 @@
 
    <div class="homepage-info">
    <p>Welcome to the Dungeons & Dragons Database. Here you can look up  
-      information from the D&D 5e basic rules.</p>
+      information from the D&D 5e PHB.</p>
    <p>Use the navigation bar to access the desired pages.</p> 
    </div>
 
