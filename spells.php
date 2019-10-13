@@ -159,10 +159,10 @@
             <th>School</th> 
             <th>Casting time</th>
             <th>Range</th>
+            <th>Duration</th>
             <th>Components</th>
             <th>Materials</th>
             <th>Classes</th>
-            <th>Duration</th>
             <th>Ritual</th>
        </tr>
 
@@ -191,31 +191,31 @@
 
         if (($school == NULL && $level == NULL) && ($spellclass == NULL && $firstletter == NULL)) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells";
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells";
 
         } elseif ($school != NULL) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells WHERE INSTR(school, '{$school}') > 0";
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(school, '{$school}') > 0";
  
         } elseif ($level != NULL) {
 
             $levelstring = strval($level);
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells WHERE INSTR(level, '{$levelstring}') > 0"; 
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(level, '{$levelstring}') > 0"; 
 
         } elseif ($spellclass != NULL) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells WHERE INSTR(cancast, '{$spellclass}') > 0";
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(cancast, '{$spellclass}') > 0";
 
         } elseif ($firstletter != NULL) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip FROM spells WHERE name LIKE '{$firstletter}%'"; 
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells WHERE name LIKE '{$firstletter}%'"; 
 
         } 
 
         $result = $conn->query($sql);
 
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</span></td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["cancast"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</span></td>\n<td>" . $row["level"] . "</td>\n<td data-toggle=\"tooltip\" title=\"" . $row["schooldescrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["school"] . "</td>\n<td>" . $row["casting"] . "</td>\n<td>" . $row["spellrange"] . "</td>\n<td>" . $row["duration"] . "</td>\n<td>" . $row["components"] . "</td>\n<td>" . $row["material"] . "</td>\n<td>" . $row["cancast"] . "</td>\n<td>" . $row["ritual"] . "</td>\n</tr>\n";
 
         }
 
@@ -227,7 +227,7 @@
    <script>
 
        $(document).ready(function(){
-           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
+           $('[data-toggle="tooltip"]').tooltip();
        });
    
    </script>

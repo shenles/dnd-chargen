@@ -74,10 +74,12 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,specialize,descrip,spellsavedc,spellattackmod FROM classes";
+        $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,specialize,descrip,spellsavedc,spellattackmod,specialdescrip FROM classes";
+
         $result = $conn->query($sql);
+
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["specialize"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</span></td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td data-toggle=\"tooltip\" title=\"" . $row["specialdescrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["specialize"] . "</span></td>\n</tr>\n";
         }
 
      ?>
@@ -87,7 +89,7 @@
 
    <script>
        $(document).ready(function(){
-           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
+           $('[data-toggle="tooltip"]').tooltip();
        });
    
    </script>
