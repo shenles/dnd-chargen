@@ -219,11 +219,12 @@
 
         }
 
-        echo $chosenschool;
-
      ?>
 
      </table>
+
+     echo $chosenschool;
+
    </div>
 
    <script>
