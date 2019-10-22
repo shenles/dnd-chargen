@@ -44,28 +44,28 @@
      <p></p>
      By school:
      <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
-        <input type="radio" id="abjuration" name="school" value="Abjuration">
+        <input type="checkbox" id="abjuration" name="school" value="Abjuration">
         <label for="abjuration">Abjuration</label>
 
-        <input type="radio" id="conjuration" name="school" value="Conjuration">
+        <input type="checkbox" id="conjuration" name="school[]" value="Conjuration">
         <label for="conjuration">Conjuration</label>
 
-        <input type="radio" id="divination" name="school" value="Divination">
+        <input type="checkbox" id="divination" name="school[]" value="Divination">
         <label for="divination">Divination</label>
 
-        <input type="radio" id="enchantment" name="school" value="Enchantment">
+        <input type="checkbox" id="enchantment" name="school[]" value="Enchantment">
         <label for="enchantment">Enchantment</label>
 
-        <input type="radio" id="evocation" name="school" value="Evocation">
+        <input type="checkbox" id="evocation" name="school[]" value="Evocation">
         <label for="evocation">Evocation</label>
 
-        <input type="radio" id="illusion" name="school" value="Illusion">
+        <input type="checkbox" id="illusion" name="school[]" value="Illusion">
         <label for="illusion">Illusion</label>
 
-        <input type="radio" id="necromancy" name="school" value="Necromancy">
+        <input type="checkbox" id="necromancy" name="school[]" value="Necromancy">
         <label for="necromancy">Necromancy</label>
 
-        <input type="radio" id="transmutation" name="school" value="Transmutation">
+        <input type="checkbox" id="transmutation" name="school[]" value="Transmutation">
         <label for="transmutation">Transmutation</label>
 
      <input type="submit" id="submitfilterschool" value="Filter by school" />
@@ -184,18 +184,18 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $school = $_POST['school'];
+        $chosenschool = $_POST['school'];
         $level = $_POST['chooselevel'];
         $spellclass = $_POST['chooseclass'];
         $firstletter = $_POST['chooseletter']; 
 
-        if (($school == NULL && $level == NULL) && ($spellclass == NULL && $firstletter == NULL)) {
+        if ((!isset($chosenschool) && $level == NULL) && ($spellclass == NULL && $firstletter == NULL)) {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells";
 
-        } elseif ($school != NULL) {
+        } elseif (isset($chosenschool)) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(school, '{$school}') > 0";
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast,duration,ritual,descrip,schooldescrip FROM spells WHERE school IN ('$chosenschool')";
  
         } elseif ($level != NULL) {
 
