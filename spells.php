@@ -74,34 +74,34 @@
 
      By class:
      <form class="filterform" id="spellsbyclass" method="post" action="spells.php">
-        <input type="radio" id="bard" name="chooseclass" value="Bard">
+        <input type="checkbox" id="bard" name="chooseclass[]" value="Bard">
         <label for="bard">Bard</label>
 
-        <input type="radio" id="cleric" name="chooseclass" value="Cleric">
+        <input type="checkbox" id="cleric" name="chooseclass[]" value="Cleric">
         <label for="cleric">Cleric</label>
 
-        <input type="radio" id="druid" name="chooseclass" value="Druid">
+        <input type="checkbox" id="druid" name="chooseclass[]" value="Druid">
         <label for="druid">Druid</label>
 
-        <input type="radio" id="paladin" name="chooseclass" value="Paladin">
+        <input type="checkbox" id="paladin" name="chooseclass[]" value="Paladin">
         <label for="paladin">Paladin</label>
 
-        <input type="radio" id="ranger" name="chooseclass" value="Ranger">
+        <input type="checkbox" id="ranger" name="chooseclass[]" value="Ranger">
         <label for="ranger">Ranger</label>
 
-        <input type="radio" id="sorcerer" name="chooseclass" value="Sorcerer">
+        <input type="checkbox" id="sorcerer" name="chooseclass[]" value="Sorcerer">
         <label for="sorcerer">Sorcerer</label>
 
-        <input type="radio" id="warlock" name="chooseclass" value="Warlock">
+        <input type="checkbox" id="warlock" name="chooseclass[]" value="Warlock">
         <label for="warlock">Warlock</label>
 
-        <input type="radio" id="wizard" name="chooseclass" value="Wizard">
+        <input type="checkbox" id="wizard" name="chooseclass[]" value="Wizard">
         <label for="wizard">Wizard</label>
 
-        <input type="radio" id="rogue" name="chooseclass" value="Wizard">
+        <input type="checkbox" id="rogue" name="chooseclass[]" value="Wizard">
         <label for="rogue">Rogue (Arcane Trickster)</label>
 
-        <input type="radio" id="fighter" name="chooseclass" value="Wizard">
+        <input type="checkbox" id="fighter" name="chooseclass[]" value="Wizard">
         <label for="fighter">Fighter (Eldritch Knight)</label>
 
      <input type="submit" id="submitfilterclass" value="Filter by class" />
@@ -110,7 +110,17 @@
 
      By level (0-9):
      <form class="filterform" id="spellsbylevel" method="post" action="spells.php">
-        <input type="number" id="picklevelfilter" name="chooselevel" min="0" max="9">
+     <select name="chooselevel">
+         <option value="0">0</option>
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+         <option value="9">9</option>  
      <input type="submit" id="submitfilterlevel" value="Filter by level" />
      </form>
      <p></p>
@@ -189,7 +199,7 @@
         $spellclass = $_POST['chooseclass'];
         $firstletter = $_POST['chooseletter']; 
 
-        if ((!isset($chosenschool) && $level == NULL) && ($spellclass == NULL && $firstletter == NULL)) {
+        if ((!isset($chosenschool) && $level == NULL) && (!isset($spellclass) && $firstletter == NULL)) {
 
             $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells";
 
@@ -201,12 +211,13 @@
  
         } elseif ($level != NULL) {
 
-            $levelstring = strval($level);
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(level, '{$levelstring}') > 0"; 
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(level, '{$level}') > 0"; 
 
-        } elseif ($spellclass != NULL) {
+        } elseif (isset($spellclass)) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE INSTR(cancast, '{$spellclass}') > 0";
+            $getspells = join("','", $spellclass);
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE cancast1 IN ('$getspells') OR cancast2 IN ('$getspells') OR cancast3 IN ('$getspells')";
 
         } elseif ($firstletter != NULL) {
 
