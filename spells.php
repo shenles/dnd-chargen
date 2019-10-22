@@ -44,7 +44,7 @@
      <p></p>
      By school:
      <form class="filterform" id="spellsbyschool" method="post" action="spells.php">
-        <input type="checkbox" id="abjuration" name="school" value="Abjuration">
+        <input type="checkbox" id="abjuration" name="school[]" value="Abjuration">
         <label for="abjuration">Abjuration</label>
 
         <input type="checkbox" id="conjuration" name="school[]" value="Conjuration">
@@ -195,7 +195,9 @@
 
         } elseif (isset($chosenschool)) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE school IN {$chosenschool}";
+            $getschools = join("','", $chosenschool); 
+
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE school IN ('$getschools')";
  
         } elseif ($level != NULL) {
 
@@ -222,8 +224,6 @@
      ?>
 
      </table>
-
-     echo $chosenschool;
 
    </div>
 
