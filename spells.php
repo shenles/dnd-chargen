@@ -195,7 +195,7 @@
 
         } elseif (isset($chosenschool)) {
 
-            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE school IN ('$chosenschool')";
+            $sql = "SELECT name,level,school,casting,spellrange,components,material,cancast1,cancast2,cancast3,duration,ritual,descrip,schooldescrip FROM spells WHERE school IN {$chosenschool}";
  
         } elseif ($level != NULL) {
 
