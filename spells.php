@@ -219,6 +219,8 @@
 
         }
 
+        echo $chosenschool;
+
      ?>
 
      </table>
