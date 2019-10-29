@@ -42,18 +42,13 @@
    <div class="entitytable">
      <table>
        <tr>
-            <th>Class</th>
-            <th>Hit dice</th>
-            <th>HP at lvl 1</th>
-            <th>HP gain per lvl</th>
-            <th>Armor proficiencies</th>
-            <th>Weapon proficiencies</th>
-            <th>Tool proficiencies</th>
-            <th>Save proficiencies</th>
+            <th>Background</th>
             <th>Skill proficiencies</th>
-            <th>Specialization</th>
-            <th>Spell save DC</th>
-            <th>Spell attack modifier</th>
+            <th>Tool proficiencies</th>
+            <th>Languages known</th>
+            <th>Starting equipment</th>
+            <th>Features</th>
+            <th>Variants</th>
        </tr>
 
       <?php
@@ -74,23 +69,16 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,hitdice,hplvlone,hpgain,armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs,specialize,descrip,spellsavedc,spellattackmod FROM classes";
+        $sql = "SELECT name,skillprofs,toolprofs,langs,equip,features,variants FROM backgrounds";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["hplvlone"] . "</td>\n<td>" . $row["hpgain"] . "</td>\n<td>" . $row["armorprofs"] . "</td>\n<td>" . $row["weaponprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["saveprofs"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["specialize"] . "</td>\n<td>" . $row["spellsavedc"] . "</td>\n<td>" . $row["spellattackmod"] . "</td>\n</tr>\n";
+            echo "$row["name"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["langs"] . "</td>\n<td>" . $row["equip"] . "</td>\n<td>" . $row["features"] . "</td>\n<td>" . $row["variants"] . "</td>\n</tr>\n";
         }
 
      ?>
 
      </table>
    </div>
-
-   <script>
-       $(document).ready(function(){
-           $('[data-toggle="tooltip"]').tooltip( {delay: 0} );
-       });
-   
-   </script>
 
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
