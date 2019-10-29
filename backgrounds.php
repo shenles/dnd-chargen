@@ -69,16 +69,23 @@
            die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name,skillprofs,toolprofs,langs,equip,features,variants FROM backgrounds";
+        $sql = "SELECT name,descrip,skillprofs,toolprofs,langs,equip,features,variants,variantdescrip FROM backgrounds";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
-            echo "$row["name"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["langs"] . "</td>\n<td>" . $row["equip"] . "</td>\n<td>" . $row["features"] . "</td>\n<td>" . $row["variants"] . "</td>\n</tr>\n";
+            echo "<tr>\n<td data-toggle=\"tooltip\" title=\"" . $row["descrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["name"] . "</td>\n<td>" . $row["skillprofs"] . "</td>\n<td>" . $row["toolprofs"] . "</td>\n<td>" . $row["langs"] . "</td>\n<td>" . $row["equip"] . "</td>\n<td>" . $row["features"] . "</td>\n<td data-toggle=\"tooltip\" title=\"" . $row["variantdescrip"] . "\">" . "<span style=\"border-bottom: 1px dotted;\">" . $row["variants"] . "</td>\n</tr>\n";
         }
 
      ?>
 
      </table>
    </div>
+
+   <script>
+       $(document).ready(function(){
+           $('[data-toggle="tooltip"]').tooltip();
+       });
+   
+   </script>
 
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
