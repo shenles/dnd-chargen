@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id'])) {
 
 } else {
 
-    header("Location: http://dnd-chargen.herokuapp.com/login.php");
+    header("Location: https://dnd-chargen.herokuapp.com/login.php");
 
 } 
 

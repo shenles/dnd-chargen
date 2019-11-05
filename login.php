@@ -2,9 +2,9 @@
 
 session_start();
 
-echo "<html>\n<div class=\"homepage-info\">\n<form action=\"\" method=\"post\">";
+echo "<html>\n<div class=\"homepage-info\">\n<form class=\"filterform\" action=\"login.php\" method=\"post\">";
 echo "<input type=\"text\" name=\"username\" placeholder=\"Enter your username\" required>";
-echo "<input type=\"text\" name=\"password\" placeholder=\"Enter your password\" required>";
+echo "<input type=\"password\" name=\"password\" placeholder=\"Enter your password\" required>";
 echo "<input type=\"submit\" value=\"Submit\">";
 echo "</form></div></html>";
 
@@ -32,7 +32,7 @@ if (!empty($_POST)) {
         $user = $result->fetch_object();
 
         if (password_verify($_POST['password'], $user->password)) {
-            $_SESSION['user_id'] = $user->ID;
+            $_SESSION['user_id'] = $user->id;
             echo "Login successful";
         } else {
             echo "Login failed";
