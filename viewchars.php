@@ -34,6 +34,8 @@ if (isset($_SESSION['user_id'])) {
      </div>   
     </nav>
 
+    <br />
+
     <div class="entitytable">
      <table>
        <tr>
@@ -49,6 +51,7 @@ if (isset($_SESSION['user_id'])) {
             <th>Initiative</th>
             <th>Proficiency bonus</th>
        </tr>
+       <br />
     EOT;
 
        $url = getenv('JAWSDB_MARIA_URL');
@@ -69,9 +72,8 @@ if (isset($_SESSION['user_id'])) {
        $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {'$currentuser'}"; 
 
        $result = $conn->query($sql);
-       $row = $result->fetch_assoc();
 
-       if ($row == NULL) {
+       if (!($row = $result->fetch_assoc())) {
 
            echo "</table><p>You do not have any saved characters.</p>";
 
