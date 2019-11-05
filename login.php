@@ -35,6 +35,9 @@ if (!empty($_POST)) {
         if ($row != NULL && $pass == $row["password"]) {
             $_SESSION['user_id'] = $user->id;
             echo "Login successful";
+            echo "<html><div class=\"homepage-info\"><input type=\"button\" onclick=\"location.href=\'https://dnd-chargen.herokuapp.com/addchar.php\';\" value=\"Create character\" />";
+            echo "<input type=\"button\" onclick=\"location.href=\'https://dnd-chargen.herokuapp.com/viewchars.php\';\" value=\"View saved characters\" /></div></html>";
+
         } else {
             echo "Login failed";
         } 
