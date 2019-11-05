@@ -4,7 +4,12 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
-    echo "Accessing logged in page";
+    echo "<html>\n<head>\n<title>Login</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"></head>";
+
+    echo "<body><div class=\"homepage-info\">";
+    echo "<p>Viewing your saved characters</p>";
+    echo "You do not have any saved characters.";
+    echo "</div></body></html>";
 
 } else {
 

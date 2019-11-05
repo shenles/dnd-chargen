@@ -4,7 +4,7 @@ session_start();
 
 echo "<html>\n<head>\n<title>Login</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"></head>";
 
-echo "<body><div class=\"homepage-info\">\n<form class=\"filterform\" action=\"login.php\" method=\"post\">";
+echo "<body><div class=\"homepage-info\">\n<form action=\"login.php\" method=\"post\">";
 echo "<input type=\"text\" name=\"username\" placeholder=\"Enter your username\" required>";
 echo "<input type=\"password\" name=\"password\" placeholder=\"Enter your password\" required>";
 echo "<input type=\"submit\" value=\"Submit\">";
@@ -35,7 +35,9 @@ if (!empty($_POST)) {
         $row = $result->fetch_assoc();
 
         if ($row != NULL && $pass == $row["password"]) {
+
             $_SESSION['user_id'] = $row["id"];
+
             echo "<p>Login successful</p>";
             echo "<a href=\"https://dnd-chargen.herokuapp.com/addchar.php\" class=\"btn btn-light\" role=\"button\">Create character</a>";
             echo "<p></p><a href=\"https://dnd-chargen.herokuapp.com/viewchars.php\" class=\"btn btn-light\" role=\"button\">View saved characters</a>";
