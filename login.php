@@ -28,13 +28,11 @@ if (!empty($_POST)) {
         $usrnm = $_POST['username'];
         $pass = $_POST['password'];
 
-        $stmt = $conn->prepare("SELECT id,username,password FROM users WHERE INSTR(username, '{$usrnm}') > 0");
-        $stmt->bind_param('s', $usrnm);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_object();
+        $sql = "SELECT id,username,password FROM users WHERE INSTR(username, '{$usrnm}') > 0";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
 
-        if (password_verify($pass, $user->password)) {
+        if ($row != NULL && $pass == $row["password"]) {
             $_SESSION['user_id'] = $user->id;
             echo "Login successful";
         } else {
