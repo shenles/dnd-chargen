@@ -73,20 +73,12 @@ if (isset($_SESSION['user_id'])) {
 
        $result = $conn->query($sql);
 
-       if (!($row = $result->fetch_assoc())) {
-
-           echo "</table><p>You do not have any saved characters.</p>";
-
-       } else {
-
-           while ($row = $result->fetch_assoc()) {
+       while ($row = $result->fetch_assoc()) {
                echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n</tr>\n"; 
 
-           }
-           echo "</table>";
-       } 
-  
-       echo "</div></body></html>";
+       }
+       echo "</table>";
+       echo "</div>\n</body>\n</html>";
 
 } else {
 
