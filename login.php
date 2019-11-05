@@ -8,7 +8,7 @@ echo "<body><div class=\"homepage-info\">\n<form class=\"filterform\" action=\"l
 echo "<input type=\"text\" name=\"username\" placeholder=\"Enter your username\" required>";
 echo "<input type=\"password\" name=\"password\" placeholder=\"Enter your password\" required>";
 echo "<input type=\"submit\" value=\"Submit\">";
-echo "</form></div></body></html>";
+echo "</form>";
 
 if (!empty($_POST)) {
 
@@ -35,14 +35,16 @@ if (!empty($_POST)) {
         $row = $result->fetch_assoc();
 
         if ($row != NULL && $pass == $row["password"]) {
-            $_SESSION['user_id'] = $user->id;
-            echo "Login successful";
-            echo "<html><div class=\"homepage-info\"><a href=\"https://dnd-chargen.herokuapp.com/addchar.php\" class=\"btn btn-light\" role=\"button\">Create character</a>";
-            echo "<a href=\"https://dnd-chargen.herokuapp.com/viewchars.php\" class=\"btn btn-light\" role=\"button\">View saved characters</a></div></html>";
+            $_SESSION['user_id'] = $row["id"];
+            echo "<p>Login successful</p>";
+            echo "<a href=\"https://dnd-chargen.herokuapp.com/addchar.php\" class=\"btn btn-light\" role=\"button\">Create character</a>";
+            echo "<p></p><a href=\"https://dnd-chargen.herokuapp.com/viewchars.php\" class=\"btn btn-light\" role=\"button\">View saved characters</a>";
 
         } else {
-            echo "Login failed";
+            echo "<p>Login failed</p>";
         } 
+
+        echo "</div></body></html>";
     }
 
 }
