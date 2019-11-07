@@ -39,11 +39,13 @@ if (isset($_SESSION['user_id'])) {
       </ul>
      </div>   
     </nav>
+    <br />
     EOT;
 
     echo <<<EOT
     <form class="filterform" action="addchar.php" method="post">
-    <select name="charclass" label="Select a class for your character:" required>
+    <select name="charclass" id="charclass" required>
+    <label for="charclass">Select a class for your character:</label>
         <option value="">None</option>
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
@@ -59,7 +61,8 @@ if (isset($_SESSION['user_id'])) {
         <option value="Wizard">Wizard</option>
     </select>
     <p></p>
-    <select name="charrace" label="Select a race for your character:" required>
+    <select name="charrace" id="charrace" required>
+    <label for="charrace">Select a race for your character:</label>
         <option value="">None</option>
         <option value="Dragonborn">Dragonborn</option>
         <option value="Dwarf">Dwarf</option>
@@ -82,7 +85,8 @@ if (isset($_SESSION['user_id'])) {
         <option value="Tiefling">Tiefling</option>
     </select>
     <p></p>
-    <select name="charbg" label="Select a background for your character:" required>
+    <select name="charbg" id="charbg" required>
+    <label for="charbg">Select a background for your character:</label>
         <option value="">None</option>
         <option value="Acolyte">Acolyte</option>
         <option value="Charlatan">Charlatan</option>
