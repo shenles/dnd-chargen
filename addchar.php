@@ -106,7 +106,7 @@ if (isset($_SESSION['user_id'])) {
     $chosenrace = $_POST['charrace'];
     $chosenbg = $_POST['charbg']; 
 
-    echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
+    echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
 
     echo "</body></html>";
 
