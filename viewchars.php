@@ -4,11 +4,17 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
-    echo "<html>\n<head>\n<title>D&D Database</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"></head>";
-
-    echo "<body><h1>Viewing saved characters</h1><div class=\"homepage-info\">";
-    
     echo <<<EOT
+    <html>
+    <head>
+    <title>D&D Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    </head>
+
+    <body>
+    <h1>Viewing saved characters</h1>
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -74,11 +80,11 @@ if (isset($_SESSION['user_id'])) {
        $result = $conn->query($sql);
 
        while ($row = $result->fetch_assoc()) {
-               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n</tr>\n"; 
+               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Edit</a></td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Delete</a></td>\n</tr>\n"; 
 
        }
        echo "</table>";
-       echo "</div>\n</body>\n</html>";
+       echo "</body>\n</html>";
 
 } else {
 

@@ -4,11 +4,17 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
-    echo "<html>\n<head>\n<title>D&D Database</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"></head>";
-
-    echo "<body><h1>Creating new character</h1><div class=\"homepage-info\">";
-
     echo <<<EOT
+    <html>
+    <head>
+    <title>D&D Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    </head>
+
+    <body>
+    <h1>Creating new character</h1>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -36,7 +42,7 @@ if (isset($_SESSION['user_id'])) {
     EOT;
 
     echo <<<EOT
-    <form action="addchar.php" method="post">
+    <form class="filterform" action="addchar.php" method="post">
     <select name="charclass" label="Select a class for your character:">
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
@@ -51,11 +57,49 @@ if (isset($_SESSION['user_id'])) {
         <option value="Warlock">Warlock</option>
         <option value="Wizard">Wizard</option>
     </select>
+
+    <select name="charrace" label="Select a race for your character:">
+        <option value="Dragonborn">Dragonborn</option>
+        <option value="Dwarf">Dwarf</option>
+        <option value="Hill Dwarf">Hill Dwarf</option>
+        <option value="Mountain Dwarf">Mountain Dwarf</option>
+        <option value="Elf">Elf</option>
+        <option value="High Elf">High Elf</option>
+        <option value="Drow">Drow</option>
+        <option value="Wood Elf">Wood Elf</option>
+        <option value="Halfling">Halfling</option>
+        <option value="Lightfoot Halfling">Lightfoot Halfling</option>
+        <option value="Stout Halfling">Stout Halfling</option>
+        <option value="Human">Human</option>
+        <option value="Half-Elf">Half-Elf</option>
+        <option value="Half-Orc">Half-Orc</option>
+        <option value="Gnome">Gnome</option>
+        <option value="Forest Gnome">Forest Gnome</option>
+        <option value="Rock Gnome">Rock Gnome</option>
+        <option value="Deep Gnome">Deep Gnome</option>
+        <option value="Tiefling">Tiefling</option>
+    </select>
+
+    <select name="charbg" label="Select a background for your character:">
+        <option value="Acolyte">Acolyte</option>
+        <option value="Charlatan">Charlatan</option>
+        <option value="Criminal">Criminal</option>
+        <option value="Entertainer">Entertainer</option>
+        <option value="Guild Artisan">Guild Artisan</option>
+        <option value="Hermit">Hermit</option>
+        <option value="Noble">Noble</option>
+        <option value="Outlander">Outlander</option>
+        <option value="Sage">Sage</option>
+        <option value="Sailor">Sailor</option>
+        <option value="Soldier">Soldier</option>
+        <option value="Urchin">Urchin</option>
+    </select>
+
     <input type="submit" value="Submit">
     </form>
     EOT;
 
-    echo "</div></body></html>";
+    echo "</body></html>";
 
 } else {
 
