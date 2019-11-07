@@ -43,7 +43,8 @@ if (isset($_SESSION['user_id'])) {
 
     echo <<<EOT
     <form class="filterform" action="addchar.php" method="post">
-    <select name="charclass" label="Select a class for your character:">
+    <select name="charclass" label="Select a class for your character:" required>
+        <option value="">None</option>
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
         <option value="Cleric">Cleric</option>
@@ -57,8 +58,9 @@ if (isset($_SESSION['user_id'])) {
         <option value="Warlock">Warlock</option>
         <option value="Wizard">Wizard</option>
     </select>
-
-    <select name="charrace" label="Select a race for your character:">
+    <p></p>
+    <select name="charrace" label="Select a race for your character:" required>
+        <option value="">None</option>
         <option value="Dragonborn">Dragonborn</option>
         <option value="Dwarf">Dwarf</option>
         <option value="Hill Dwarf">Hill Dwarf</option>
@@ -79,8 +81,9 @@ if (isset($_SESSION['user_id'])) {
         <option value="Deep Gnome">Deep Gnome</option>
         <option value="Tiefling">Tiefling</option>
     </select>
-
-    <select name="charbg" label="Select a background for your character:">
+    <p></p>
+    <select name="charbg" label="Select a background for your character:" required>
+        <option value="">None</option>
         <option value="Acolyte">Acolyte</option>
         <option value="Charlatan">Charlatan</option>
         <option value="Criminal">Criminal</option>
@@ -94,10 +97,16 @@ if (isset($_SESSION['user_id'])) {
         <option value="Soldier">Soldier</option>
         <option value="Urchin">Urchin</option>
     </select>
-
+    <p></p>
     <input type="submit" value="Submit">
     </form>
     EOT;
+
+    $chosenclass = $_POST['charclass'];
+    $chosenrace = $_POST['charrace'];
+    $chosenbg = $_POST['charbg']; 
+
+    echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
 
     echo "</body></html>";
 

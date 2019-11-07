@@ -80,7 +80,7 @@ if (isset($_SESSION['user_id'])) {
        $result = $conn->query($sql);
 
        while ($row = $result->fetch_assoc()) {
-               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Edit</a></td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Delete</a></td>\n</tr>\n"; 
+               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Edit</a></td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Delete</a></td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Level up</a></td>\n</tr>\n"; 
 
        }
        echo "</table>";
