@@ -47,7 +47,9 @@ h3 {
 }
 
 .oneroll {
-    margin-left: 15px;     
+    margin-left: 20px;     
+    font-size: 1.5em;
+    color: #4bd896;
 }
 
 input[type=submit] {

@@ -85,7 +85,7 @@ if (isset($_SESSION['user_id'])) {
     <p></p>
     <select name="charbg" id="charbg" required>
     <label for="charbg">Select a background for your character:</label>
-        <option value="">None</option>
+        <option value="None">None</option>
         <option value="Acolyte">Acolyte</option>
         <option value="Charlatan">Charlatan</option>
         <option value="Criminal">Criminal</option>
@@ -130,7 +130,7 @@ if (isset($_SESSION['user_id'])) {
        <button onclick="showScores()">Done rolling</button>
        </div>
        
-       <div id="assignAbilityScores" style="display:none;">
+       <div class="homepage-info" id="assignAbilityScores" style="display:none;">
        <p>Great! Now assign each number you rolled to an ability. This will be your score for that ability.</p> 
        <p>Your race may give you increases to some of these scores. We will do that next.</p>  
        <table>
@@ -150,7 +150,7 @@ if (isset($_SESSION['user_id'])) {
           <td>10</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td> 
         </tr>
         <tr>
-          <td>8</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
+          <td>8</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
        </table>
        </div>
