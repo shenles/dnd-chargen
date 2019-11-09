@@ -112,6 +112,33 @@ if (isset($_SESSION['user_id'])) {
 
     echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
 
+    echo <<<EOT
+    <div class="homepage-info">
+    <p>First, roll your ability scores, or use the default rolls:</p>
+    <button>Re-roll</button><button>Use defaults</button>
+    <table>
+     <tr>
+       <td>15</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+     </tr>
+     <tr>
+       <td>14</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+     </tr>
+     <tr>
+       <td>13</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+     </tr>
+     <tr>
+       <td>12</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+     </tr>
+     <tr>
+       <td>10</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td> 
+     </tr>
+     <tr>
+       <td>8</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+     </tr>
+    </table>
+    </div>
+    EOT;
+
     echo "</body></html>";
 
 } else {
