@@ -113,37 +113,44 @@ if (isset($_SESSION['user_id'])) {
        echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
 
        echo <<<EOT
-       <div class="homepage-info">
+       <div class="homepage-info" id="initialRolls">
        <p>First, roll your ability scores, or use the default rolls:</p>
-       <button onclick="showRoll(1)">Roll</button><button onclick="showRoll(2)">Use defaults</button>
+       <button class="leftassign" onclick="showRoll(1)">Roll</button><button class="leftassign" onclick="showRoll(2)">Use defaults</button>
 
-       <p>Your current rolls:</p>
+       <p class="p-unique">Your current rolls:</p>
        <div class="rollresults" id="abilityrolls">
-          <p>15    14    13    12    10    8</p>
+          <p><span class="oneroll">15</span>
+             <span class="oneroll">14</span>
+             <span class="oneroll">13</span>
+             <span class="oneroll">12</span>
+             <span class="oneroll">10</span>
+             <span class="oneroll">8</span></p>
        </div>
 
        <button onclick="showScores()">Done rolling</button>
        </div>
        
        <div id="assignAbilityScores" style="display:none;">
+       <p>Great! Now assign each number you rolled to an ability. This will be your score for that ability.</p> 
+       <p>Your race may give you increases to some of these scores. We will do that next.</p>  
        <table>
         <tr>
-          <td>15</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+          <td>15</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>14</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+          <td>14</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>13</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+          <td>13</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>12</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+          <td>12</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>10</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td> 
+          <td>10</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td> 
         </tr>
         <tr>
-          <td>8</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+          <td>8</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
        </table>
        </div>
@@ -161,6 +168,11 @@ if (isset($_SESSION['user_id'])) {
 
        function showScores() {
           document.getElementById('assignAbilityScores').style.display = "block";
+          document.getElementById('initialRolls').style.display = "none";
+       }
+
+       function setAbility(abilitychoice) {
+          console.log(abilitychoice);
        }
 
     </script>
