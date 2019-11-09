@@ -46,7 +46,6 @@ if (isset($_SESSION['user_id'])) {
     <form class="filterform" action="addchar.php" method="post">
     <select name="charclass" id="charclass" required>
     <label for="charclass">Select a class for your character:</label>
-        <option value="">None</option>
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
         <option value="Cleric">Cleric</option>
@@ -63,7 +62,6 @@ if (isset($_SESSION['user_id'])) {
     <p></p>
     <select name="charrace" id="charrace" required>
     <label for="charrace">Select a race for your character:</label>
-        <option value="">None</option>
         <option value="Dragonborn">Dragonborn</option>
         <option value="Dwarf">Dwarf</option>
         <option value="Hill Dwarf">Hill Dwarf</option>
@@ -110,33 +108,63 @@ if (isset($_SESSION['user_id'])) {
     $chosenrace = $_POST['charrace'];
     $chosenbg = $_POST['charbg']; 
 
-    echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
+    if (isset($chosenclass) && isset($chosenrace)) {
+
+       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
+
+       echo <<<EOT
+       <div class="homepage-info">
+       <p>First, roll your ability scores, or use the default rolls:</p>
+       <button onclick="showRoll(1)">Roll</button><button onclick="showRoll(2)">Use defaults</button>
+
+       <p>Your current rolls:</p>
+       <div class="rollresults" id="abilityrolls">
+          <p>15    14    13    12    10    8</p>
+       </div>
+
+       <button onclick="showScores()">Done rolling</button>
+       </div>
+       
+       <div id="assignAbilityScores" style="display:none;">
+       <table>
+        <tr>
+          <td>15</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+        </tr>
+        <tr>
+          <td>14</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+        </tr>
+        <tr>
+          <td>13</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+        </tr>
+        <tr>
+          <td>12</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+        </tr>
+        <tr>
+          <td>10</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td> 
+        </tr>
+        <tr>
+          <td>8</td><td><button class="leftassign">assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
+        </tr>
+       </table>
+       </div>
+       EOT;
+
+    }
 
     echo <<<EOT
-    <div class="homepage-info">
-    <p>First, roll your ability scores, or use the default rolls:</p>
-    <button>Re-roll</button><button>Use defaults</button>
-    <table>
-     <tr>
-       <td>15</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
-     </tr>
-     <tr>
-       <td>14</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
-     </tr>
-     <tr>
-       <td>13</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
-     </tr>
-     <tr>
-       <td>12</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
-     </tr>
-     <tr>
-       <td>10</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td> 
-     </tr>
-     <tr>
-       <td>8</td><td><button>assign to Str</button></td><td><button>assign to Dex</button></td><td><button>assign to Con</button></td><td><button>assign to Int</button></td><td><button>assign to Wis</button></td><td><button>assign to Cha</button></td>
-     </tr>
-    </table>
-    </div>
+
+    <script>
+
+       function showRoll(rolloption) {
+          console.log(rolloption);
+       }
+
+       function showScores() {
+          document.getElementById('assignAbilityScores').style.display = "block";
+       }
+
+    </script>
+
     EOT;
 
     echo "</body></html>";
