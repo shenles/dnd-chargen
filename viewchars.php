@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id'])) {
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-         <a class="nav-link" href="index.php">Home</a></li>
+         <a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item">
          <a class="nav-link" href="addchar.php">Create New Character</a></li>
         <li class="nav-item active">

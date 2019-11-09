@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id'])) {
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-         <a class="nav-link" href="index.php">Home</a></li>
+         <a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item active">
          <a class="nav-link" href="addchar.php">Create New Character</a></li>
         <li class="nav-item">
@@ -119,12 +119,12 @@ if (isset($_SESSION['user_id'])) {
 
        <p class="p-unique">Your current rolls:</p>
        <div class="rollresults" id="abilityrolls">
-          <p><span class="oneroll">15</span>
-             <span class="oneroll">14</span>
-             <span class="oneroll">13</span>
-             <span class="oneroll">12</span>
-             <span class="oneroll">10</span>
-             <span class="oneroll">8</span></p>
+          <p><span class="oneroll" id="rollOne">15</span>
+             <span class="oneroll" id="rollTwo">14</span>
+             <span class="oneroll" id="rollThree">13</span>
+             <span class="oneroll" id="rollFour">12</span>
+             <span class="oneroll" id="rollFive">10</span>
+             <span class="oneroll" id="rollSix">8</span></p>
        </div>
 
        <button onclick="showScores()">Done rolling</button>
@@ -135,22 +135,22 @@ if (isset($_SESSION['user_id'])) {
        <p>Your race may give you increases to some of these scores. We will do that next.</p>  
        <table>
         <tr>
-          <td>15</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
+          <td id="finalOne">15</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>14</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
+          <td id="finalTwo">14</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>13</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
+          <td id="finalThree">13</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>12</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
+          <td id="finalFour">12</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td>10</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td> 
+          <td id="finalFive">10</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td> 
         </tr>
         <tr>
-          <td>8</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
+          <td id="finalSix">8</td><td><button class="leftassign" onclick="setAbility(1)">assign to Str</button></td><td><button onclick="setAbility(2)">assign to Dex</button></td><td><button onclick="setAbility(3)">assign to Con</button></td><td><button onclick="setAbility(4)">assign to Int</button></td><td><button onclick="setAbility(5)">assign to Wis</button></td><td><button onclick="setAbility(6)">assign to Cha</button></td>
         </tr>
        </table>
        </div>
@@ -162,8 +162,67 @@ if (isset($_SESSION['user_id'])) {
 
     <script>
 
+       // Rolls numDice number of dice, with each die of numSides dimension.
+       // Returns an array (sorted descending) of the numbers rolled.
+       function rollDice(numDice, numSides) {
+          var i;
+          var currentDie;
+          var rollsArray = [];
+
+          for (i = 0; i < numDice; i++) {
+             // get a random integer from 1 to numSides
+             currentDie = Math.floor(Math.random() * numSides) + 1; 
+             // add current result to array
+             rollsArray.push(currentDie); 
+          } 
+
+          // sort array descending
+          rollsArray.sort(function(a, b) {return b - a});
+          return rollsArray;
+       }
+
+       // Displays either a new set of rolls or the default rolls,
+       // depending on the user's choice. 
        function showRoll(rolloption) {
-          console.log(rolloption);
+          var rollsToShow = [];
+
+          // user chose to re-roll 
+          if (rolloption == 1) {
+             // roll 4d6 and add up the 3 highest numbers 
+             // do this 6 times
+             var i;
+             var currArray = []; 
+             var currTotal;
+
+             for (i = 0; i < 6; i++) {
+                currArray = rollDice(4, 6);
+                currTotal = currArray[0] + currArray[1] + currArray[2]; 
+                rollsToShow.push(currTotal);
+             }  
+
+             // sort descending
+             rollsToShow.sort(function(a, b) {return b - a});
+
+          } else {
+             // user chose to use default rolls 
+             rollsToShow = [15, 14, 13, 12, 10, 8];
+          }  
+
+          // display rolls
+          document.getElementById('rollOne').innerHTML = rollsToShow[0];
+          document.getElementById('rollTwo').innerHTML = rollsToShow[1];
+          document.getElementById('rollThree').innerHTML = rollsToShow[2];
+          document.getElementById('rollFour').innerHTML = rollsToShow[3];
+          document.getElementById('rollFive').innerHTML = rollsToShow[4];
+          document.getElementById('rollSix').innerHTML = rollsToShow[5];
+          // set scores
+          document.getElementById('finalOne').innerHTML = rollsToShow[0];
+          document.getElementById('finalTwo').innerHTML = rollsToShow[1];
+          document.getElementById('finalThree').innerHTML = rollsToShow[2];
+          document.getElementById('finalFour').innerHTML = rollsToShow[3];
+          document.getElementById('finalFive').innerHTML = rollsToShow[4];
+          document.getElementById('finalSix').innerHTML = rollsToShow[5];
+
        }
 
        function showScores() {
