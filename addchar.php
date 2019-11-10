@@ -154,7 +154,7 @@ if (isset($_SESSION['user_id'])) {
           </table>
        </div>
 
-       <table>
+       <table id="rollTableAssign"><caption>Rolls to assign</caption>
         <tr>
           <td id="finalOne">15</td><td><button class="leftassign" onclick="setAbility(1, 1)">assign to Str</button></td><td><button onclick="setAbility(2, 1)">assign to Dex</button></td><td><button onclick="setAbility(3, 1)">assign to Con</button></td><td><button onclick="setAbility(4, 1)">assign to Int</button></td><td><button onclick="setAbility(5, 1)">assign to Wis</button></td><td><button onclick="setAbility(6, 1)">assign to Cha</button></td>
         </tr>
@@ -254,6 +254,13 @@ if (isset($_SESSION['user_id'])) {
        }
 
        function showScores() {
+          // show current scores
+          document.getElementById('scoreOne').innerHTML = scoresToAssign[0];
+          document.getElementById('scoreTwo').innerHTML = scoresToAssign[1];
+          document.getElementById('scoreThree').innerHTML = scoresToAssign[2];
+          document.getElementById('scoreFour').innerHTML = scoresToAssign[3];
+          document.getElementById('scoreFive').innerHTML = scoresToAssign[4];
+          document.getElementById('scoreSix').innerHTML = scoresToAssign[5];
           document.getElementById('assignAbilityScores').style.display = "block";
           document.getElementById('initialRolls').style.display = "none";
        }
@@ -294,6 +301,7 @@ if (isset($_SESSION['user_id'])) {
 
        function checkAbilityScores() {
           console.log("verifying scores");
+          console.log(abilityScoresFinal);
        } 
 
     </script>
