@@ -154,7 +154,7 @@ if (isset($_SESSION['user_id'])) {
           </table>
        </div>
 
-       <p class="p-indent">Scores to assign</p>
+       <p class="p-indent">Scores to assign:</p>
        <table id="rollTableAssign">
         <tr>
           <td id="finalOne">15</td><td><button class="leftassign" onclick="setAbility(1, 1)">assign to Str</button></td><td><button onclick="setAbility(2, 1)">assign to Dex</button></td><td><button onclick="setAbility(3, 1)">assign to Con</button></td><td><button onclick="setAbility(4, 1)">assign to Int</button></td><td><button onclick="setAbility(5, 1)">assign to Wis</button></td><td><button onclick="setAbility(6, 1)">assign to Cha</button></td>
@@ -301,8 +301,34 @@ if (isset($_SESSION['user_id'])) {
        }
 
        function checkAbilityScores() {
-          console.log("verifying scores");
           console.log(abilityScoresFinal);
+
+          // copy score values to temp array 
+          var i;
+          var tempScores = [];
+
+          for (i = 0; i < 6; i++) {
+             tempScores.push(abilityScoresFinal[i]); 
+          }
+
+          // sort temp array and check for invalid score choices
+          tempScores.sort(function(a, b) {return b - a}); 
+          var scoresValid = 1;
+          var j;
+          for (j = 0; j < 6; j++) {
+             if (tempScores[j] != scoresToAssign[j]) {
+                scoresValid = 0;
+                break;    
+             } 
+          } 
+
+          // notify user if score assignments are invalid
+          if (scoresValid == 0) {
+             console.log("each available number must be used exactly once");
+          } else {
+             console.log("scores OK");
+          } 
+
        } 
 
     </script>
