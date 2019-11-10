@@ -174,7 +174,7 @@ if (isset($_SESSION['user_id'])) {
           <td id="finalSix">8</td><td><button class="leftassign" onclick="setAbility(1, 6)">assign to Str</button></td><td><button onclick="setAbility(2, 6)">assign to Dex</button></td><td><button onclick="setAbility(3, 6)">assign to Con</button></td><td><button onclick="setAbility(4, 6)">assign to Int</button></td><td><button onclick="setAbility(5, 6)">assign to Wis</button></td><td><button onclick="setAbility(6, 6)">assign to Cha</button></td>
         </tr>
        </table>
-       <button class="leftassign" onclick="checkAbilityScores()">Done assigning scores</button>
+       <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>
        </div>
        EOT;
 
@@ -260,30 +260,31 @@ if (isset($_SESSION['user_id'])) {
 
        function setAbility(abilitychoice, whichNum) {
           var scoreIdx = abilitychoice - 1;
+          var statVal = whichNum - 1; 
 
-          switch (whichNum) {
+          switch (abilitychoice) {
              case 1:
-                abilityScoresFinal[scoreIdx] = document.getElementById('finalOne').innerHTML;
+                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
                 document.getElementById('scoreOne').innerHTML = abilityScoresFinal[scoreIdx]; 
                 break;
              case 2:
-                abilityScoresFinal[scoreIdx] = document.getElementById('finalTwo').innerHTML;
+                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
                 document.getElementById('scoreTwo').innerHTML = abilityScoresFinal[scoreIdx];
                 break;
              case 3:
-                abilityScoresFinal[scoreIdx] = document.getElementById('finalThree').innerHTML;
+                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
                 document.getElementById('scoreThree').innerHTML = abilityScoresFinal[scoreIdx];
                 break;
              case 4:
-                abilityScoresFinal[scoreIdx] = document.getElementById('finalFour').innerHTML;
+                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
                 document.getElementById('scoreFour').innerHTML = abilityScoresFinal[scoreIdx];
                 break;
              case 5:
-                abilityScoresFinal[scoreIdx] = document.getElementById('finalFive').innerHTML;
+                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
                 document.getElementById('scoreFive').innerHTML = abilityScoresFinal[scoreIdx];
                 break;
              case 6: 
-                abilityScoresFinal[scoreIdx] = document.getElementById('finalSix').innerHTML;
+                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
                 document.getElementById('scoreSix').innerHTML = abilityScoresFinal[scoreIdx];
                 break;
              default:
