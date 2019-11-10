@@ -52,6 +52,11 @@ h3 {
     color: #4bd896;
 }
 
+.showcurrscore {
+    font-size: 1.5em;
+    color: #4bd896;
+}
+
 input[type=submit] {
     margin-left: 12px;
 }
