@@ -62,6 +62,12 @@ h3 {
     color: #4bd896;
 }
 
+.p-indent {
+    font-size: 1.2em;
+    color: gray;
+    margin-left: 30px;
+}
+
 #rollTableAssign {
     margin-top: 20px;
 }

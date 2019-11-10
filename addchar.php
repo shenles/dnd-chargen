@@ -154,7 +154,8 @@ if (isset($_SESSION['user_id'])) {
           </table>
        </div>
 
-       <table id="rollTableAssign"><caption>Rolls to assign</caption>
+       <p class="p-indent">Scores to assign</p>
+       <table id="rollTableAssign">
         <tr>
           <td id="finalOne">15</td><td><button class="leftassign" onclick="setAbility(1, 1)">assign to Str</button></td><td><button onclick="setAbility(2, 1)">assign to Dex</button></td><td><button onclick="setAbility(3, 1)">assign to Con</button></td><td><button onclick="setAbility(4, 1)">assign to Int</button></td><td><button onclick="setAbility(5, 1)">assign to Wis</button></td><td><button onclick="setAbility(6, 1)">assign to Cha</button></td>
         </tr>
