@@ -177,6 +177,12 @@ if (isset($_SESSION['user_id'])) {
        </table>
        <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>
        </div>
+
+       <div class="homepage-info" id="raceAbilityScores" style="display:none;">
+       <p>Nice work! Now you get to modify some of your ability scores based on your chosen race.</p>
+       
+       </div>
+
        EOT;
 
     }
@@ -256,6 +262,7 @@ if (isset($_SESSION['user_id'])) {
 
        function showScores() {
           // show current scores
+          abilityScoresFinal = scoresToAssign.slice();
           document.getElementById('scoreOne').innerHTML = scoresToAssign[0];
           document.getElementById('scoreTwo').innerHTML = scoresToAssign[1];
           document.getElementById('scoreThree').innerHTML = scoresToAssign[2];
@@ -324,9 +331,11 @@ if (isset($_SESSION['user_id'])) {
 
           // notify user if score assignments are invalid
           if (scoresValid == 0) {
-             console.log("each available number must be used exactly once");
+             alert("Each available number must be used exactly once.");
           } else {
              console.log("scores OK");
+             document.getElementById('raceAbilityScores').style.display = "block";
+             document.getElementById('assignAbilityScores').style.display = "none";
           } 
 
        } 
