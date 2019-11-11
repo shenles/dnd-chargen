@@ -179,8 +179,9 @@ if (isset($_SESSION['user_id'])) {
        </div>
 
        <div class="homepage-info" id="raceAbilityScores" style="display:none;">
+       <p>Nice work! Now you get some ability score increases based on your race:</p> 
        EOT;
-       echo "<p>Nice work! Now you get some ability score increases based on your race:</p>"; 
+
        echo "<p id=\"charraceinfo\">" . $chosenrace . "</p>";
 
        echo <<<EOT
@@ -359,14 +360,14 @@ if (isset($_SESSION['user_id'])) {
           } else {
 
              var racefinal = document.getElementById('charraceinfo').innerHTML;
-             var i;
-             var tempScores = [];
+             var k;
+             var tempOldScores = [];
 
-             for (i = 0; i < 6; i++) {
-                tempScores.push(abilityScoresFinal[i]);
+             for (k = 0; k < 6; k++) {
+                tempOldScores.push(abilityScoresFinal[k]);
              }
 
-             tempScores.sort(function(a, b) {return b - a});
+             tempOldScores.sort(function(a, b) {return b - a});
  
              switch (racefinal) {
                 case "Dragonborn":
