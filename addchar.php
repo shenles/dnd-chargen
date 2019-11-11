@@ -179,10 +179,32 @@ if (isset($_SESSION['user_id'])) {
        </div>
 
        <div class="homepage-info" id="raceAbilityScores" style="display:none;">
-       <p>Nice work! Now you get to modify some of your ability scores based on your chosen race.</p>
-       
+       EOT;
+       echo "<p>Nice work! Now you get some ability score increases based on your race:</p>"; 
+       echo "<p id=\"charraceinfo\">" . $chosenrace . "</p>";
+
+       echo <<<EOT
+       <p class="p-unique">Your new ability scores:</p>
+       <div class="rollresults" id="newscoresrace">
+          <table>
+             <tr>
+               <th>Strength</th>
+               <th>Dexterity</th>
+               <th>Constitution</th>
+               <th>Intelligence</th>
+               <th>Wisdom</th>
+               <th>Charisma</th></tr>
+             <tr>
+             <td class="showcurrscore" id="scoreOneRace">15</td>
+             <td class="showcurrscore" id="scoreTwoRace">14</td>
+             <td class="showcurrscore" id="scoreThreeRace">13</td>
+             <td class="showcurrscore" id="scoreFourRace">12</td>
+             <td class="showcurrscore" id="scoreFiveRace">10</td>
+             <td class="showcurrscore" id="scoreSixRace">8</td></tr>
+          </table>
        </div>
 
+       </div>
        EOT;
 
     }
@@ -194,6 +216,8 @@ if (isset($_SESSION['user_id'])) {
        var rollsToShow = [];
        var scoresToAssign = [];
        var abilityScoresFinal = [];
+       var abilityMods = [];
+       var otherStats = [];
 
        // Rolls numDice number of dice, with each die of numSides dimension.
        // Returns an array (sorted descending) of the numbers rolled.
@@ -333,7 +357,103 @@ if (isset($_SESSION['user_id'])) {
           if (scoresValid == 0) {
              alert("Each available number must be used exactly once.");
           } else {
-             console.log("scores OK");
+
+             var racefinal = document.getElementById('charraceinfo').innerHTML;
+             var i;
+             var tempScores = [];
+
+             for (i = 0; i < 6; i++) {
+                tempScores.push(abilityScoresFinal[i]);
+             }
+
+             tempScores.sort(function(a, b) {return b - a});
+ 
+             switch (racefinal) {
+                case "Dragonborn":
+                   abilityScoresFinal[0] += 2;
+                   abilityScoresFinal[5] += 1; 
+                   break;
+                case "Dwarf":
+                   abilityScoresFinal[2] += 2;
+                   break;
+                case "Hill Dwarf":
+                   abilityScoresFinal[2] += 2;
+                   abilityScoresFinal[4] += 1;
+                   break;                  
+                case "Mountain Dwarf":
+                   abilityScoresFinal[2] += 2;
+                   abilityScoresFinal[0] += 2;
+                   break;
+                case "Elf":
+                   abilityScoresFinal[1] += 2;
+                   break;
+                case "High Elf":
+                   abilityScoresFinal[1] += 2;
+                   abilityScoresFinal[3] += 1;
+                   break;
+                case "Drow":
+                   abilityScoresFinal[1] += 2;
+                   abilityScoresFinal[5] += 1;
+                   break;
+                case "Wood Elf":
+                   abilityScoresFinal[1] += 2;
+                   abilityScoresFinal[4] += 1;
+                   break;
+                case "Halfling":
+                   abilityScoresFinal[1] += 2;
+                   break;
+                case "Lightfoot Halfling":
+                   abilityScoresFinal[5] += 1;
+                   abilityScoresFinal[1] += 2;
+                   break;
+                case "Stout Halfling":
+                   abilityScoresFinal[2] += 1;
+                   abilityScoresFinal[1] += 2;
+                   break;
+                case "Gnome":
+                   abilityScoresFinal[3] += 2;
+                   break;
+                case "Forest Gnome":
+                   abilityScoresFinal[1] += 1;
+                   abilityScoresFinal[3] += 2;
+                   break;
+                case "Rock Gnome":
+                   abilityScoresFinal[2] += 1;
+                   abilityScoresFinal[3] += 2;
+                   break;
+                case "Deep Gnome":
+                   abilityScoresFinal[1] += 1;
+                   abilityScoresFinal[3] += 2;
+                   break;
+                case "Half-Elf":
+                   abilityScoresFinal[5] += 2;
+                   break;
+                case "Half-Orc":
+                   abilityScoresFinal[2] += 1;
+                   abilityScoresFinal[0] += 2;
+                   break;                
+                case "Tiefling":
+                   abilityScoresFinal[3] += 1;
+                   abilityScoresFinal[5] += 2;
+                   break;
+                case "Human":
+                   abilityScoresFinal[0] += 1;
+                   abilityScoresFinal[1] += 1;
+                   abilityScoresFinal[2] += 1;
+                   abilityScoresFinal[3] += 1;
+                   abilityScoresFinal[4] += 1;
+                   abilityScoresFinal[5] += 1;
+                   break;
+                default:
+                   echo "problem with ability increase";
+             }
+             document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0];
+             document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1];
+             document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2];
+             document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3];
+             document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4];
+             document.getElementById('scoreSixRace').innerHTML = abilityScoresFinal[5];
+             
              document.getElementById('raceAbilityScores').style.display = "block";
              document.getElementById('assignAbilityScores').style.display = "none";
           } 
