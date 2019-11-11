@@ -333,7 +333,6 @@ if (isset($_SESSION['user_id'])) {
        }
 
        function checkAbilityScores() {
-          console.log(abilityScoresFinal);
 
           // copy score values to temp array 
           var i;
@@ -360,15 +359,7 @@ if (isset($_SESSION['user_id'])) {
           } else {
 
              var racefinal = document.getElementById('charraceinfo').innerHTML;
-             var k;
-             var tempOldScores = [];
 
-             for (k = 0; k < 6; k++) {
-                tempOldScores.push(abilityScoresFinal[k]);
-             }
-
-             tempOldScores.sort(function(a, b) {return b - a});
- 
              switch (racefinal) {
                 case "Dragonborn":
                    abilityScoresFinal[0] += 2;
@@ -446,7 +437,7 @@ if (isset($_SESSION['user_id'])) {
                    abilityScoresFinal[5] += 1;
                    break;
                 default:
-                   echo "problem with ability increase";
+                   console.log("problem with ability increase");
              }
              document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0];
              document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1];
@@ -454,7 +445,6 @@ if (isset($_SESSION['user_id'])) {
              document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3];
              document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4];
              document.getElementById('scoreSixRace').innerHTML = abilityScoresFinal[5];
-             
              document.getElementById('raceAbilityScores').style.display = "block";
              document.getElementById('assignAbilityScores').style.display = "none";
           } 
