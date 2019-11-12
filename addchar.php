@@ -568,6 +568,7 @@ if (isset($_SESSION['user_id'])) {
                 document.getElementById('halfElfScore').style.display = "block";
                 document.getElementById('raceAbilityScores').style.display = "none";
              } else {
+                finalizeStats();
                 document.getElementById('finishStats').style.display = "block";
              } 
 
@@ -603,28 +604,39 @@ if (isset($_SESSION['user_id'])) {
           switch (abilityIdx) {
              case 0:
                 document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0];
-                document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0];
-                document.getElementById('scoreOneRace').style.color = "#b882dc"; 
              case 1:
                 document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1];
-                document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1];
-                document.getElementById('scoreTwoRace').style.color = "#b882dc"; 
              case 2:
                 document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2];
-                document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2]; 
-                document.getElementById('scoreThreeRace').style.color = "#b882dc"; 
              case 3:
                 document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
-                document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3];
-                document.getElementById('scoreFourRace').style.color = "#b882dc"; 
              case 4:
                 document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
-                document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4];
-                document.getElementById('scoreFiveRace').style.color = "#b882dc"; 
              default:
                 console.log("problem updating display");
           } 
 
+       }
+
+       // Calculates the ability score modifier for a given ability score.
+       function calcModifier(score) {
+          var modifier = Math.floor((score - 10) // 2);
+          return modifier;
+       }
+
+       function finalizeStats() {
+          document.getElementById('scoreOneFinish').innerHTML = abilityScoresFinal[0];
+          document.getElementById('scoreTwoFinish').innerHTML = abilityScoresFinal[1];
+          document.getElementById('scoreThreeFinish').innerHTML = abilityScoresFinal[2];
+          document.getElementById('scoreFourFinish').innerHTML = abilityScoresFinal[3];
+          document.getElementById('scoreFiveFinish').innerHTML = abilityScoresFinal[4];
+          document.getElementById('scoreSixFinish').innerHTML = abilityScoresFinal[5];
+          document.getElementById('modifierOne').innerHTML = calcModifier(abilityScoresFinal[0]);
+          document.getElementById('modifierTwo').innerHTML = calcModifier(abilityScoresFinal[1]);
+          document.getElementById('modifierThree').innerHTML = calcModifier(abilityScoresFinal[2]);
+          document.getElementById('modifierFour').innerHTML = calcModifier(abilityScoresFinal[3]);
+          document.getElementById('modifierFive').innerHTML = calcModifier(abilityScoresFinal[4]);
+          document.getElementById('modifierSix').innerHTML = calcModifier(abilityScoresFinal[5]);
        }
 
        function checkRaceIncreases() {
@@ -640,6 +652,7 @@ if (isset($_SESSION['user_id'])) {
           if (statsRaised != 2) {
              alert("You must increase exactly two scores by 1 each.");
           } else {        
+             finalizeStats();
              document.getElementById('halfElfScore').style.display = "none"; 
              document.getElementById('finishStats').style.display = "block";
           }
