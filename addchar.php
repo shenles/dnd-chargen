@@ -248,6 +248,7 @@ if (isset($_SESSION['user_id'])) {
        var abilityScoresFinal = [];
        var abilityMods = [];
        var otherStats = [];
+       var saveScores = [];
 
        // Rolls numDice number of dice, with each die of numSides dimension.
        // Returns an array (sorted descending) of the numbers rolled.
@@ -531,8 +532,6 @@ if (isset($_SESSION['user_id'])) {
 
        function incrAbility(abilityIdx, incrOrDecr) {
           var desiredValue;
-          var saveScores = [];
-
           var i;
           for (i = 0; i < 6; i++) {
              saveScores.push(abilityScoresFinal[i]);
@@ -541,7 +540,7 @@ if (isset($_SESSION['user_id'])) {
           if (incrOrDecr == 1) {
              desiredValue = abilityScoresFinal[abilityIdx] + 1; 
              // cannot increase any one stat by more than 1
-             if (desiredValue - saveScores[abilityIdx]) > 1 {
+             if (desiredValue - saveScores[abilityIdx] > 1) {
                 alert("This score cannot be increased more than once.");  
              } else {
                 abilityScoresFinal[abilityIdx] = desiredValue;
@@ -557,6 +556,17 @@ if (isset($_SESSION['user_id'])) {
 
        function checkRaceIncreases() {
           console.log("checking race increases");
+          var i;
+          var statsRaised; 
+          for (i = 0; i < 6; i++) {
+             if (abilityScoresFinal[i] > saveScores[i]) {
+                statsRaised += 1;
+             } 
+          }
+
+          if (statsRaised != 2) {
+             alert("You must increase exactly two scores by 1 each.");
+          }         
        }
 
     </script>
