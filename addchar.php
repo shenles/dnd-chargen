@@ -235,6 +235,46 @@ if (isset($_SESSION['user_id'])) {
        <button class="scoreassign" onclick="checkRaceIncreases()">Done choosing increases</button> 
        </div>
 
+       <div class="homepage-info" id="finishStats" style="display:none;">
+       <p>Excellent! Here are your finalized stats:</p>
+
+       <p class="p-indent">Ability scores</p>
+          <table><caption>These go in the small ovals in the leftmost column of your character sheet.</caption>
+             <tr>
+               <th>Strength</th>
+               <th>Dexterity</th>
+               <th>Constitution</th>
+               <th>Intelligence</th>
+               <th>Wisdom</th>
+               <th>Charisma</th></tr>
+             <tr>
+             <td class="showcurrscore" id="scoreOneFinish">15</td>
+             <td class="showcurrscore" id="scoreTwoFinish">14</td>
+             <td class="showcurrscore" id="scoreThreeFinish">13</td>
+             <td class="showcurrscore" id="scoreFourFinish">12</td>
+             <td class="showcurrscore" id="scoreFiveFinish">10</td>
+             <td class="showcurrscore" id="scoreSixFinish">8</td></tr>
+          </table>
+
+       <p class="p-indent">Ability score modifiers</p>
+          <table><caption>These go in the boxes in the leftmost column of your character sheet.</caption>
+             <tr>
+               <th>Strength</th>
+               <th>Dexterity</th>
+               <th>Constitution</th>
+               <th>Intelligence</th>
+               <th>Wisdom</th>
+               <th>Charisma</th></tr>
+             <tr>
+             <td class="showcurrscore" id="modifierOne">+2</td>
+             <td class="showcurrscore" id="modifierTwo">+2</td>
+             <td class="showcurrscore" id="modifierThree">+1</td>
+             <td class="showcurrscore" id="modifierFour">+1</td>
+             <td class="showcurrscore" id="modifierFive">+0</td>
+             <td class="showcurrscore" id="modifierSix">-1</td></tr>
+          </table>
+        
+       </div>
        EOT;
 
     }
@@ -526,7 +566,9 @@ if (isset($_SESSION['user_id'])) {
                 document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
                 document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
                 document.getElementById('halfElfScore').style.display = "block";
-
+                document.getElementById('raceAbilityScores').style.display = "none";
+             } else {
+                document.getElementById('finishStats').style.display = "block";
              } 
 
           } 
@@ -548,6 +590,7 @@ if (isset($_SESSION['user_id'])) {
              } else {
                 abilityScoresFinal[abilityIdx] = desiredValue;
              } 
+
           } else {
              desiredValue = abilityScoresFinal[abilityIdx] - 1;
              // cannot decrease below original score
@@ -555,6 +598,33 @@ if (isset($_SESSION['user_id'])) {
                 abilityScoresFinal[abilityIdx] = desiredValue; 
              } 
           }
+
+          // display new scores
+          switch (abilityIdx) {
+             case 0:
+                document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0];
+                document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0];
+                document.getElementById('scoreOneRace').style.color = "#b882dc"; 
+             case 1:
+                document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1];
+                document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1];
+                document.getElementById('scoreTwoRace').style.color = "#b882dc"; 
+             case 2:
+                document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2];
+                document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2]; 
+                document.getElementById('scoreThreeRace').style.color = "#b882dc"; 
+             case 3:
+                document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
+                document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3];
+                document.getElementById('scoreFourRace').style.color = "#b882dc"; 
+             case 4:
+                document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
+                document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4];
+                document.getElementById('scoreFiveRace').style.color = "#b882dc"; 
+             default:
+                console.log("problem updating display");
+          } 
+
        }
 
        function checkRaceIncreases() {
@@ -569,7 +639,10 @@ if (isset($_SESSION['user_id'])) {
 
           if (statsRaised != 2) {
              alert("You must increase exactly two scores by 1 each.");
-          }         
+          } else {        
+             document.getElementById('halfElfScore').style.display = "none"; 
+             document.getElementById('finishStats').style.display = "block";
+          }
        }
 
     </script>
