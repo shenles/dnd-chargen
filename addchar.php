@@ -317,6 +317,9 @@ if (isset($_SESSION['user_id'])) {
 
        function showScores() {
           // show current scores
+          if (scoresToAssign.length == 0) {
+             scoresToAssign = [15, 14, 13, 12, 10, 8];
+          }
           abilityScoresFinal = scoresToAssign.slice();
           document.getElementById('scoreOne').innerHTML = scoresToAssign[0];
           document.getElementById('scoreTwo').innerHTML = scoresToAssign[1];
@@ -557,7 +560,7 @@ if (isset($_SESSION['user_id'])) {
        function checkRaceIncreases() {
           console.log("checking race increases");
           var i;
-          var statsRaised; 
+          var statsRaised = 0; 
           for (i = 0; i < 6; i++) {
              if (abilityScoresFinal[i] > saveScores[i]) {
                 statsRaised += 1;
