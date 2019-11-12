@@ -530,7 +530,6 @@ if (isset($_SESSION['user_id'])) {
        } 
 
        function incrAbility(abilityIdx, incrOrDecr) {
-          console.log(abilityIdx, incrOrDecr);
           var desiredValue;
           var saveScores = [];
 
