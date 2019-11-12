@@ -206,6 +206,35 @@ if (isset($_SESSION['user_id'])) {
        </div>
 
        </div>
+
+       <div class="homepage-info" id="halfElfScore" style="display:none;">
+       <p>Because you are a Half-Elf, you also get to choose two ability scores to increase by 1 each.</p> 
+       <p class="p-indent">Scores available to increase:</p>
+       <table id="raceTableAssign">
+        <tr>
+          <td id="halfElfOne">15</td><td><button class="leftassign" onclick="incrAbility(0, 1)">increase Strength</button></td>
+          <td><button class="leftassign" onclick="incrAbility(0, -1)">undo increase</button></td>
+        </tr>
+        <tr>
+          <td id="halfElfTwo">14</td><td><button class="leftassign" onclick="incrAbility(1, 1)">increase Dexterity</button></td>
+          <td><button class="leftassign" onclick="incrAbility(1, -1)">undo increase</button></td>
+        </tr>
+        <tr>
+          <td id="halfElfThree">13</td><td><button class="leftassign" onclick="incrAbility(2, 1)">increase Constitution</button></td>
+          <td><button class="leftassign" onclick="incrAbility(2, -1)">undo increase</button></td>
+        </tr>
+        <tr>
+          <td id="halfElfFour">12</td><td><button class="leftassign" onclick="incrAbility(3, 1)">increase Intelligence</button></td>
+          <td><button class="leftassign" onclick="incrAbility(3, -1)">undo increase</button></td>
+        </tr>
+        <tr>
+          <td id="halfElfFive">10</td><td><button class="leftassign" onclick="incrAbility(4, 1)">increase Wisdom</button></td>
+          <td><button class="leftassign" onclick="incrAbility(4, -1)">undo increase</button></td>
+        </tr>
+       </table>
+       <button class="scoreassign" onclick="checkRaceIncreases()">Done choosing increases</button> 
+       </div>
+
        EOT;
 
     }
@@ -298,6 +327,7 @@ if (isset($_SESSION['user_id'])) {
           document.getElementById('initialRolls').style.display = "none";
        }
 
+       // Allows user to assign their rolled numbers to various ability scores. 
        function setAbility(abilitychoice, whichNum) {
           var scoreIdx = abilitychoice - 1;
           var statVal = whichNum - 1; 
@@ -332,6 +362,7 @@ if (isset($_SESSION['user_id'])) {
           } 
        }
 
+       // Validates user's score assignments and adds any extra increases. 
        function checkAbilityScores() {
 
           // copy score values to temp array 
@@ -483,9 +514,51 @@ if (isset($_SESSION['user_id'])) {
              document.getElementById('scoreSixRace').innerHTML = abilityScoresFinal[5];
              document.getElementById('raceAbilityScores').style.display = "block";
              document.getElementById('assignAbilityScores').style.display = "none";
+
+             if (racefinal == "Half-Elf") {
+                document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0];
+                document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1];
+                document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2];
+                document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
+                document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
+                document.getElementById('halfElfScore').style.display = "block";
+
+             } 
+
           } 
 
        } 
+
+       function incrAbility(abilityIdx, incrOrDecr) {
+          console.log(abilityIdx, incrOrDecr);
+          var desiredValue;
+          var saveScores = [];
+
+          var i;
+          for (i = 0; i < 6; i++) {
+             saveScores.push(abilityScoresFinal[i]);
+          } 
+
+          if (incrOrDecr == 1) {
+             desiredValue = abilityScoresFinal[abilityIdx] + 1; 
+             // cannot increase any one stat by more than 1
+             if (desiredValue - saveScores[abilityIdx]) > 1 {
+                alert("This score cannot be increased more than once.");  
+             } else {
+                abilityScoresFinal[abilityIdx] = desiredValue;
+             } 
+          } else {
+             desiredValue = abilityScoresFinal[abilityIdx] - 1;
+             // cannot decrease below original score
+             if (desiredValue >= saveScores[abilityIdx]) {
+                abilityScoresFinal[abilityIdx] = desiredValue; 
+             } 
+          }
+       }
+
+       function checkRaceIncreases() {
+          console.log("checking race increases");
+       }
 
     </script>
 
