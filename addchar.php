@@ -323,6 +323,8 @@ if (isset($_SESSION['user_id'])) {
        var speedStat;
        var hpmaxStat; 
        var hitdiceStat;
+       var racefinal = document.getElementById('charraceinfo').innerHTML;
+       var classfinal = document.getElementById('charclassinfo').innerHTML;      
 
        // Rolls numDice number of dice, with each die of numSides dimension.
        // Returns an array (sorted descending) of the numbers rolled.
@@ -466,8 +468,6 @@ if (isset($_SESSION['user_id'])) {
           if (scoresValid == 0) {
              alert("Each available number must be used exactly once.");
           } else {
-
-             var racefinal = document.getElementById('charraceinfo').innerHTML;
 
              switch (racefinal) {
                 case "Dragonborn":
@@ -688,9 +688,15 @@ if (isset($_SESSION['user_id'])) {
           // calculate modifiers based on ability scores
           var i;
           var currMod;
+          var plusMods = [];
           for (i = 0; i < 6; i++) {
              currMod = calcModifier(abilityScoresFinal[i]);
              abilityMods.push(currMod);
+             if (currMod < 0) {
+                plusMods.push(currMod); 
+             } else {
+                plusMods.push("+".concat(currMod));
+             } 
           } 
 
           document.getElementById('modifierOne').innerHTML = abilityMods[0];
@@ -700,7 +706,6 @@ if (isset($_SESSION['user_id'])) {
           document.getElementById('modifierFive').innerHTML = abilityMods[4];
           document.getElementById('modifierSix').innerHTML = abilityMods[5];
          
-          var classfinal = document.getElementById('charclassinfo').innerHTML;
           var maxroll;
 
           switch (classfinal) {
@@ -728,7 +733,7 @@ if (isset($_SESSION['user_id'])) {
                 maxroll = 0; 
           }
 
-          initStat = abilityMods[1];
+          initStat = plusMods[1];
           hpmaxStat = maxroll + abilityMods[2];
           hitdiceStat = "1d".concat(maxroll.toString()); 
           document.getElementById('initiative').innerHTML = initStat;
