@@ -620,7 +620,6 @@ if (isset($_SESSION['user_id'])) {
                 document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
                 document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
                 document.getElementById('halfElfScore').style.display = "block";
-                document.getElementById('raceAbilityScores').style.display = "none";
              } else {
                 finalizeStats();
                 document.getElementById('finishStats').style.display = "block";
