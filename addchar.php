@@ -569,6 +569,7 @@ if (isset($_SESSION['user_id'])) {
                 document.getElementById('raceAbilityScores').style.display = "none";
              } else {
                 finalizeStats();
+                document.getElementById('raceAbilityScores').style.display = "none";
                 document.getElementById('finishStats').style.display = "block";
              } 
 
@@ -620,8 +621,11 @@ if (isset($_SESSION['user_id'])) {
 
        // Calculates the ability score modifier for a given ability score.
        function calcModifier(score) {
-          var modifier = Math.floor((score - 10) / 2);
-          return modifier;
+          var startMod = "+";
+          var intMod = Math.floor((score - 10) / 2);
+          var endMod = intMod.toString();
+          var modFinal = startMod.concat(endMod);
+          return modFinal;
        }
 
        function finalizeStats() {
