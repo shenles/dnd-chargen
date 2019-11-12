@@ -100,6 +100,20 @@ if (isset($_SESSION['user_id'])) {
         <option value="Urchin">Urchin</option>
     </select>
     <p></p>
+    <select name="charalign" id="charalign" required>
+    <label for="charalign">Select an alignment for your character:</label>
+        <option value="None">None</option>
+        <option value="Lawful Good">Lawful Good</option>
+        <option value="Lawful Neutral">Lawful Neutral</option>
+        <option value="Lawful Evil">Lawful Evil</option>
+        <option value="Neutral Good">Neutral Good</option>
+        <option value="Neutral">Neutral</option>
+        <option value="Neutral Evil">Neutral Evil</option>
+        <option value="Chaotic Good">Chaotic Good</option>
+        <option value="Chaotic Neutral">Chaotic Neutral</option>
+        <option value="Chaotic Evil">Chaotic Evil</option>
+    </select>
+    <p></p>
     <input type="submit" value="Submit">
     </form>
     EOT;
@@ -107,10 +121,14 @@ if (isset($_SESSION['user_id'])) {
     $chosenclass = $_POST['charclass'];
     $chosenrace = $_POST['charrace'];
     $chosenbg = $_POST['charbg']; 
+    $alignment = $_POST['charalign'];
 
     if (isset($chosenclass) && isset($chosenrace)) {
 
        echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
+
+       echo "<div id=\"charraceinfo\" style=\"display:none;\">" . $chosenrace . "</div>";
+       echo "<div id=\"charclassinfo\" style=\"display:none;\">" . $chosenclass . "</div>";
 
        echo <<<EOT
        <div class="homepage-info" id="initialRolls">
@@ -145,12 +163,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showcurrscore" id="scoreOne">15</td>
-             <td class="showcurrscore" id="scoreTwo">14</td>
-             <td class="showcurrscore" id="scoreThree">13</td>
-             <td class="showcurrscore" id="scoreFour">12</td>
-             <td class="showcurrscore" id="scoreFive">10</td>
-             <td class="showcurrscore" id="scoreSix">8</td></tr>
+             <td class="showcurrscore" id="scoreOne"></td>
+             <td class="showcurrscore" id="scoreTwo"></td>
+             <td class="showcurrscore" id="scoreThree"></td>
+             <td class="showcurrscore" id="scoreFour"></td>
+             <td class="showcurrscore" id="scoreFive"></td>
+             <td class="showcurrscore" id="scoreSix"></td></tr>
           </table>
        </div>
 
@@ -182,8 +200,6 @@ if (isset($_SESSION['user_id'])) {
        <p>Nice work! Now you get ability score increases based on your race:</p> 
        EOT;
 
-       echo "<p id=\"charraceinfo\">" . $chosenrace . "</p>";
-
        echo <<<EOT
        <p class="p-unique">Your new ability scores:</p>
        <div class="rollresults" id="newscoresrace">
@@ -196,12 +212,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showcurrscore" id="scoreOneRace">15</td>
-             <td class="showcurrscore" id="scoreTwoRace">14</td>
-             <td class="showcurrscore" id="scoreThreeRace">13</td>
-             <td class="showcurrscore" id="scoreFourRace">12</td>
-             <td class="showcurrscore" id="scoreFiveRace">10</td>
-             <td class="showcurrscore" id="scoreSixRace">8</td></tr>
+             <td class="showcurrscore" id="scoreOneRace"></td>
+             <td class="showcurrscore" id="scoreTwoRace"></td>
+             <td class="showcurrscore" id="scoreThreeRace"></td>
+             <td class="showcurrscore" id="scoreFourRace"></td>
+             <td class="showcurrscore" id="scoreFiveRace"></td>
+             <td class="showcurrscore" id="scoreSixRace"></td></tr>
           </table>
        </div>
 
@@ -248,12 +264,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showcurrscore" id="scoreOneFinish">15</td>
-             <td class="showcurrscore" id="scoreTwoFinish">14</td>
-             <td class="showcurrscore" id="scoreThreeFinish">13</td>
-             <td class="showcurrscore" id="scoreFourFinish">12</td>
-             <td class="showcurrscore" id="scoreFiveFinish">10</td>
-             <td class="showcurrscore" id="scoreSixFinish">8</td></tr>
+             <td class="showfinalscore" id="scoreOneFinish"></td>
+             <td class="showfinalscore" id="scoreTwoFinish"></td>
+             <td class="showfinalscore" id="scoreThreeFinish"></td>
+             <td class="showfinalscore" id="scoreFourFinish"></td>
+             <td class="showfinalscore" id="scoreFiveFinish"></td>
+             <td class="showfinalscore" id="scoreSixFinish"></td></tr>
           </table>
 
        <p class="p-indent">Ability score modifiers</p>
@@ -266,14 +282,29 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showcurrscore" id="modifierOne">+2</td>
-             <td class="showcurrscore" id="modifierTwo">+2</td>
-             <td class="showcurrscore" id="modifierThree">+1</td>
-             <td class="showcurrscore" id="modifierFour">+1</td>
-             <td class="showcurrscore" id="modifierFive">+0</td>
-             <td class="showcurrscore" id="modifierSix">-1</td></tr>
+             <td class="showfinalscore" id="modifierOne"></td>
+             <td class="showfinalscore" id="modifierTwo"></td>
+             <td class="showfinalscore" id="modifierThree"></td>
+             <td class="showfinalscore" id="modifierFour"></td>
+             <td class="showfinalscore" id="modifierFive"></td>
+             <td class="showfinalscore" id="modifierSix"></td></tr>
           </table>
-        
+
+       <p class="p-indent">Other stats</p>
+          <table>
+             <tr>
+               <th>Proficiency Bonus</th>
+               <th>Initiative</th>
+               <th>Speed</th>
+               <th>Hit Dice</th>
+               <th>Hit Point Maximum</th>
+             <tr>
+             <td class="showfinalscore" id="profbonus">+2</td>
+             <td class="showfinalscore" id="initiative"></td>
+             <td class="showfinalscore" id="speed"></td>
+             <td class="showfinalscore" id="hitdice"></td>
+             <td class="showfinalscore" id="hpmax"></td>
+          </table>
        </div>
        EOT;
 
@@ -287,8 +318,11 @@ if (isset($_SESSION['user_id'])) {
        var scoresToAssign = [];
        var abilityScoresFinal = [];
        var abilityMods = [];
-       var otherStats = [];
        var saveScores = [];
+       var initStat;
+       var speedStat;
+       var hpmaxStat; 
+       var hitdiceStat;
 
        // Rolls numDice number of dice, with each die of numSides dimension.
        // Returns an array (sorted descending) of the numbers rolled.
@@ -441,97 +475,115 @@ if (isset($_SESSION['user_id'])) {
                    abilityScoresFinal[5] += 1; 
                    document.getElementById('scoreOneRace').style.color = "#4bd896";
                    document.getElementById('scoreSixRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;
                 case "Dwarf":
                    abilityScoresFinal[2] += 2;
                    document.getElementById('scoreThreeRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Hill Dwarf":
                    abilityScoresFinal[2] += 2;
                    abilityScoresFinal[4] += 1;
                    document.getElementById('scoreThreeRace').style.color = "#4bd896";
                    document.getElementById('scoreFiveRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;                  
                 case "Mountain Dwarf":
                    abilityScoresFinal[2] += 2;
                    abilityScoresFinal[0] += 2;
                    document.getElementById('scoreThreeRace').style.color = "#4bd896";
                    document.getElementById('scoreOneRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Elf":
                    abilityScoresFinal[1] += 2;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
+                   speedStat = 30;
                    break;
                 case "High Elf":
                    abilityScoresFinal[1] += 2;
                    abilityScoresFinal[3] += 1;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;
                 case "Drow":
                    abilityScoresFinal[1] += 2;
                    abilityScoresFinal[5] += 1;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreSixRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;
                 case "Wood Elf":
                    abilityScoresFinal[1] += 2;
                    abilityScoresFinal[4] += 1;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreFiveRace').style.color = "#4bd896";
+                   speedStat = 35;
                    break;
                 case "Halfling":
                    abilityScoresFinal[1] += 2;
+                   speedStat = 25;
                    break;
                 case "Lightfoot Halfling":
                    abilityScoresFinal[5] += 1;
                    abilityScoresFinal[1] += 2;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreSixRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Stout Halfling":
                    abilityScoresFinal[2] += 1;
                    abilityScoresFinal[1] += 2;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreThreeRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Gnome":
                    abilityScoresFinal[3] += 2;
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Forest Gnome":
                    abilityScoresFinal[1] += 1;
                    abilityScoresFinal[3] += 2;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Rock Gnome":
                    abilityScoresFinal[2] += 1;
                    abilityScoresFinal[3] += 2;
                    document.getElementById('scoreThreeRace').style.color = "#4bd896";
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Deep Gnome":
                    abilityScoresFinal[1] += 1;
                    abilityScoresFinal[3] += 2;
                    document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
+                   speedStat = 25;
                    break;
                 case "Half-Elf":
                    abilityScoresFinal[5] += 2;
                    document.getElementById('scoreSixRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;
                 case "Half-Orc":
                    abilityScoresFinal[2] += 1;
                    abilityScoresFinal[0] += 2;
                    document.getElementById('scoreOneRace').style.color = "#4bd896"; 
                    document.getElementById('scoreThreeRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;                
                 case "Tiefling":
                    abilityScoresFinal[3] += 1;
                    abilityScoresFinal[5] += 2;
                    document.getElementById('scoreSixRace').style.color = "#4bd896";
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;
                 case "Human":
                    abilityScoresFinal[0] += 1;
@@ -546,10 +598,12 @@ if (isset($_SESSION['user_id'])) {
                    document.getElementById('scoreFourRace').style.color = "#4bd896";
                    document.getElementById('scoreFiveRace').style.color = "#4bd896";
                    document.getElementById('scoreSixRace').style.color = "#4bd896";
+                   speedStat = 30;
                    break;
                 default:
                    console.log("problem with ability increase");
              }
+
              document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0];
              document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1];
              document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2];
@@ -569,7 +623,6 @@ if (isset($_SESSION['user_id'])) {
                 document.getElementById('raceAbilityScores').style.display = "none";
              } else {
                 finalizeStats();
-                document.getElementById('raceAbilityScores').style.display = "none";
                 document.getElementById('finishStats').style.display = "block";
              } 
 
@@ -621,11 +674,8 @@ if (isset($_SESSION['user_id'])) {
 
        // Calculates the ability score modifier for a given ability score.
        function calcModifier(score) {
-          var startMod = "+";
           var intMod = Math.floor((score - 10) / 2);
-          var endMod = intMod.toString();
-          var modFinal = startMod.concat(endMod);
-          return modFinal;
+          return intMod;
        }
 
        function finalizeStats() {
@@ -635,12 +685,57 @@ if (isset($_SESSION['user_id'])) {
           document.getElementById('scoreFourFinish').innerHTML = abilityScoresFinal[3];
           document.getElementById('scoreFiveFinish').innerHTML = abilityScoresFinal[4];
           document.getElementById('scoreSixFinish').innerHTML = abilityScoresFinal[5];
-          document.getElementById('modifierOne').innerHTML = calcModifier(abilityScoresFinal[0]);
-          document.getElementById('modifierTwo').innerHTML = calcModifier(abilityScoresFinal[1]);
-          document.getElementById('modifierThree').innerHTML = calcModifier(abilityScoresFinal[2]);
-          document.getElementById('modifierFour').innerHTML = calcModifier(abilityScoresFinal[3]);
-          document.getElementById('modifierFive').innerHTML = calcModifier(abilityScoresFinal[4]);
-          document.getElementById('modifierSix').innerHTML = calcModifier(abilityScoresFinal[5]);
+
+          // calculate modifiers based on ability scores
+          var i;
+          var currMod;
+          for (i = 0; i < 6; i++) {
+             currMod = calcModifier(abilityScoresFinal[i]);
+             abilityMods.push(currMod);
+          } 
+
+          document.getElementById('modifierOne').innerHTML = abilityMods[0];
+          document.getElementById('modifierTwo').innerHTML = abilityMods[1];
+          document.getElementById('modifierThree').innerHTML = abilityMods[2];
+          document.getElementById('modifierFour').innerHTML = abilityMods[3];
+          document.getElementById('modifierFive').innerHTML = abilityMods[4];
+          document.getElementById('modifierSix').innerHTML = abilityMods[5];
+         
+          var classfinal = document.getElementById('charclassinfo').innerHTML;
+          var maxroll;
+
+          switch (classfinal) {
+             case "Sorcerer":
+             case "Wizard":
+                maxroll = 6;
+                break;
+             case "Warlock":
+             case "Rogue":
+             case "Monk":
+             case "Druid":
+             case "Cleric":
+             case "Bard":
+                maxroll = 8;
+                break;
+             case "Fighter":
+             case "Paladin":
+             case "Ranger":
+                maxroll = 10;
+                break;
+             case "Barbarian":
+                maxroll = 12;
+                break; 
+             default:
+                maxroll = 0; 
+          }
+
+          initStat = abilityMods[1];
+          hpmaxStat = maxroll + abilityMods[2];
+          hitdiceStat = "1d".concat(maxroll.toString()); 
+          document.getElementById('initiative').innerHTML = initStat;
+          document.getElementById('hpmax').innerHTML = hpmaxStat; 
+          document.getElementById('hitdice').innerHTML = hitdiceStat;
+          document.getElementById('speed').innerHTML = speedStat;
        }
 
        function checkRaceIncreases() {
