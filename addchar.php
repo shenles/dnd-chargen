@@ -179,7 +179,7 @@ if (isset($_SESSION['user_id'])) {
        </div>
 
        <div class="homepage-info" id="raceAbilityScores" style="display:none;">
-       <p>Nice work! Now you get some ability score increases based on your race:</p> 
+       <p>Nice work! Now you get ability score increases based on your race:</p> 
        EOT;
 
        echo "<p id=\"charraceinfo\">" . $chosenrace . "</p>";
@@ -364,32 +364,46 @@ if (isset($_SESSION['user_id'])) {
                 case "Dragonborn":
                    abilityScoresFinal[0] += 2;
                    abilityScoresFinal[5] += 1; 
+                   document.getElementById('scoreOneRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreSixRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Dwarf":
                    abilityScoresFinal[2] += 2;
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Hill Dwarf":
                    abilityScoresFinal[2] += 2;
                    abilityScoresFinal[4] += 1;
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreFiveRace').innerHTML.style.color = "#4bd896";
                    break;                  
                 case "Mountain Dwarf":
                    abilityScoresFinal[2] += 2;
                    abilityScoresFinal[0] += 2;
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreOneRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Elf":
                    abilityScoresFinal[1] += 2;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
                    break;
                 case "High Elf":
                    abilityScoresFinal[1] += 2;
                    abilityScoresFinal[3] += 1;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Drow":
                    abilityScoresFinal[1] += 2;
                    abilityScoresFinal[5] += 1;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreSixRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Wood Elf":
                    abilityScoresFinal[1] += 2;
                    abilityScoresFinal[4] += 1;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreFiveRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Halfling":
                    abilityScoresFinal[1] += 2;
@@ -397,36 +411,52 @@ if (isset($_SESSION['user_id'])) {
                 case "Lightfoot Halfling":
                    abilityScoresFinal[5] += 1;
                    abilityScoresFinal[1] += 2;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreSixRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Stout Halfling":
                    abilityScoresFinal[2] += 1;
                    abilityScoresFinal[1] += 2;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Gnome":
                    abilityScoresFinal[3] += 2;
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Forest Gnome":
                    abilityScoresFinal[1] += 1;
                    abilityScoresFinal[3] += 2;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Rock Gnome":
                    abilityScoresFinal[2] += 1;
                    abilityScoresFinal[3] += 2;
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Deep Gnome":
                    abilityScoresFinal[1] += 1;
                    abilityScoresFinal[3] += 2;
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Half-Elf":
                    abilityScoresFinal[5] += 2;
+                   document.getElementById('scoreSixRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Half-Orc":
                    abilityScoresFinal[2] += 1;
                    abilityScoresFinal[0] += 2;
+                   document.getElementById('scoreOneRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
                    break;                
                 case "Tiefling":
                    abilityScoresFinal[3] += 1;
                    abilityScoresFinal[5] += 2;
+                   document.getElementById('scoreSixRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
                    break;
                 case "Human":
                    abilityScoresFinal[0] += 1;
@@ -435,6 +465,12 @@ if (isset($_SESSION['user_id'])) {
                    abilityScoresFinal[3] += 1;
                    abilityScoresFinal[4] += 1;
                    abilityScoresFinal[5] += 1;
+                   document.getElementById('scoreOneRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreTwoRace').innerHTML.style.color = "#4bd896"; 
+                   document.getElementById('scoreThreeRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreFourRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreFiveRace').innerHTML.style.color = "#4bd896";
+                   document.getElementById('scoreSixRace').innerHTML.style.color = "#4bd896";
                    break;
                 default:
                    console.log("problem with ability increase");
