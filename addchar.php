@@ -138,7 +138,7 @@ if (isset($_SESSION['user_id'])) {
        <div class="homepage-info" id="initialRolls">
        <p>First, roll your ability scores, or use the default rolls:</p>
        <button class="leftassign" onclick="showRoll(1)">Re-roll</button><button class="leftassign" onclick="showRoll(2)">Use defaults</button>
-
+       <a href="#" class="btn btn-light">Skip this step & manually enter stats</a>
        <p class="p-unique">Your current rolls:</p>
        <div class="rollresults" id="abilityrolls">
           <p><span class="oneroll" id="rollOne">15</span>
@@ -149,7 +149,7 @@ if (isset($_SESSION['user_id'])) {
              <span class="oneroll" id="rollSix">8</span></p>
        </div>
 
-       <button onclick="showScores()">Done rolling</button><button class="leftassign" onclick="startManual()">Skip this step & manually enter stats</button>
+       <button onclick="showScores()">Done rolling</button>
        </div>
        
        <div class="homepage-info" id="assignAbilityScores" style="display:none;">
