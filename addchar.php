@@ -44,8 +44,8 @@ if (isset($_SESSION['user_id'])) {
 
     echo <<<EOT
     <form class="filterform" action="addchar.php" method="post">
+    <label>Select a class for your character:
     <select name="charclass" id="charclass" required>
-    <label for="charclass">Select a class for your character:</label>
         <option value="Barbarian">Barbarian</option>
         <option value="Bard">Bard</option>
         <option value="Cleric">Cleric</option>
@@ -59,9 +59,10 @@ if (isset($_SESSION['user_id'])) {
         <option value="Warlock">Warlock</option>
         <option value="Wizard">Wizard</option>
     </select>
+    </label>
     <p></p>
+    <label>Select a race for your character:
     <select name="charrace" id="charrace" required>
-    <label for="charrace">Select a race for your character:</label>
         <option value="Dragonborn">Dragonborn</option>
         <option value="Dwarf">Dwarf</option>
         <option value="Hill Dwarf">Hill Dwarf</option>
@@ -82,9 +83,10 @@ if (isset($_SESSION['user_id'])) {
         <option value="Deep Gnome">Deep Gnome</option>
         <option value="Tiefling">Tiefling</option>
     </select>
+    </label>
     <p></p>
+    <label>Select a background for your character:
     <select name="charbg" id="charbg" required>
-    <label for="charbg">Select a background for your character:</label>
         <option value="None">None</option>
         <option value="Acolyte">Acolyte</option>
         <option value="Charlatan">Charlatan</option>
@@ -99,9 +101,10 @@ if (isset($_SESSION['user_id'])) {
         <option value="Soldier">Soldier</option>
         <option value="Urchin">Urchin</option>
     </select>
+    </label>
     <p></p>
+    <label>Select an alignment for your character:
     <select name="charalign" id="charalign" required>
-    <label for="charalign">Select an alignment for your character:</label>
         <option value="None">None</option>
         <option value="Lawful Good">Lawful Good</option>
         <option value="Lawful Neutral">Lawful Neutral</option>
@@ -113,6 +116,7 @@ if (isset($_SESSION['user_id'])) {
         <option value="Chaotic Neutral">Chaotic Neutral</option>
         <option value="Chaotic Evil">Chaotic Evil</option>
     </select>
+    </label>
     <p></p>
     <input type="submit" value="Submit">
     </form>
@@ -125,7 +129,7 @@ if (isset($_SESSION['user_id'])) {
 
     if (isset($chosenclass) && isset($chosenrace)) {
 
-       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";  
+       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . ", alignment " . $alignment . "</div>";  
 
        echo "<div id=\"charraceinfo\" style=\"display:none;\">" . $chosenrace . "</div>";
        echo "<div id=\"charclassinfo\" style=\"display:none;\">" . $chosenclass . "</div>";
@@ -145,7 +149,7 @@ if (isset($_SESSION['user_id'])) {
              <span class="oneroll" id="rollSix">8</span></p>
        </div>
 
-       <button onclick="showScores()">Done rolling</button>
+       <button onclick="showScores()">Done rolling</button><button class="leftassign" onclick="startManual()">Skip this step & manually enter stats</button>
        </div>
        
        <div class="homepage-info" id="assignAbilityScores" style="display:none;">
@@ -735,6 +739,11 @@ if (isset($_SESSION['user_id'])) {
 
           initStat = plusMods[1];
           hpmaxStat = maxroll + abilityMods[2];
+
+          if (racefinal == "Hill Dwarf") {
+              hpmaxStat += 1;
+          }
+
           hitdiceStat = "1d".concat(maxroll.toString()); 
           document.getElementById('initiative').innerHTML = initStat;
           document.getElementById('hpmax').innerHTML = hpmaxStat; 
@@ -760,6 +769,10 @@ if (isset($_SESSION['user_id'])) {
              document.getElementById('finishStats').style.display = "block";
           }
        }
+
+       function startManual() {
+          console.log("starting manual entry of stats");
+       } 
 
     </script>
 
