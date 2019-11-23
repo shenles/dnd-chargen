@@ -65,7 +65,7 @@ var deepgnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Under
 var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, null, {5: 2}, 0);
 var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, null, {0: 2, 2: 1}, 0);
 var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, null, {3: 1, 5: 2}, 0);
-var human = new Race(19, "Human", 25, 0, ["Common", "choose 1 extra"], -1, null, {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1}, 0);
+var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, null, {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1}, 0);
 
 allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
 
@@ -152,13 +152,8 @@ function setAbility(abilitychoice, whichNum) {
   var statVal = whichNum - 1; 
 
   abilityScoresFinal[scoreIdx].value = scoresToAssign[statVal];
-
-  for (let i = 0; i < 6; i++) {
-      abilityScoresFinal[i].value = scoresToAssign[i];
-      let idToGet = "score".concat(i.toString());
-      document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
-  }
-
+  let idToGet = "score".concat(scoreIdx.toString());
+  document.getElementById(idToGet).innerHTML = abilityScoresFinal[scoreIdx].value;
 }
 
 // Validates user's score assignments and adds any extra increases. 
@@ -176,13 +171,13 @@ function checkAbilityScores() {
   var scoresValid = 1;
   for (let j = 0; j < 6; j++) {
      if (tempScores[j] != scoresToAssign[j]) {
-        scoresValid = 0;
+        scoresValid = -1;
         break;    
      } 
   } 
 
   // notify user if score assignments are invalid
-  if (scoresValid == 0) {
+  if (scoresValid == -1) {
      alert("Each available number must be used exactly once.");
   } else {
 
