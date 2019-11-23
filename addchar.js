@@ -190,12 +190,9 @@ function checkAbilityScores() {
         // find the chosen race in the array of all races
         if (matchrace.name == racefinal) {
 
-           console.log(matchrace.name);
            // check if this race grants any ability score increases
            for (let i = 0; i < 6; i++) {
               if (i in matchrace.abilityincreases) {
-                  console.log("race increases found");
-                  console.log(matchrace.abilityincreases);
                   abilityScoresFinal[i].value += matchrace.abilityincreases[i];
                   abilityScoresFinal[i].increased = 1;
               }
@@ -214,6 +211,10 @@ function checkAbilityScores() {
 
          let idToGet = "scoreRace".concat(i.toString());
          document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
+         // if a score was changed, it shows up green
+         if (abilityScoresFinal[i].increased == 1) {
+            document.getElementById(idToGet).style.color = "#5ab260";
+         }
 
      }
 
