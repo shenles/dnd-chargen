@@ -134,9 +134,11 @@ function showScores() {
      scoresToAssign = [15, 14, 13, 12, 10, 8];
   }
 
+  var idToGet;
+
   for (let i = 0; i < 6; i++) {
       abilityScoresFinal[i].value = scoresToAssign[i];
-      let idToGet = "score".concat(i.toString());
+      idToGet = "score".concat(i.toString());
       document.getElementById(idToGet).innerHTML = scoresToAssign[i];
   }
 
@@ -153,7 +155,7 @@ function setAbility(abilitychoice, whichNum) {
 
   for (let i = 0; i < 6; i++) {
       abilityScoresFinal[i].value = scoresToAssign[i];
-      let idToGet = "score".concat(i.toString());
+      idToGet = "score".concat(i.toString());
       document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
   }
 
