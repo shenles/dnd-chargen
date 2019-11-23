@@ -136,14 +136,10 @@ function showScores() {
 
   for (let i = 0; i < 6; i++) {
       abilityScoresFinal[i].value = scoresToAssign[i];
+      let idToGet = "score".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = scoresToAssign[i];
   }
 
-  document.getElementById('scoreOne').innerHTML = scoresToAssign[0];
-  document.getElementById('scoreTwo').innerHTML = scoresToAssign[1];
-  document.getElementById('scoreThree').innerHTML = scoresToAssign[2];
-  document.getElementById('scoreFour').innerHTML = scoresToAssign[3];
-  document.getElementById('scoreFive').innerHTML = scoresToAssign[4];
-  document.getElementById('scoreSix').innerHTML = scoresToAssign[5];
   document.getElementById('assignAbilityScores').style.display = "block";
   document.getElementById('initialRolls').style.display = "none";
 }
@@ -154,12 +150,13 @@ function setAbility(abilitychoice, whichNum) {
   var statVal = whichNum - 1; 
 
   abilityScoresFinal[scoreIdx].value = scoresToAssign[statVal];
-  document.getElementById('scoreOne').innerHTML = abilityScoresFinal[0].value; 
-  document.getElementById('scoreTwo').innerHTML = abilityScoresFinal[1].value;
-  document.getElementById('scoreThree').innerHTML = abilityScoresFinal[2].value;
-  document.getElementById('scoreFour').innerHTML = abilityScoresFinal[3].value;
-  document.getElementById('scoreFive').innerHTML = abilityScoresFinal[4].value;
-  document.getElementById('scoreSix').innerHTML = abilityScoresFinal[5].value;
+
+  for (let i = 0; i < 6; i++) {
+      abilityScoresFinal[i].value = scoresToAssign[i];
+      let idToGet = "score".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
+  }
+
 }
 
 // Validates user's score assignments and adds any extra increases. 
@@ -195,13 +192,11 @@ function checkAbilityScores() {
 
         // find the chosen race in the array of all races
         if (matchrace.name == racefinal) {
-
-           let increases = matchrace.abilityincreases;
-           
            // check if this race grants any ability score increases
            for (let i = 0; i < 6; i++) {
-              if (i in increases) {
-                  abilityScoresFinal[i].value += increases[i];
+              if (i in matchrace.abilityincreases) {
+                  abilityScoresFinal[i].value += matchrace.abilityincreases[i];
+                  abilityScoresFinal[i].increased = 1;
               }
            }
 
