@@ -112,19 +112,21 @@ function showRoll(rolloption) {
   }  
 
   // display rolls
-  document.getElementById('rollOne').innerHTML = rollsToShow[0];
-  document.getElementById('rollTwo').innerHTML = rollsToShow[1];
-  document.getElementById('rollThree').innerHTML = rollsToShow[2];
-  document.getElementById('rollFour').innerHTML = rollsToShow[3];
-  document.getElementById('rollFive').innerHTML = rollsToShow[4];
-  document.getElementById('rollSix').innerHTML = rollsToShow[5];
-  // set scores
-  document.getElementById('finalOne').innerHTML = rollsToShow[0];
-  document.getElementById('finalTwo').innerHTML = rollsToShow[1];
-  document.getElementById('finalThree').innerHTML = rollsToShow[2];
-  document.getElementById('finalFour').innerHTML = rollsToShow[3];
-  document.getElementById('finalFive').innerHTML = rollsToShow[4];
-  document.getElementById('finalSix').innerHTML = rollsToShow[5];
+  for (let i = 0; i < 6; i++) {
+
+      let idToGet = "roll".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = rollsToShow[i];
+
+  }
+
+  // display scores
+  for (let i = 0; i < 6; i++) {
+
+      let idToGet = "final".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = rollsToShow[i];
+
+  }
+
   scoresToAssign = rollsToShow.slice(); 
 }
 
@@ -134,11 +136,9 @@ function showScores() {
      scoresToAssign = [15, 14, 13, 12, 10, 8];
   }
 
-  var idToGet;
-
   for (let i = 0; i < 6; i++) {
       abilityScoresFinal[i].value = scoresToAssign[i];
-      idToGet = "score".concat(i.toString());
+      let idToGet = "score".concat(i.toString());
       document.getElementById(idToGet).innerHTML = scoresToAssign[i];
   }
 
@@ -155,7 +155,7 @@ function setAbility(abilitychoice, whichNum) {
 
   for (let i = 0; i < 6; i++) {
       abilityScoresFinal[i].value = scoresToAssign[i];
-      idToGet = "score".concat(i.toString());
+      let idToGet = "score".concat(i.toString());
       document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
   }
 
@@ -209,22 +209,30 @@ function checkAbilityScores() {
 
      }
 
-     document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0].value;
-     document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1].value;
-     document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2].value;
-     document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3].value;
-     document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4].value;
-     document.getElementById('scoreSixRace').innerHTML = abilityScoresFinal[5].value;
+
+     // update displayed scores
+     for (let i = 0; i < 6; i++) {
+
+         let idToGet = "scoreRace".concat(i.toString());
+         document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
+
+     }
+
      document.getElementById('raceAbilityScores').style.display = "block";
      document.getElementById('assignAbilityScores').style.display = "none";
 
+     // display new scores; Charisma is unchanged, as that ability was already increased previously
      if (racefinal == "Half-Elf") {
-        document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0].value;
-        document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1].value;
-        document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2].value;
-        document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3].value;
-        document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4].value;
+
+        for (let i = 0; i < 5; i++) {
+
+           let idToGet = "halfElf".concat(i.toString());
+           document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
+
+        }
+
         document.getElementById('halfElfScore').style.display = "block";
+
      } else {
         finalizeStats();
         document.getElementById('finishStats').style.display = "block";
@@ -257,12 +265,13 @@ function incrAbility(abilityIdx, incrOrDecr) {
      } 
   }
 
-  // display new scores
-  document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0].value;
-  document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1].value;
-  document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2].value;
-  document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3].value;
-  document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4].value;
+  // display new scores; Charisma remains unchanged
+  for (let i = 0; i < 5; i++) {
+
+      let idToGet = "halfElf".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
+
+  }
 
 }
 
@@ -273,12 +282,14 @@ function calcModifier(score) {
 }
 
 function finalizeStats() {
-  document.getElementById('scoreOneFinish').innerHTML = abilityScoresFinal[0].value;
-  document.getElementById('scoreTwoFinish').innerHTML = abilityScoresFinal[1].value;
-  document.getElementById('scoreThreeFinish').innerHTML = abilityScoresFinal[2].value;
-  document.getElementById('scoreFourFinish').innerHTML = abilityScoresFinal[3].value;
-  document.getElementById('scoreFiveFinish').innerHTML = abilityScoresFinal[4].value;
-  document.getElementById('scoreSixFinish').innerHTML = abilityScoresFinal[5].value;
+
+  // update displayed scores
+  for (let i = 0; i < 6; i++) {
+
+      let idToGet = "scoreFinish".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
+
+  }
 
   // calculate modifiers based on ability scores
   var plusMods = [];
@@ -292,12 +303,13 @@ function finalizeStats() {
      } 
   } 
 
-  document.getElementById('modifierOne').innerHTML = abilityMods[0];
-  document.getElementById('modifierTwo').innerHTML = abilityMods[1];
-  document.getElementById('modifierThree').innerHTML = abilityMods[2];
-  document.getElementById('modifierFour').innerHTML = abilityMods[3];
-  document.getElementById('modifierFive').innerHTML = abilityMods[4];
-  document.getElementById('modifierSix').innerHTML = abilityMods[5];
+  // update displayed ability modifiers
+  for (let i = 0; i < 6; i++) {
+
+      let idToGet = "modifier".concat(i.toString());
+      document.getElementById(idToGet).innerHTML = abilityMods[i];
+
+  }
  
   var maxroll;
 

@@ -141,12 +141,12 @@ if (isset($_SESSION['user_id'])) {
        <a href="#" class="btn btn-light">Skip this step & manually enter stats</a>
        <p class="p-unique">Your current rolls:</p>
        <div class="rollresults" id="abilityrolls">
-          <p><span class="oneroll" id="rollOne">15</span>
-             <span class="oneroll" id="rollTwo">14</span>
-             <span class="oneroll" id="rollThree">13</span>
-             <span class="oneroll" id="rollFour">12</span>
-             <span class="oneroll" id="rollFive">10</span>
-             <span class="oneroll" id="rollSix">8</span></p>
+          <p><span class="oneroll" id="roll0">15</span>
+             <span class="oneroll" id="roll1">14</span>
+             <span class="oneroll" id="roll2">13</span>
+             <span class="oneroll" id="roll3">12</span>
+             <span class="oneroll" id="roll4">10</span>
+             <span class="oneroll" id="roll5">8</span></p>
        </div>
 
        <button onclick="showScores()">Done rolling</button>
@@ -179,22 +179,22 @@ if (isset($_SESSION['user_id'])) {
        <p class="p-indent">Scores to assign:</p>
        <table id="rollTableAssign">
         <tr>
-          <td id="finalOne">15</td><td><button class="leftassign" onclick="setAbility(1, 1)">assign to Str</button></td><td><button onclick="setAbility(2, 1)">assign to Dex</button></td><td><button onclick="setAbility(3, 1)">assign to Con</button></td><td><button onclick="setAbility(4, 1)">assign to Int</button></td><td><button onclick="setAbility(5, 1)">assign to Wis</button></td><td><button onclick="setAbility(6, 1)">assign to Cha</button></td>
+          <td id="final0">15</td><td><button class="leftassign" onclick="setAbility(1, 1)">assign to Str</button></td><td><button onclick="setAbility(2, 1)">assign to Dex</button></td><td><button onclick="setAbility(3, 1)">assign to Con</button></td><td><button onclick="setAbility(4, 1)">assign to Int</button></td><td><button onclick="setAbility(5, 1)">assign to Wis</button></td><td><button onclick="setAbility(6, 1)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td id="finalTwo">14</td><td><button class="leftassign" onclick="setAbility(1, 2)">assign to Str</button></td><td><button onclick="setAbility(2, 2)">assign to Dex</button></td><td><button onclick="setAbility(3, 2)">assign to Con</button></td><td><button onclick="setAbility(4, 2)">assign to Int</button></td><td><button onclick="setAbility(5, 2)">assign to Wis</button></td><td><button onclick="setAbility(6, 2)">assign to Cha</button></td>
+          <td id="final1">14</td><td><button class="leftassign" onclick="setAbility(1, 2)">assign to Str</button></td><td><button onclick="setAbility(2, 2)">assign to Dex</button></td><td><button onclick="setAbility(3, 2)">assign to Con</button></td><td><button onclick="setAbility(4, 2)">assign to Int</button></td><td><button onclick="setAbility(5, 2)">assign to Wis</button></td><td><button onclick="setAbility(6, 2)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td id="finalThree">13</td><td><button class="leftassign" onclick="setAbility(1, 3)">assign to Str</button></td><td><button onclick="setAbility(2, 3)">assign to Dex</button></td><td><button onclick="setAbility(3, 3)">assign to Con</button></td><td><button onclick="setAbility(4, 3)">assign to Int</button></td><td><button onclick="setAbility(5, 3)">assign to Wis</button></td><td><button onclick="setAbility(6, 3)">assign to Cha</button></td>
+          <td id="final2">13</td><td><button class="leftassign" onclick="setAbility(1, 3)">assign to Str</button></td><td><button onclick="setAbility(2, 3)">assign to Dex</button></td><td><button onclick="setAbility(3, 3)">assign to Con</button></td><td><button onclick="setAbility(4, 3)">assign to Int</button></td><td><button onclick="setAbility(5, 3)">assign to Wis</button></td><td><button onclick="setAbility(6, 3)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td id="finalFour">12</td><td><button class="leftassign" onclick="setAbility(1, 4)">assign to Str</button></td><td><button onclick="setAbility(2, 4)">assign to Dex</button></td><td><button onclick="setAbility(3, 4)">assign to Con</button></td><td><button onclick="setAbility(4, 4)">assign to Int</button></td><td><button onclick="setAbility(5, 4)">assign to Wis</button></td><td><button onclick="setAbility(6, 4)">assign to Cha</button></td>
+          <td id="final3">12</td><td><button class="leftassign" onclick="setAbility(1, 4)">assign to Str</button></td><td><button onclick="setAbility(2, 4)">assign to Dex</button></td><td><button onclick="setAbility(3, 4)">assign to Con</button></td><td><button onclick="setAbility(4, 4)">assign to Int</button></td><td><button onclick="setAbility(5, 4)">assign to Wis</button></td><td><button onclick="setAbility(6, 4)">assign to Cha</button></td>
         </tr>
         <tr>
-          <td id="finalFive">10</td><td><button class="leftassign" onclick="setAbility(1, 5)">assign to Str</button></td><td><button onclick="setAbility(2, 5)">assign to Dex</button></td><td><button onclick="setAbility(3, 5)">assign to Con</button></td><td><button onclick="setAbility(4, 5)">assign to Int</button></td><td><button onclick="setAbility(5, 5)">assign to Wis</button></td><td><button onclick="setAbility(6, 5)">assign to Cha</button></td> 
+          <td id="final4">10</td><td><button class="leftassign" onclick="setAbility(1, 5)">assign to Str</button></td><td><button onclick="setAbility(2, 5)">assign to Dex</button></td><td><button onclick="setAbility(3, 5)">assign to Con</button></td><td><button onclick="setAbility(4, 5)">assign to Int</button></td><td><button onclick="setAbility(5, 5)">assign to Wis</button></td><td><button onclick="setAbility(6, 5)">assign to Cha</button></td> 
         </tr>
         <tr>
-          <td id="finalSix">8</td><td><button class="leftassign" onclick="setAbility(1, 6)">assign to Str</button></td><td><button onclick="setAbility(2, 6)">assign to Dex</button></td><td><button onclick="setAbility(3, 6)">assign to Con</button></td><td><button onclick="setAbility(4, 6)">assign to Int</button></td><td><button onclick="setAbility(5, 6)">assign to Wis</button></td><td><button onclick="setAbility(6, 6)">assign to Cha</button></td>
+          <td id="final5">8</td><td><button class="leftassign" onclick="setAbility(1, 6)">assign to Str</button></td><td><button onclick="setAbility(2, 6)">assign to Dex</button></td><td><button onclick="setAbility(3, 6)">assign to Con</button></td><td><button onclick="setAbility(4, 6)">assign to Int</button></td><td><button onclick="setAbility(5, 6)">assign to Wis</button></td><td><button onclick="setAbility(6, 6)">assign to Cha</button></td>
         </tr>
        </table>
        <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>
@@ -216,12 +216,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showcurrscore" id="scoreOneRace"></td>
-             <td class="showcurrscore" id="scoreTwoRace"></td>
-             <td class="showcurrscore" id="scoreThreeRace"></td>
-             <td class="showcurrscore" id="scoreFourRace"></td>
-             <td class="showcurrscore" id="scoreFiveRace"></td>
-             <td class="showcurrscore" id="scoreSixRace"></td></tr>
+             <td class="showcurrscore" id="scoreRace0"></td>
+             <td class="showcurrscore" id="scoreRace1"></td>
+             <td class="showcurrscore" id="scoreRace2"></td>
+             <td class="showcurrscore" id="scoreRace3"></td>
+             <td class="showcurrscore" id="scoreRace4"></td>
+             <td class="showcurrscore" id="scoreRace5"></td></tr>
           </table>
        </div>
 
@@ -232,23 +232,23 @@ if (isset($_SESSION['user_id'])) {
        <p class="p-indent">Scores available to increase:</p>
        <table id="raceTableAssign">
         <tr>
-          <td id="halfElfOne">15</td><td><button class="leftassign" onclick="incrAbility(0, 1)">increase Strength</button></td>
+          <td id="halfElf0">15</td><td><button class="leftassign" onclick="incrAbility(0, 1)">increase Strength</button></td>
           <td><button class="leftassign" onclick="incrAbility(0, -1)">undo increase</button></td>
         </tr>
         <tr>
-          <td id="halfElfTwo">14</td><td><button class="leftassign" onclick="incrAbility(1, 1)">increase Dexterity</button></td>
+          <td id="halfElf1">14</td><td><button class="leftassign" onclick="incrAbility(1, 1)">increase Dexterity</button></td>
           <td><button class="leftassign" onclick="incrAbility(1, -1)">undo increase</button></td>
         </tr>
         <tr>
-          <td id="halfElfThree">13</td><td><button class="leftassign" onclick="incrAbility(2, 1)">increase Constitution</button></td>
+          <td id="halfElf2">13</td><td><button class="leftassign" onclick="incrAbility(2, 1)">increase Constitution</button></td>
           <td><button class="leftassign" onclick="incrAbility(2, -1)">undo increase</button></td>
         </tr>
         <tr>
-          <td id="halfElfFour">12</td><td><button class="leftassign" onclick="incrAbility(3, 1)">increase Intelligence</button></td>
+          <td id="halfElf3">12</td><td><button class="leftassign" onclick="incrAbility(3, 1)">increase Intelligence</button></td>
           <td><button class="leftassign" onclick="incrAbility(3, -1)">undo increase</button></td>
         </tr>
         <tr>
-          <td id="halfElfFive">10</td><td><button class="leftassign" onclick="incrAbility(4, 1)">increase Wisdom</button></td>
+          <td id="halfElf4">10</td><td><button class="leftassign" onclick="incrAbility(4, 1)">increase Wisdom</button></td>
           <td><button class="leftassign" onclick="incrAbility(4, -1)">undo increase</button></td>
         </tr>
        </table>
@@ -268,12 +268,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showfinalscore" id="scoreOneFinish"></td>
-             <td class="showfinalscore" id="scoreTwoFinish"></td>
-             <td class="showfinalscore" id="scoreThreeFinish"></td>
-             <td class="showfinalscore" id="scoreFourFinish"></td>
-             <td class="showfinalscore" id="scoreFiveFinish"></td>
-             <td class="showfinalscore" id="scoreSixFinish"></td></tr>
+             <td class="showfinalscore" id="scoreFinish0"></td>
+             <td class="showfinalscore" id="scoreFinish1"></td>
+             <td class="showfinalscore" id="scoreFinish2"></td>
+             <td class="showfinalscore" id="scoreFinish3"></td>
+             <td class="showfinalscore" id="scoreFinish4"></td>
+             <td class="showfinalscore" id="scoreFinish5"></td></tr>
           </table>
 
        <p class="p-indent">Ability score modifiers</p>
@@ -286,12 +286,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
-             <td class="showfinalscore" id="modifierOne"></td>
-             <td class="showfinalscore" id="modifierTwo"></td>
-             <td class="showfinalscore" id="modifierThree"></td>
-             <td class="showfinalscore" id="modifierFour"></td>
-             <td class="showfinalscore" id="modifierFive"></td>
-             <td class="showfinalscore" id="modifierSix"></td></tr>
+             <td class="showfinalscore" id="modifier0"></td>
+             <td class="showfinalscore" id="modifier1"></td>
+             <td class="showfinalscore" id="modifier2"></td>
+             <td class="showfinalscore" id="modifier3"></td>
+             <td class="showfinalscore" id="modifier4"></td>
+             <td class="showfinalscore" id="modifier5"></td></tr>
           </table>
 
        <p class="p-indent">Other stats</p>
