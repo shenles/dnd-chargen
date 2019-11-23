@@ -1,455 +1,366 @@
-       var rollsToShow = [];
-       var scoresToAssign = [];
-       var abilityScoresFinal = [];
-       var abilityMods = [];
-       var saveScores = [];
-       var initStat;
-       var speedStat;
-       var hpmaxStat; 
-       var hitdiceStat;
-       var racefinal = document.getElementById('charraceinfo').innerHTML;
-       var classfinal = document.getElementById('charclassinfo').innerHTML;      
+var rollsToShow = [];
+var scoresToAssign = [];
+var abilityScoresFinal = [];
+var abilityMods = [];
+var saveScores = [];
+var initStat;
+var speedStat;
+var hpmaxStat; 
+var hitdiceStat;
+var allRaces = [];
+var racefinal = document.getElementById('charraceinfo').innerHTML;
+var classfinal = document.getElementById('charclassinfo').innerHTML;
 
-       // Rolls numDice number of dice, with each die of numSides dimension.
-       // Returns an array (sorted descending) of the numbers rolled.
-       function rollDice(numDice, numSides) {
-          var i;
-          var currentDie;
-          var rollsArray = [];
+class Race {
 
-          for (i = 0; i < numDice; i++) {
-             // get a random integer from 1 to numSides
-             currentDie = Math.floor(Math.random() * numSides) + 1; 
-             // add current result to array
-             rollsArray.push(currentDie); 
-          } 
+   constructor(id, name, speed, darkvision, langs, baserace, subraces, abilityincreases, hpincrease) {
+       this.id = id;
+       this.name = name;
+       this.speed = speed;
+       this.darkvision = darkvision;
+       this.langs = langs;
+       this.baserace = baserace;
+       this.subraces = subraces;
+       this.abilityincreases = abilityincreases;
+       this.hpincrease = hpincrease;
+   }
 
-          // sort array descending
-          rollsArray.sort(function(a, b) {return b - a});
-          return rollsArray;
-       }
+}
 
-       // Displays either a new set of rolls or the default rolls,
-       // depending on the user's choice. 
-       function showRoll(rolloption) {
+class Score {
 
-          // user chose to re-roll 
-          if (rolloption == 1) {
+   constructor(id, name, value, increased) {
+      this.id = id;
+      this.name = name;
+      this.value = value;
+      this.increased = increased;
+   }
 
-             rollsToShow = [];
+}
 
-             // roll 4d6 and add up the 3 highest numbers 
-             // do this 6 times
-             var i;
-             var currArray = []; 
-             var currTotal;
+var strength = new Score(0, "Strength", 0, -1);
+var dexterity = new Score(1, "Dexterity", 0, -1);
+var constitution = new Score(2, "Constitution", 0, -1);
+var intelligence = new Score(3, "Intelligence", 0, -1);
+var wisdom = new Score(4, "Wisdom", 0, -1);
+var charisma = new Score(5, "Charisma", 0, -1);
 
-             for (i = 0; i < 6; i++) {
-                currArray = rollDice(4, 6);
-                currTotal = currArray[0] + currArray[1] + currArray[2]; 
-                rollsToShow.push(currTotal);
-             }  
+abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
 
-             // sort descending
-             rollsToShow.sort(function(a, b) {return b - a});
+var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, null, {0: 2, 5: 1}, 0);
+var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2}, 0);
+var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, null, {4: 1}, 1);
+var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, ["Common", "Dwarvish"], 2, null, {0: 2}, 0);
+var elf = new Race(5, "Elf", 30, 60, ["Common", "Dwarvish"], -1, [6, 7, 8], {1: 2}, 0);
+var highelf = new Race(6, "High Elf", 30, 60, ["Common", "Dwarvish"], 5, null, {3: 1}, 0);
+var drow = new Race(7, "Drow", 30, 120, ["Common", "Dwarvish"], 5, null, {5: 1}, 0);
+var woodelf = new Race(8, "Wood Elf", 35, 60, ["Common", "Dwarvish"], 5, null, {4: 1}, 0);
+var halfling = new Race(9, "Halfling", 25, 0, ["Common", "Halfling"], -1, [10, 11], {1: 2}, 0);
+var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, ["Common", "Halfling"], 9, null, {5: 1}, 0);
+var stout = new Race(11, "Stout Halfling", 25, 0, ["Common", "Halfling"], 9, null, {2: 1}, 0);
+var gnome = new Race(12, "Gnome", 25, 60, ["Common", "Gnomish"], -1, [13, 14, 15], {3: 2}, 0);
+var forestgnome = new Race(13, "Forest Gnome", 25, 60, ["Common", "Gnomish"], 12, null, {1: 1}, 0);
+var rockgnome = new Race(14, "Rock Gnome", 25, 60, ["Common", "Gnomish"], 12, null, {2: 1}, 0);
+var deep gnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Undercommon"], 12, null, {1: 1}, 0);
+var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, null, {5: 2}, 0);
+var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, null, {0: 2, 2: 1}, 0);
+var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, null, {3: 1, 5: 2}, 0);
+var human = new Race(19, "Human", 25, 0, ["Common", "choose 1 extra"], -1, null, {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1}, 0);
 
-          } else {
-             // user chose to use default rolls 
-             rollsToShow = [15, 14, 13, 12, 10, 8];
-          }  
+allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
 
-          // display rolls
-          document.getElementById('rollOne').innerHTML = rollsToShow[0];
-          document.getElementById('rollTwo').innerHTML = rollsToShow[1];
-          document.getElementById('rollThree').innerHTML = rollsToShow[2];
-          document.getElementById('rollFour').innerHTML = rollsToShow[3];
-          document.getElementById('rollFive').innerHTML = rollsToShow[4];
-          document.getElementById('rollSix').innerHTML = rollsToShow[5];
-          // set scores
-          document.getElementById('finalOne').innerHTML = rollsToShow[0];
-          document.getElementById('finalTwo').innerHTML = rollsToShow[1];
-          document.getElementById('finalThree').innerHTML = rollsToShow[2];
-          document.getElementById('finalFour').innerHTML = rollsToShow[3];
-          document.getElementById('finalFive').innerHTML = rollsToShow[4];
-          document.getElementById('finalSix').innerHTML = rollsToShow[5];
-          scoresToAssign = rollsToShow.slice(); 
-       }
+// Rolls numDice number of dice, with each die of numSides dimension.
+// Returns an array (sorted descending) of the numbers rolled.
+function rollDice(numDice, numSides) {
+  var rollsArray = [];
 
-       function showScores() {
-          // show current scores
-          if (scoresToAssign.length == 0) {
-             scoresToAssign = [15, 14, 13, 12, 10, 8];
-          }
-          abilityScoresFinal = scoresToAssign.slice();
-          document.getElementById('scoreOne').innerHTML = scoresToAssign[0];
-          document.getElementById('scoreTwo').innerHTML = scoresToAssign[1];
-          document.getElementById('scoreThree').innerHTML = scoresToAssign[2];
-          document.getElementById('scoreFour').innerHTML = scoresToAssign[3];
-          document.getElementById('scoreFive').innerHTML = scoresToAssign[4];
-          document.getElementById('scoreSix').innerHTML = scoresToAssign[5];
-          document.getElementById('assignAbilityScores').style.display = "block";
-          document.getElementById('initialRolls').style.display = "none";
-       }
+  for (let i = 0; i < numDice; i++) {
+     // get a random integer from 1 to numSides
+     let currentDie = Math.floor(Math.random() * numSides) + 1; 
+     // add current result to array
+     rollsArray.push(currentDie); 
+  } 
 
-       // Allows user to assign their rolled numbers to various ability scores. 
-       function setAbility(abilitychoice, whichNum) {
-          var scoreIdx = abilitychoice - 1;
-          var statVal = whichNum - 1; 
+  // sort array descending
+  rollsArray.sort(function(a, b) {return b - a});
+  return rollsArray;
+}
 
-          switch (abilitychoice) {
-             case 1:
-                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
-                document.getElementById('scoreOne').innerHTML = abilityScoresFinal[scoreIdx]; 
-                break;
-             case 2:
-                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
-                document.getElementById('scoreTwo').innerHTML = abilityScoresFinal[scoreIdx];
-                break;
-             case 3:
-                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
-                document.getElementById('scoreThree').innerHTML = abilityScoresFinal[scoreIdx];
-                break;
-             case 4:
-                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
-                document.getElementById('scoreFour').innerHTML = abilityScoresFinal[scoreIdx];
-                break;
-             case 5:
-                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
-                document.getElementById('scoreFive').innerHTML = abilityScoresFinal[scoreIdx];
-                break;
-             case 6: 
-                abilityScoresFinal[scoreIdx] = scoresToAssign[statVal];
-                document.getElementById('scoreSix').innerHTML = abilityScoresFinal[scoreIdx];
-                break;
-             default:
-                console.log("problem with switch");
-          } 
-       }
+// Displays either a new set of rolls or the default rolls,
+// depending on the user's choice. 
+function showRoll(rolloption) {
 
-       // Validates user's score assignments and adds any extra increases. 
-       function checkAbilityScores() {
+  // user chose to re-roll 
+  if (rolloption == 1) {
 
-          // copy score values to temp array 
-          var i;
-          var tempScores = [];
+     rollsToShow = [];
 
-          for (i = 0; i < 6; i++) {
-             tempScores.push(abilityScoresFinal[i]); 
-          }
+     // roll 4d6 and add up the 3 highest numbers 
+     // do this 6 times
+     for (let i = 0; i < 6; i++) {
+        let currArray = rollDice(4, 6);
+        let currTotal = currArray[0] + currArray[1] + currArray[2];
+        rollsToShow.push(currTotal);
+     }  
 
-          // sort temp array and check for invalid score choices
-          tempScores.sort(function(a, b) {return b - a}); 
-          var scoresValid = 1;
-          var j;
-          for (j = 0; j < 6; j++) {
-             if (tempScores[j] != scoresToAssign[j]) {
-                scoresValid = 0;
-                break;    
-             } 
-          } 
+     // sort descending
+     rollsToShow.sort(function(a, b) {return b - a});
 
-          // notify user if score assignments are invalid
-          if (scoresValid == 0) {
-             alert("Each available number must be used exactly once.");
-          } else {
+  } else {
+     // user chose to use default rolls 
+     rollsToShow = [15, 14, 13, 12, 10, 8];
+  }  
 
-             switch (racefinal) {
-                case "Dragonborn":
-                   abilityScoresFinal[0] += 2;
-                   abilityScoresFinal[5] += 1; 
-                   document.getElementById('scoreOneRace').style.color = "#4bd896";
-                   document.getElementById('scoreSixRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;
-                case "Dwarf":
-                   abilityScoresFinal[2] += 2;
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Hill Dwarf":
-                   abilityScoresFinal[2] += 2;
-                   abilityScoresFinal[4] += 1;
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   document.getElementById('scoreFiveRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;                  
-                case "Mountain Dwarf":
-                   abilityScoresFinal[2] += 2;
-                   abilityScoresFinal[0] += 2;
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   document.getElementById('scoreOneRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Elf":
-                   abilityScoresFinal[1] += 2;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   speedStat = 30;
-                   break;
-                case "High Elf":
-                   abilityScoresFinal[1] += 2;
-                   abilityScoresFinal[3] += 1;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;
-                case "Drow":
-                   abilityScoresFinal[1] += 2;
-                   abilityScoresFinal[5] += 1;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreSixRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;
-                case "Wood Elf":
-                   abilityScoresFinal[1] += 2;
-                   abilityScoresFinal[4] += 1;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreFiveRace').style.color = "#4bd896";
-                   speedStat = 35;
-                   break;
-                case "Halfling":
-                   abilityScoresFinal[1] += 2;
-                   speedStat = 25;
-                   break;
-                case "Lightfoot Halfling":
-                   abilityScoresFinal[5] += 1;
-                   abilityScoresFinal[1] += 2;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreSixRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Stout Halfling":
-                   abilityScoresFinal[2] += 1;
-                   abilityScoresFinal[1] += 2;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Gnome":
-                   abilityScoresFinal[3] += 2;
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Forest Gnome":
-                   abilityScoresFinal[1] += 1;
-                   abilityScoresFinal[3] += 2;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Rock Gnome":
-                   abilityScoresFinal[2] += 1;
-                   abilityScoresFinal[3] += 2;
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Deep Gnome":
-                   abilityScoresFinal[1] += 1;
-                   abilityScoresFinal[3] += 2;
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   speedStat = 25;
-                   break;
-                case "Half-Elf":
-                   abilityScoresFinal[5] += 2;
-                   document.getElementById('scoreSixRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;
-                case "Half-Orc":
-                   abilityScoresFinal[2] += 1;
-                   abilityScoresFinal[0] += 2;
-                   document.getElementById('scoreOneRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;                
-                case "Tiefling":
-                   abilityScoresFinal[3] += 1;
-                   abilityScoresFinal[5] += 2;
-                   document.getElementById('scoreSixRace').style.color = "#4bd896";
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;
-                case "Human":
-                   abilityScoresFinal[0] += 1;
-                   abilityScoresFinal[1] += 1;
-                   abilityScoresFinal[2] += 1;
-                   abilityScoresFinal[3] += 1;
-                   abilityScoresFinal[4] += 1;
-                   abilityScoresFinal[5] += 1;
-                   document.getElementById('scoreOneRace').style.color = "#4bd896";
-                   document.getElementById('scoreTwoRace').style.color = "#4bd896"; 
-                   document.getElementById('scoreThreeRace').style.color = "#4bd896";
-                   document.getElementById('scoreFourRace').style.color = "#4bd896";
-                   document.getElementById('scoreFiveRace').style.color = "#4bd896";
-                   document.getElementById('scoreSixRace').style.color = "#4bd896";
-                   speedStat = 30;
-                   break;
-                default:
-                   console.log("problem with ability increase");
-             }
+  // display rolls
+  document.getElementById('rollOne').innerHTML = rollsToShow[0];
+  document.getElementById('rollTwo').innerHTML = rollsToShow[1];
+  document.getElementById('rollThree').innerHTML = rollsToShow[2];
+  document.getElementById('rollFour').innerHTML = rollsToShow[3];
+  document.getElementById('rollFive').innerHTML = rollsToShow[4];
+  document.getElementById('rollSix').innerHTML = rollsToShow[5];
+  // set scores
+  document.getElementById('finalOne').innerHTML = rollsToShow[0];
+  document.getElementById('finalTwo').innerHTML = rollsToShow[1];
+  document.getElementById('finalThree').innerHTML = rollsToShow[2];
+  document.getElementById('finalFour').innerHTML = rollsToShow[3];
+  document.getElementById('finalFive').innerHTML = rollsToShow[4];
+  document.getElementById('finalSix').innerHTML = rollsToShow[5];
+  scoresToAssign = rollsToShow.slice(); 
+}
 
-             document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0];
-             document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1];
-             document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2];
-             document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3];
-             document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4];
-             document.getElementById('scoreSixRace').innerHTML = abilityScoresFinal[5];
-             document.getElementById('raceAbilityScores').style.display = "block";
-             document.getElementById('assignAbilityScores').style.display = "none";
+function showScores() {
+  // show current scores
+  if (scoresToAssign.length == 0) {
+     scoresToAssign = [15, 14, 13, 12, 10, 8];
+  }
 
-             if (racefinal == "Half-Elf") {
-                document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0];
-                document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1];
-                document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2];
-                document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
-                document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
-                document.getElementById('halfElfScore').style.display = "block";
-             } else {
-                finalizeStats();
-                document.getElementById('finishStats').style.display = "block";
-             } 
+  for (let i = 0; i < 6; i++) {
+      abilityScoresFinal[i].value = scoresToAssign[i];
+  }
 
-          } 
+  document.getElementById('scoreOne').innerHTML = scoresToAssign[0];
+  document.getElementById('scoreTwo').innerHTML = scoresToAssign[1];
+  document.getElementById('scoreThree').innerHTML = scoresToAssign[2];
+  document.getElementById('scoreFour').innerHTML = scoresToAssign[3];
+  document.getElementById('scoreFive').innerHTML = scoresToAssign[4];
+  document.getElementById('scoreSix').innerHTML = scoresToAssign[5];
+  document.getElementById('assignAbilityScores').style.display = "block";
+  document.getElementById('initialRolls').style.display = "none";
+}
 
-       } 
+// Allows user to assign their rolled numbers to various ability scores. 
+function setAbility(abilitychoice, whichNum) {
+  var scoreIdx = abilitychoice - 1;
+  var statVal = whichNum - 1; 
 
-       function incrAbility(abilityIdx, incrOrDecr) {
-          var desiredValue;
-          var i;
-          for (i = 0; i < 6; i++) {
-             saveScores.push(abilityScoresFinal[i]);
-          } 
+  abilityScoresFinal[scoreIdx].value = scoresToAssign[statVal];
+  document.getElementById('scoreOne').innerHTML = abilityScoresFinal[0].value; 
+  document.getElementById('scoreTwo').innerHTML = abilityScoresFinal[1].value;
+  document.getElementById('scoreThree').innerHTML = abilityScoresFinal[2].value;
+  document.getElementById('scoreFour').innerHTML = abilityScoresFinal[3].value;
+  document.getElementById('scoreFive').innerHTML = abilityScoresFinal[4].value;
+  document.getElementById('scoreSix').innerHTML = abilityScoresFinal[5].value;
+}
 
-          if (incrOrDecr == 1) {
-             desiredValue = abilityScoresFinal[abilityIdx] + 1; 
-             // cannot increase any one stat by more than 1
-             if (desiredValue - saveScores[abilityIdx] > 1) {
-                alert("This score cannot be increased more than once.");  
-             } else {
-                abilityScoresFinal[abilityIdx] = desiredValue;
-             } 
+// Validates user's score assignments and adds any extra increases. 
+function checkAbilityScores() {
 
-          } else {
-             desiredValue = abilityScoresFinal[abilityIdx] - 1;
-             // cannot decrease below original score
-             if (desiredValue >= saveScores[abilityIdx]) {
-                abilityScoresFinal[abilityIdx] = desiredValue; 
-             } 
-          }
+  // copy score values to temp array 
+  var tempScores = [];
 
-          // display new scores
-          switch (abilityIdx) {
-             case 0:
-                document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0];
-             case 1:
-                document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1];
-             case 2:
-                document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2];
-             case 3:
-                document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3];
-             case 4:
-                document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4];
-             default:
-                console.log("problem updating display");
-          } 
+  for (let i = 0; i < 6; i++) {
+     tempScores.push(abilityScoresFinal[i].value); 
+  }
 
-       }
+  // sort temp array and check for invalid score choices
+  tempScores.sort(function(a, b) {return b - a}); 
+  var scoresValid = 1;
+  for (let j = 0; j < 6; j++) {
+     if (tempScores[j] != scoresToAssign[j]) {
+        scoresValid = 0;
+        break;    
+     } 
+  } 
 
-       // Calculates the ability score modifier for a given ability score.
-       function calcModifier(score) {
-          var intMod = Math.floor((score - 10) / 2);
-          return intMod;
-       }
+  // notify user if score assignments are invalid
+  if (scoresValid == 0) {
+     alert("Each available number must be used exactly once.");
+  } else {
 
-       function finalizeStats() {
-          document.getElementById('scoreOneFinish').innerHTML = abilityScoresFinal[0];
-          document.getElementById('scoreTwoFinish').innerHTML = abilityScoresFinal[1];
-          document.getElementById('scoreThreeFinish').innerHTML = abilityScoresFinal[2];
-          document.getElementById('scoreFourFinish').innerHTML = abilityScoresFinal[3];
-          document.getElementById('scoreFiveFinish').innerHTML = abilityScoresFinal[4];
-          document.getElementById('scoreSixFinish').innerHTML = abilityScoresFinal[5];
+     var matchrace;
 
-          // calculate modifiers based on ability scores
-          var i;
-          var currMod;
-          var plusMods = [];
-          for (i = 0; i < 6; i++) {
-             currMod = calcModifier(abilityScoresFinal[i]);
-             abilityMods.push(currMod);
-             if (currMod < 0) {
-                plusMods.push(currMod); 
-             } else {
-                plusMods.push("+".concat(currMod));
-             } 
-          } 
+     for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
 
-          document.getElementById('modifierOne').innerHTML = abilityMods[0];
-          document.getElementById('modifierTwo').innerHTML = abilityMods[1];
-          document.getElementById('modifierThree').innerHTML = abilityMods[2];
-          document.getElementById('modifierFour').innerHTML = abilityMods[3];
-          document.getElementById('modifierFive').innerHTML = abilityMods[4];
-          document.getElementById('modifierSix').innerHTML = abilityMods[5];
-         
-          var maxroll;
+        matchrace = allRaces[raceidx];
 
-          switch (classfinal) {
-             case "Sorcerer":
-             case "Wizard":
-                maxroll = 6;
-                break;
-             case "Warlock":
-             case "Rogue":
-             case "Monk":
-             case "Druid":
-             case "Cleric":
-             case "Bard":
-                maxroll = 8;
-                break;
-             case "Fighter":
-             case "Paladin":
-             case "Ranger":
-                maxroll = 10;
-                break;
-             case "Barbarian":
-                maxroll = 12;
-                break; 
-             default:
-                maxroll = 0; 
-          }
+        // find the chosen race in the array of all races
+        if (matchrace.name == racefinal) {
 
-          initStat = plusMods[1];
-          hpmaxStat = maxroll + abilityMods[2];
+           let increases = matchrace.abilityincreases;
+           
+           // check if this race grants any ability score increases
+           for (let i = 0; i < 6; i++) {
+              if (i in increases) {
+                  abilityScoresFinal[i].value += increases[i];
+              }
+           }
 
-          if (racefinal == "Hill Dwarf") {
-              hpmaxStat += 1;
-          }
+           speedStat = matchrace.speed;
+           break;
 
-          hitdiceStat = "1d".concat(maxroll.toString()); 
-          document.getElementById('initiative').innerHTML = initStat;
-          document.getElementById('hpmax').innerHTML = hpmaxStat; 
-          document.getElementById('hitdice').innerHTML = hitdiceStat;
-          document.getElementById('speed').innerHTML = speedStat;
-       }
+        }
 
-       function checkRaceIncreases() {
-          console.log("checking race increases");
-          var i;
-          var statsRaised = 0; 
-          for (i = 0; i < 6; i++) {
-             if (abilityScoresFinal[i] > saveScores[i]) {
-                statsRaised += 1;
-             } 
-          }
+     }
 
-          if (statsRaised != 2) {
-             alert("You must increase exactly two scores by 1 each.");
-          } else {        
-             finalizeStats();
-             document.getElementById('halfElfScore').style.display = "none"; 
-             document.getElementById('finishStats').style.display = "block";
-          }
-       }
+     document.getElementById('scoreOneRace').innerHTML = abilityScoresFinal[0].value;
+     document.getElementById('scoreTwoRace').innerHTML = abilityScoresFinal[1].value;
+     document.getElementById('scoreThreeRace').innerHTML = abilityScoresFinal[2].value;
+     document.getElementById('scoreFourRace').innerHTML = abilityScoresFinal[3].value;
+     document.getElementById('scoreFiveRace').innerHTML = abilityScoresFinal[4].value;
+     document.getElementById('scoreSixRace').innerHTML = abilityScoresFinal[5].value;
+     document.getElementById('raceAbilityScores').style.display = "block";
+     document.getElementById('assignAbilityScores').style.display = "none";
 
-       function startManual() {
-          console.log("starting manual entry of stats");
-       } 
+     if (racefinal == "Half-Elf") {
+        document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0].value;
+        document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1].value;
+        document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2].value;
+        document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3].value;
+        document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4].value;
+        document.getElementById('halfElfScore').style.display = "block";
+     } else {
+        finalizeStats();
+        document.getElementById('finishStats').style.display = "block";
+     } 
+
+  } 
+
+} 
+
+function incrAbility(abilityIdx, incrOrDecr) {
+  var desiredValue;
+  for (let i = 0; i < 6; i++) {
+     saveScores.push(abilityScoresFinal[i].value);
+  } 
+
+  if (incrOrDecr == 1) {
+     desiredValue = abilityScoresFinal[abilityIdx].value + 1; 
+     // cannot increase any one stat by more than 1
+     if (desiredValue - saveScores[abilityIdx] > 1) {
+        alert("This score cannot be increased more than once.");  
+     } else {
+        abilityScoresFinal[abilityIdx].value = desiredValue;
+     } 
+
+  } else {
+     desiredValue = abilityScoresFinal[abilityIdx].value - 1;
+     // cannot decrease below original score
+     if (desiredValue >= saveScores[abilityIdx]) {
+        abilityScoresFinal[abilityIdx].value = desiredValue; 
+     } 
+  }
+
+  // display new scores
+  document.getElementById('halfElfOne').innerHTML = abilityScoresFinal[0].value;
+  document.getElementById('halfElfTwo').innerHTML = abilityScoresFinal[1].value;
+  document.getElementById('halfElfThree').innerHTML = abilityScoresFinal[2].value;
+  document.getElementById('halfElfFour').innerHTML = abilityScoresFinal[3].value;
+  document.getElementById('halfElfFive').innerHTML = abilityScoresFinal[4].value;
+
+}
+
+// Calculates the ability score modifier for a given ability score.
+function calcModifier(score) {
+  let intMod = Math.floor((score - 10) / 2);
+  return intMod;
+}
+
+function finalizeStats() {
+  document.getElementById('scoreOneFinish').innerHTML = abilityScoresFinal[0].value;
+  document.getElementById('scoreTwoFinish').innerHTML = abilityScoresFinal[1].value;
+  document.getElementById('scoreThreeFinish').innerHTML = abilityScoresFinal[2].value;
+  document.getElementById('scoreFourFinish').innerHTML = abilityScoresFinal[3].value;
+  document.getElementById('scoreFiveFinish').innerHTML = abilityScoresFinal[4].value;
+  document.getElementById('scoreSixFinish').innerHTML = abilityScoresFinal[5].value;
+
+  // calculate modifiers based on ability scores
+  var plusMods = [];
+  for (let i = 0; i < 6; i++) {
+     let currMod = calcModifier(abilityScoresFinal[i].value);
+     abilityMods.push(currMod);
+     if (currMod < 0) {
+        plusMods.push(currMod); 
+     } else {
+        plusMods.push("+".concat(currMod));
+     } 
+  } 
+
+  document.getElementById('modifierOne').innerHTML = abilityMods[0];
+  document.getElementById('modifierTwo').innerHTML = abilityMods[1];
+  document.getElementById('modifierThree').innerHTML = abilityMods[2];
+  document.getElementById('modifierFour').innerHTML = abilityMods[3];
+  document.getElementById('modifierFive').innerHTML = abilityMods[4];
+  document.getElementById('modifierSix').innerHTML = abilityMods[5];
+ 
+  var maxroll;
+
+  switch (classfinal) {
+     case "Sorcerer":
+     case "Wizard":
+        maxroll = 6;
+        break;
+     case "Warlock":
+     case "Rogue":
+     case "Monk":
+     case "Druid":
+     case "Cleric":
+     case "Bard":
+        maxroll = 8;
+        break;
+     case "Fighter":
+     case "Paladin":
+     case "Ranger":
+        maxroll = 10;
+        break;
+     case "Barbarian":
+        maxroll = 12;
+        break; 
+     default:
+        maxroll = 0; 
+  }
+
+  initStat = plusMods[1];
+  hpmaxStat = maxroll + abilityMods[2];
+
+  if (racefinal == "Hill Dwarf") {
+      hpmaxStat += 1;
+  }
+
+  hitdiceStat = "1d".concat(maxroll.toString()); 
+  document.getElementById('initiative').innerHTML = initStat;
+  document.getElementById('hpmax').innerHTML = hpmaxStat; 
+  document.getElementById('hitdice').innerHTML = hitdiceStat;
+  document.getElementById('speed').innerHTML = speedStat;
+}
+
+function checkRaceIncreases() {
+
+  var statsRaised = 0; 
+  for (let i = 0; i < 6; i++) {
+     if (abilityScoresFinal[i].value > saveScores[i]) {
+        statsRaised += 1;
+     } 
+  }
+
+  if (statsRaised != 2) {
+     alert("You must increase exactly two scores by 1 each.");
+  } else {        
+     finalizeStats();
+     document.getElementById('halfElfScore').style.display = "none"; 
+     document.getElementById('finishStats').style.display = "block";
+  }
+}
+
+function startManual() {
+  console.log("starting manual entry of stats");
+} 
