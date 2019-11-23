@@ -167,12 +167,12 @@ if (isset($_SESSION['user_id'])) {
                <th>Wisdom</th>
                <th>Charisma</th></tr>
              <tr>
+             <td class="showcurrscore" id="score0"></td>
              <td class="showcurrscore" id="score1"></td>
              <td class="showcurrscore" id="score2"></td>
              <td class="showcurrscore" id="score3"></td>
              <td class="showcurrscore" id="score4"></td>
-             <td class="showcurrscore" id="score5"></td>
-             <td class="showcurrscore" id="score6"></td></tr>
+             <td class="showcurrscore" id="score5"></td></tr>
           </table>
        </div>
 
