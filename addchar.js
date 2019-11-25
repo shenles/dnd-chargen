@@ -218,26 +218,17 @@ function checkAbilityScores() {
           return;
        }
     }
-    // assign the scores
-    for (let i = 0; i < assigns.length; i++) {
-       switch(assigns[i]) {
-          case "Strength":
-             abilityScoresFinal[0].value = scoresToAssign[i];
-          case "Dexterity":
-             abilityScoresFinal[1].value = scoresToAssign[i];
-          case "Constitution":
-             abilityScoresFinal[2].value = scoresToAssign[i];
-          case "Intelligence":
-             abilityScoresFinal[3].value = scoresToAssign[i];
-          case "Wisdom":
-             abilityScoresFinal[4].value = scoresToAssign[i];
-          case "Charisma":
-             abilityScoresFinal[5].value = scoresToAssign[i];
-          default:
-             console.log("issue with score assignment");
-       }
+    // assign the scores to the correct abilities
+    for (let i = 0; i < scoresToAssign.length; i++) {
+        var currabilname = assigns[i];
+        var findscoreobj = abilityScoresFinal.find(function(element) {
+            return element.name == currabilname;
+        });
+        findscoreobj.value = scoresToAssign[i];
     }
 
+     console.log(abilityScoresFinal);
+     
      var matchrace;
 
      for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
