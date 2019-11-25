@@ -1,3 +1,16 @@
+var rollsToShow;
+var scoresToAssign;
+var abilityScoresFinal;
+var initStat;
+var speedStat;
+var hpmaxStat;
+var saveScores;
+var allRaces;
+var allSkills;
+var racefinal;
+var classfinal;
+var bgfinal;
+
 class Race {
    constructor(id, name, speed, darkvision, langs, baserace, subraces, abilityincreases) {
        this.id = id;
@@ -65,7 +78,7 @@ class Character {
 }
 
 function setupRaces() {
-    var racefinal = document.getElementById('charraceinfo').innerHTML;
+    racefinal = document.getElementById('charraceinfo').innerHTML;
     var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, [], {0: 2, 5: 1});
     var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2});
     var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {4: 1});
@@ -85,18 +98,18 @@ function setupRaces() {
     var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, [], {0: 2, 2: 1});
     var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, [], {3: 1, 5: 2});
     var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
-    var allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
+    allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
 }
 
 function setupClasses() {
-    var classfinal = document.getElementById('charclassinfo').innerHTML;
-    var allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
+    classfinal = document.getElementById('charclassinfo').innerHTML;
+    allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
     var barbarian = new DndClass(1, "Barbarian", 12, ["light", "medium", "shields"], ["simple", "martial"], [], [0, 2], [2, [1, 3, 7, 10, 11, 17]], -1);
     var bard = new DndClass(2, "Bard", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["choose 3 musical instruments"], [1, 5], [3, "any"], 5);
 }
 
 function setupBackgrounds() {
-    var bgfinal = document.getElementById('charbginfo').innerHTML;
+    bgfinal = document.getElementById('charbginfo').innerHTML;
 }
 
 function setupScores() {
@@ -106,7 +119,7 @@ function setupScores() {
     var intelligence = new Score(3, "Intelligence", 0, -1);
     var wisdom = new Score(4, "Wisdom", 0, -1);
     var charisma = new Score(5, "Charisma", 0, -1);
-    var abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+    abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
 }
 
 // Rolls numDice number of dice, with each die of numSides dimension.
@@ -133,7 +146,7 @@ function showRoll(rolloption) {
   // user chose to re-roll 
   if (rolloption == 1) {
 
-     var rollsToShow = [];
+     rollsToShow = [];
 
      // roll 4d6 and add up the 3 highest numbers 
      // do this 6 times
@@ -163,7 +176,7 @@ function showRoll(rolloption) {
       document.getElementById(idToGet).innerHTML = rollsToShow[i];
   }
 
-  var scoresToAssign = rollsToShow.slice(); 
+  scoresToAssign = rollsToShow.slice(); 
 }
 
 function showScores() {
@@ -216,16 +229,13 @@ function checkAbilityScores() {
   if (scoresValid == -1) {
      alert("Each available number must be used exactly once.");
   } else {
-
      var matchrace;
 
      for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
 
         matchrace = allRaces[raceidx];
-
         // find the chosen race in the array of all races
         if (matchrace.name == racefinal) {
-
            // check if this race grants any ability score increases
            for (let i = 0; i < 6; i++) {
               if (i in matchrace.abilityincreases) {
@@ -234,13 +244,12 @@ function checkAbilityScores() {
               }
            }
 
-           var speedStat = matchrace.speed;
+           speedStat = matchrace.speed;
            break;
 
         }
 
      }
-
 
      // update displayed scores
      for (let i = 0; i < 6; i++) {
@@ -277,7 +286,7 @@ function checkAbilityScores() {
 
 function incrAbility(abilityIdx, incrOrDecr) {
   var desiredValue;
-  var saveScores = [];
+  saveScores = [];
 
   for (let i = 0; i < 6; i++) {
      saveScores.push(abilityScoresFinal[i].value);
@@ -369,8 +378,8 @@ function finalizeStats() {
         maxroll = 0; 
   }
 
-  var initStat = plusMods[1];
-  var hpmaxStat = maxroll + abilityMods[2];
+  initStat = plusMods[1];
+  hpmaxStat = maxroll + abilityMods[2];
 
   if (racefinal == "Hill Dwarf") {
       hpmaxStat += 1;
@@ -405,3 +414,8 @@ function doneWithStats() {
    document.getElementById('afterStats').style.display = "block";
    document.getElementById('finishStats').style.display = "none";
 }
+
+setupBackgrounds();
+setupRaces();
+setupClasses();
+setupScores();

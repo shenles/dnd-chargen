@@ -140,7 +140,7 @@ if (isset($_SESSION['user_id'])) {
        <div class="homepage-info" id="initialRolls">
        <p>First, roll your ability scores, or use the default rolls:</p>
        <button class="leftassign" onclick="showRoll(1)">Re-roll</button><button class="leftassign" onclick="showRoll(2)">Use defaults</button>
-       <a href="https://dnd-chargen.herokuapp.com/addmanual.php" class="btn" id="skiprolling" role="button">Skip this step & manually enter stats</a>
+       <a href="https://dnd-chargen.herokuapp.com/addmanual.php" class="btn btn-secondary" id="skiprolling" role="button">Skip this step & manually enter stats</a>
        <p class="p-unique">Your current rolls:</p>
        <div class="rollresults" id="abilityrolls">
           <p><span class="oneroll" id="roll0">15</span>
