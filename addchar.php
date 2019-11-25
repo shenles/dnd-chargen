@@ -114,8 +114,7 @@ if (isset($_SESSION['user_id'])) {
 
     if (isset($chosenclass) && isset($chosenrace)) {
 
-       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . ", alignment " . $alignment . "</div>";  
-
+       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";
        echo "<span id=\"charraceinfo\" style=\"display:none;\">" . $chosenrace . "</span>";
        echo "<span id=\"charclassinfo\" style=\"display:none;\">" . $chosenclass . "</span>";
        echo "<span id=\"charbginfo\" style=\"display:none;\">" . $chosenbg . "</span>";
@@ -262,28 +261,42 @@ if (isset($_SESSION['user_id'])) {
        </div>
 
        <div class="homepage-info" id="halfElfScore" style="display:none;">
-       <p>Because you are a Half-Elf, you also get to choose two ability scores to increase by 1 each.</p> 
+       <p>Because you are a Half-Elf, you can choose two other ability scores to increase by 1 each.</p> 
        <p class="p-indent">Scores available to increase:</p>
        <table id="raceTableAssign">
         <tr>
-          <td id="halfElf0">15</td><td><button class="leftassign" onclick="incrAbility(0, 1)">increase Strength</button></td>
-          <td><button class="leftassign" onclick="incrAbility(0, -1)">undo increase</button></td>
+          <td id="halfElf0"></td>
+          <td id="halfElf1"></td>
+          <td id="halfElf2"></td>
+          <td id="halfElf3"></td>
+          <td id="halfElf4"></td>
         </tr>
         <tr>
-          <td id="halfElf1">14</td><td><button class="leftassign" onclick="incrAbility(1, 1)">increase Dexterity</button></td>
-          <td><button class="leftassign" onclick="incrAbility(1, -1)">undo increase</button></td>
-        </tr>
-        <tr>
-          <td id="halfElf2">13</td><td><button class="leftassign" onclick="incrAbility(2, 1)">increase Constitution</button></td>
-          <td><button class="leftassign" onclick="incrAbility(2, -1)">undo increase</button></td>
-        </tr>
-        <tr>
-          <td id="halfElf3">12</td><td><button class="leftassign" onclick="incrAbility(3, 1)">increase Intelligence</button></td>
-          <td><button class="leftassign" onclick="incrAbility(3, -1)">undo increase</button></td>
-        </tr>
-        <tr>
-          <td id="halfElf4">10</td><td><button class="leftassign" onclick="incrAbility(4, 1)">increase Wisdom</button></td>
-          <td><button class="leftassign" onclick="incrAbility(4, -1)">undo increase</button></td>
+          <td>
+           <label>Increase this score:
+           <input type="checkbox" name="choiceincr" id="incr0"></input>
+           </label>
+          </td>
+          <td>
+           <label>Increase this score:
+           <input type="checkbox" name="choiceincr" id="incr1"></input>
+           </label>
+          </td>
+          <td>
+           <label>Increase this score:
+           <input type="checkbox" name="choiceincr" id="incr2"></input>
+           </label>
+          </td>
+          <td>
+           <label>Increase this score:
+           <input type="checkbox" name="choiceincr" id="incr3"></input>
+           </label>
+          </td>
+          <td>
+           <label>Increase this score:
+           <input type="checkbox" name="choiceincr" id="incr4"></input>
+           </label>
+          </td>
         </tr>
        </table>
        <button class="scoreassign" onclick="checkRaceIncreases()">Done choosing increases</button> 
@@ -351,23 +364,18 @@ if (isset($_SESSION['user_id'])) {
 
        <div class="homepage-info" id="afterStats" style="display:none;">
        <p>Great! Now let's look at other features & proficiences of your race, class, and background:</p>
-
        EOT;
 
     }
 
     echo <<<EOT
-
     <script src="addchar.js"></script>
-
     </body>
     </html>
     EOT;
 
 } else {
-
     header("Location: https://dnd-chargen.herokuapp.com/login.php");
-
 } 
 
 ?>

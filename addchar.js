@@ -115,10 +115,11 @@ var charisma = new Score(5, "Charisma", 0, -1);
 abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
 
 var selectAssign = document.querySelectorAll('.assignr');
+var assigns = [null, null, null, null, null, null];
 
 for (let i = 0; i < selectAssign.length; i++) {
    selectAssign[i].addEventListener('change', (event) => {
-     console.log(event.target.value);
+      assigns[i] = event.target.value;
    });
 }
 
@@ -141,7 +142,6 @@ function rollDice(numDice, numSides) {
 // Displays either a new set of rolls or the default rolls,
 // depending on the user's choice. 
 function showRoll(rolloption) {
-
   // user chose to re-roll 
   if (rolloption == 1) {
 
@@ -169,7 +169,7 @@ function showRoll(rolloption) {
  
 }
 
-// show scores after user is done rolling
+// show unassigned scores after user is done rolling
 function showScores() {
   if (rollsToShow.length == 0) {
      scoresToAssign = [15, 14, 13, 12, 10, 8];
@@ -189,38 +189,29 @@ function showScores() {
   document.getElementById('initialRolls').style.display = "none";
 }
 
-// Allows user to assign their rolled numbers to various ability scores. 
-function setAbility(abilitychoice, whichNum) {
-  var scoreIdx = abilitychoice - 1;
-  var statVal = whichNum - 1; 
-
-  abilityScoresFinal[scoreIdx].value = scoresToAssign[statVal];
-  let idToGet = "score".concat(scoreIdx.toString());
-  document.getElementById(idToGet).innerHTML = abilityScoresFinal[scoreIdx].value;
-}
-
 // Validates user's score assignments and adds any extra increases. 
 function checkAbilityScores() {
-  // copy score values to temp array 
-  var tempScores = [];
+    // alert user of invalid or incomplete score assignments
+    console.log(assigns);
+    var counts = {"Strength": 0, "Dexterity": 0, "Constitution": 0, "Intelligence": 0, "Wisdom": 0, "Charisma": 0};
 
-  for (let i = 0; i < 6; i++) {
-     tempScores.push(abilityScoresFinal[i].value); 
-  }
-  // sort temp array and check for invalid score choices
-  tempScores.sort(function(a, b) {return b - a}); 
-  var scoresValid = 1;
-  for (let j = 0; j < 6; j++) {
-     if (tempScores[j] != scoresToAssign[j]) {
-        scoresValid = -1;
-        break;    
-     } 
-  } 
+    for (let i = 0; i < assigns.length; i++) {
+       if (assigns[i] in counts) {
+          let curr = assigns[i];
+          counts[curr] += 1;
+       }
+    }
+    // each score must be assigned exactly once
+    for (var key in counts) {
+       if (counts[key] != 1) {
+          alert("Each score must be used exactly once.");
+          return;
+       }
+    }
 
-  // notify user if score assignments are invalid
-  if (scoresValid == -1) {
-     alert("Each available number must be used exactly once.");
-  } else {
+
+     console.log(scoresToAssign);
+
      var matchrace;
 
      for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
@@ -270,8 +261,6 @@ function checkAbilityScores() {
         finalizeStats();
         document.getElementById('finishStats').style.display = "block";
      } 
-
-  } 
 
 } 
 
