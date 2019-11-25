@@ -127,47 +127,10 @@ setupRaces();
 setupClasses();
 setupScores();
 
-const selectAssign0 = document.querySelector('#num0');
-const selectAssign1 = document.querySelector('#num1');
-const selectAssign2 = document.querySelector('#num2');
-const selectAssign3 = document.querySelector('#num3');
-const selectAssign4 = document.querySelector('#num4');
-const selectAssign5 = document.querySelector('#num5');
+const selectAssign = document.querySelector('.assignr');
 
-selectAssign0.addEventListener('change', (event) => {
-  const res0 = document.querySelector('#assignresult0');
-  const f0 = document.querySelector('#final0');
-  res0.textContent = `Your ${event.target.value} is ${f0.textContent}`;
-});
-
-selectAssign1.addEventListener('change', (event) => {
-  const res1 = document.querySelector('#assignresult1');
-  const f1 = document.querySelector('#final1');
-  res0.textContent = `Your ${event.target.value} is ${f1.textContent}`;
-});
-
-selectAssign2.addEventListener('change', (event) => {
-  const res2 = document.querySelector('#assignresult2');
-  const f2 = document.querySelector('#final2');
-  res0.textContent = `Your ${event.target.value} is ${f2.textContent}`;
-});
-
-selectAssign3.addEventListener('change', (event) => {
-  const res3 = document.querySelector('#assignresult3');
-  const f3 = document.querySelector('#final3');
-  res0.textContent = `Your ${event.target.value} is ${f3.textContent}`;
-});
-
-selectAssign4.addEventListener('change', (event) => {
-  const res4 = document.querySelector('#assignresult4');
-  const f4 = document.querySelector('#final4');
-  res0.textContent = `Your ${event.target.value} is ${f4.textContent}`;
-});
-
-selectAssign5.addEventListener('change', (event) => {
-  const res5 = document.querySelector('#assignresult5');
-  const f5 = document.querySelector('#final5');
-  res0.textContent = `Your ${event.target.value} is ${f5.textContent}`;
+selectAssign.addEventListener('change', (event) => {
+  console.log(event.target.value);
 });
 
 // Rolls numDice number of dice, with each die of numSides dimension.

@@ -147,115 +147,90 @@ if (isset($_SESSION['user_id'])) {
        <div class="rollresults" id="currabilityscores">
           <table>
              <tr>
-               <th>Strength</th>
-               <th>Dexterity</th>
-               <th>Constitution</th>
-               <th>Intelligence</th>
-               <th>Wisdom</th>
-               <th>Charisma</th></tr>
-             <tr>
              <td class="showcurrscore" id="score0"></td>
              <td class="showcurrscore" id="score1"></td>
              <td class="showcurrscore" id="score2"></td>
              <td class="showcurrscore" id="score3"></td>
              <td class="showcurrscore" id="score4"></td>
              <td class="showcurrscore" id="score5"></td></tr>
+             <tr>
+              <td>
+               <label>Assign this roll to:
+               <select class="assignr" name="num0">
+               <option value="Strength">Strength</option>
+               <option value="Dexterity">Dexterity</option>
+               <option value="Constitution">Constitution</option>
+               <option value="Intelligence">Intelligence</option>
+               <option value="Wisdom">Wisdom</option>
+               <option value="Charisma">Charisma</option>
+               </select></label>
+              </td>
+              <td>
+               <label>Assign this roll to:
+               <select class="assignr" name="num1">
+               <option value="Strength">Strength</option>
+               <option value="Dexterity">Dexterity</option>
+               <option value="Constitution">Constitution</option>
+               <option value="Intelligence">Intelligence</option>
+               <option value="Wisdom">Wisdom</option>
+               <option value="Charisma">Charisma</option>
+               </select></label>
+              </td>
+              <td>
+               <label>Assign this roll to:
+               <select class="assignr" name="num2">
+               <option value="Strength">Strength</option>
+               <option value="Dexterity">Dexterity</option>
+               <option value="Constitution">Constitution</option>
+               <option value="Intelligence">Intelligence</option>
+               <option value="Wisdom">Wisdom</option>
+               <option value="Charisma">Charisma</option>
+               </select></label>
+              </td>
+              <td>
+               <label>Assign this roll to:
+               <select class="assignr" name="num3">
+               <option value="Strength">Strength</option>
+               <option value="Dexterity">Dexterity</option>
+               <option value="Constitution">Constitution</option>
+               <option value="Intelligence">Intelligence</option>
+               <option value="Wisdom">Wisdom</option>
+               <option value="Charisma">Charisma</option>
+               </select></label>
+              </td>
+              <td>
+               <label>Assign this roll to:
+               <select class="assignr" name="num4">
+               <option value="Strength">Strength</option>
+               <option value="Dexterity">Dexterity</option>
+               <option value="Constitution">Constitution</option>
+               <option value="Intelligence">Intelligence</option>
+               <option value="Wisdom">Wisdom</option>
+               <option value="Charisma">Charisma</option>
+               </select></label>
+              </td>
+              <td>
+               <label>Assign this roll to:
+               <select class="assignr" name="num5">
+               <option value="Strength">Strength</option>
+               <option value="Dexterity">Dexterity</option>
+               <option value="Constitution">Constitution</option>
+               <option value="Intelligence">Intelligence</option>
+               <option value="Wisdom">Wisdom</option>
+               <option value="Charisma">Charisma</option>
+               </select></label>
+              </td>
+             </tr>
+             <tr>
+                <td id="res0"></td>
+                <td id="res1"></td>
+                <td id="res2"></td>
+                <td id="res3"></td>
+                <td id="res4"></td>
+                <td id="res5"></td>
+             </tr>
           </table>
        </div>
-
-       <p class="p-indent">Scores to assign:</p>
-       <table id="rollTableAssign">
-        <tr>
-          <td id="final0">15</td>
-          <td>
-            <label>Choose an ability to assign this roll to:
-            <select name="num0">
-              <option value="Strength">Strength</option>
-              <option value="Dexterity">Dexterity</option>
-              <option value="Constitution">Constitution</option>
-              <option value="Intelligence">Intelligence</option>
-              <option value="Wisdom">Wisdom</option>
-              <option value="Charisma">Charisma</option>
-            </select></label>
-          </td>
-          <td id="assignresult0"></td>
-        </tr>
-        <tr>
-          <td id="final1">14</td>
-          <td>
-            <label>Choose an ability to assign this roll to:
-            <select name="num1">
-              <option value="Strength">Strength</option>
-              <option value="Dexterity">Dexterity</option>
-              <option value="Constitution">Constitution</option>
-              <option value="Intelligence">Intelligence</option>
-              <option value="Wisdom">Wisdom</option>
-              <option value="Charisma">Charisma</option>
-            </select></label>
-          </td>
-          <td id="assignresult1"></td>
-        </tr>
-        <tr>
-          <td id="final2">13</td>
-          <td>
-            <label>Choose an ability to assign this roll to:
-            <select name="num2">
-              <option value="Strength">Strength</option>
-              <option value="Dexterity">Dexterity</option>
-              <option value="Constitution">Constitution</option>
-              <option value="Intelligence">Intelligence</option>
-              <option value="Wisdom">Wisdom</option>
-              <option value="Charisma">Charisma</option>
-            </select></label>
-          </td>
-          <td id="assignresult2"></td>
-        </tr>
-        <tr>
-          <td id="final3">12</td>
-          <td>
-            <label>Choose an ability to assign this roll to:
-            <select name="num3">
-              <option value="Strength">Strength</option>
-              <option value="Dexterity">Dexterity</option>
-              <option value="Constitution">Constitution</option>
-              <option value="Intelligence">Intelligence</option>
-              <option value="Wisdom">Wisdom</option>
-              <option value="Charisma">Charisma</option>
-            </select></label>
-          </td>
-          <td id="assignresult3"></td>
-        </tr>
-        <tr>
-          <td id="final4">10</td>
-          <td>
-            <label>Choose an ability to assign this roll to:
-            <select name="num4">
-              <option value="Strength">Strength</option>
-              <option value="Dexterity">Dexterity</option>
-              <option value="Constitution">Constitution</option>
-              <option value="Intelligence">Intelligence</option>
-              <option value="Wisdom">Wisdom</option>
-              <option value="Charisma">Charisma</option>
-            </select></label>
-          </td> 
-          <td id="assignresult4"></td>
-        </tr>
-        <tr>
-          <td id="final5">8</td>
-          <td>
-            <label>Choose an ability to assign this roll to:
-            <select name="num5">
-              <option value="Strength">Strength</option>
-              <option value="Dexterity">Dexterity</option>
-              <option value="Constitution">Constitution</option>
-              <option value="Intelligence">Intelligence</option>
-              <option value="Wisdom">Wisdom</option>
-              <option value="Charisma">Charisma</option>
-            </select></label>
-          </td>
-          <td id="assignresult5"></td>
-        </tr>
-       </table>
        <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>
        </div>
 
