@@ -178,9 +178,7 @@ if (isset($_SESSION['user_id'])) {
               <option value="Charisma">Charisma</option>
             </select></label>
           </td>
-          <td>
-            <div id="assignresult0"></div>
-          </td>
+          <td id="assignresult0"></td>
         </tr>
         <tr>
           <td id="final1">14</td>
@@ -195,9 +193,7 @@ if (isset($_SESSION['user_id'])) {
               <option value="Charisma">Charisma</option>
             </select></label>
           </td>
-          <td>
-            <div id="assignresult1"></div>
-          </td>
+          <td id="assignresult1"></td>
         </tr>
         <tr>
           <td id="final2">13</td>
@@ -212,9 +208,7 @@ if (isset($_SESSION['user_id'])) {
               <option value="Charisma">Charisma</option>
             </select></label>
           </td>
-          <td>
-            <div id="assignresult2"></div>
-          </td>
+          <td id="assignresult2"></td>
         </tr>
         <tr>
           <td id="final3">12</td>
@@ -229,9 +223,7 @@ if (isset($_SESSION['user_id'])) {
               <option value="Charisma">Charisma</option>
             </select></label>
           </td>
-          <td>
-            <div id="assignresult3"></div>
-          </td>
+          <td id="assignresult3"></td>
         </tr>
         <tr>
           <td id="final4">10</td>
@@ -246,9 +238,7 @@ if (isset($_SESSION['user_id'])) {
               <option value="Charisma">Charisma</option>
             </select></label>
           </td> 
-          <td>
-            <div id="assignresult4"></div>
-          </td>
+          <td id="assignresult4"></td>
         </tr>
         <tr>
           <td id="final5">8</td>
@@ -263,9 +253,7 @@ if (isset($_SESSION['user_id'])) {
               <option value="Charisma">Charisma</option>
             </select></label>
           </td>
-          <td>
-            <div id="assignresult5"></div>
-          </td>
+          <td id="assignresult5"></td>
         </tr>
        </table>
        <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>

@@ -136,32 +136,38 @@ const selectAssign5 = document.querySelector('#num5');
 
 selectAssign0.addEventListener('change', (event) => {
   const res0 = document.querySelector('#assignresult0');
-  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final0').textContent}`;
+  const f0 = document.querySelector('#final0');
+  res0.textContent = `Your ${event.target.value} is ${f0.textContent}`;
 });
 
 selectAssign1.addEventListener('change', (event) => {
   const res1 = document.querySelector('#assignresult1');
-  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final1').textContent}`;
+  const f1 = document.querySelector('#final1');
+  res0.textContent = `Your ${event.target.value} is ${f1.textContent}`;
 });
 
 selectAssign2.addEventListener('change', (event) => {
   const res2 = document.querySelector('#assignresult2');
-  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final2').textContent}`;
+  const f2 = document.querySelector('#final2');
+  res0.textContent = `Your ${event.target.value} is ${f2.textContent}`;
 });
 
 selectAssign3.addEventListener('change', (event) => {
   const res3 = document.querySelector('#assignresult3');
-  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final3').textContent}`;
+  const f3 = document.querySelector('#final3');
+  res0.textContent = `Your ${event.target.value} is ${f3.textContent}`;
 });
 
 selectAssign4.addEventListener('change', (event) => {
   const res4 = document.querySelector('#assignresult4');
-  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final4').textContent}`;
+  const f4 = document.querySelector('#final4');
+  res0.textContent = `Your ${event.target.value} is ${f4.textContent}`;
 });
 
 selectAssign5.addEventListener('change', (event) => {
   const res5 = document.querySelector('#assignresult5');
-  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final5').textContent}`;
+  const f5 = document.querySelector('#final5');
+  res0.textContent = `Your ${event.target.value} is ${f5.textContent}`;
 });
 
 // Rolls numDice number of dice, with each die of numSides dimension.
