@@ -103,21 +103,6 @@ if (isset($_SESSION['user_id'])) {
     </select>
     </label>
     <p></p>
-    <label>Select an alignment for your character:
-    <select name="charalign" id="charalign" required>
-        <option value="None">None</option>
-        <option value="Lawful Good">Lawful Good</option>
-        <option value="Lawful Neutral">Lawful Neutral</option>
-        <option value="Lawful Evil">Lawful Evil</option>
-        <option value="Neutral Good">Neutral Good</option>
-        <option value="Neutral">Neutral</option>
-        <option value="Neutral Evil">Neutral Evil</option>
-        <option value="Chaotic Good">Chaotic Good</option>
-        <option value="Chaotic Neutral">Chaotic Neutral</option>
-        <option value="Chaotic Evil">Chaotic Evil</option>
-    </select>
-    </label>
-    <p></p>
     <input type="submit" value="Submit">
     </form>
     EOT;
@@ -181,22 +166,106 @@ if (isset($_SESSION['user_id'])) {
        <p class="p-indent">Scores to assign:</p>
        <table id="rollTableAssign">
         <tr>
-          <td id="final0">15</td><td><button class="leftassign" onclick="setAbility(1, 1)">assign to Str</button></td><td><button onclick="setAbility(2, 1)">assign to Dex</button></td><td><button onclick="setAbility(3, 1)">assign to Con</button></td><td><button onclick="setAbility(4, 1)">assign to Int</button></td><td><button onclick="setAbility(5, 1)">assign to Wis</button></td><td><button onclick="setAbility(6, 1)">assign to Cha</button></td>
+          <td id="final0">15</td>
+          <td>
+            <label>Choose an ability to assign this roll to:
+            <select name="num0">
+              <option value="Strength">Strength</option>
+              <option value="Dexterity">Dexterity</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Intelligence">Intelligence</option>
+              <option value="Wisdom">Wisdom</option>
+              <option value="Charisma">Charisma</option>
+            </select></label>
+          </td>
+          <td>
+            <div id="assignresult0"></div>
+          </td>
         </tr>
         <tr>
-          <td id="final1">14</td><td><button class="leftassign" onclick="setAbility(1, 2)">assign to Str</button></td><td><button onclick="setAbility(2, 2)">assign to Dex</button></td><td><button onclick="setAbility(3, 2)">assign to Con</button></td><td><button onclick="setAbility(4, 2)">assign to Int</button></td><td><button onclick="setAbility(5, 2)">assign to Wis</button></td><td><button onclick="setAbility(6, 2)">assign to Cha</button></td>
+          <td id="final1">14</td>
+          <td>
+            <label>Choose an ability to assign this roll to:
+            <select name="num1">
+              <option value="Strength">Strength</option>
+              <option value="Dexterity">Dexterity</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Intelligence">Intelligence</option>
+              <option value="Wisdom">Wisdom</option>
+              <option value="Charisma">Charisma</option>
+            </select></label>
+          </td>
+          <td>
+            <div id="assignresult1"></div>
+          </td>
         </tr>
         <tr>
-          <td id="final2">13</td><td><button class="leftassign" onclick="setAbility(1, 3)">assign to Str</button></td><td><button onclick="setAbility(2, 3)">assign to Dex</button></td><td><button onclick="setAbility(3, 3)">assign to Con</button></td><td><button onclick="setAbility(4, 3)">assign to Int</button></td><td><button onclick="setAbility(5, 3)">assign to Wis</button></td><td><button onclick="setAbility(6, 3)">assign to Cha</button></td>
+          <td id="final2">13</td>
+          <td>
+            <label>Choose an ability to assign this roll to:
+            <select name="num2">
+              <option value="Strength">Strength</option>
+              <option value="Dexterity">Dexterity</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Intelligence">Intelligence</option>
+              <option value="Wisdom">Wisdom</option>
+              <option value="Charisma">Charisma</option>
+            </select></label>
+          </td>
+          <td>
+            <div id="assignresult2"></div>
+          </td>
         </tr>
         <tr>
-          <td id="final3">12</td><td><button class="leftassign" onclick="setAbility(1, 4)">assign to Str</button></td><td><button onclick="setAbility(2, 4)">assign to Dex</button></td><td><button onclick="setAbility(3, 4)">assign to Con</button></td><td><button onclick="setAbility(4, 4)">assign to Int</button></td><td><button onclick="setAbility(5, 4)">assign to Wis</button></td><td><button onclick="setAbility(6, 4)">assign to Cha</button></td>
+          <td id="final3">12</td>
+          <td>
+            <label>Choose an ability to assign this roll to:
+            <select name="num3">
+              <option value="Strength">Strength</option>
+              <option value="Dexterity">Dexterity</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Intelligence">Intelligence</option>
+              <option value="Wisdom">Wisdom</option>
+              <option value="Charisma">Charisma</option>
+            </select></label>
+          </td>
+          <td>
+            <div id="assignresult3"></div>
+          </td>
         </tr>
         <tr>
-          <td id="final4">10</td><td><button class="leftassign" onclick="setAbility(1, 5)">assign to Str</button></td><td><button onclick="setAbility(2, 5)">assign to Dex</button></td><td><button onclick="setAbility(3, 5)">assign to Con</button></td><td><button onclick="setAbility(4, 5)">assign to Int</button></td><td><button onclick="setAbility(5, 5)">assign to Wis</button></td><td><button onclick="setAbility(6, 5)">assign to Cha</button></td> 
+          <td id="final4">10</td>
+          <td>
+            <label>Choose an ability to assign this roll to:
+            <select name="num4">
+              <option value="Strength">Strength</option>
+              <option value="Dexterity">Dexterity</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Intelligence">Intelligence</option>
+              <option value="Wisdom">Wisdom</option>
+              <option value="Charisma">Charisma</option>
+            </select></label>
+          </td> 
+          <td>
+            <div id="assignresult4"></div>
+          </td>
         </tr>
         <tr>
-          <td id="final5">8</td><td><button class="leftassign" onclick="setAbility(1, 6)">assign to Str</button></td><td><button onclick="setAbility(2, 6)">assign to Dex</button></td><td><button onclick="setAbility(3, 6)">assign to Con</button></td><td><button onclick="setAbility(4, 6)">assign to Int</button></td><td><button onclick="setAbility(5, 6)">assign to Wis</button></td><td><button onclick="setAbility(6, 6)">assign to Cha</button></td>
+          <td id="final5">8</td>
+          <td>
+            <label>Choose an ability to assign this roll to:
+            <select name="num5">
+              <option value="Strength">Strength</option>
+              <option value="Dexterity">Dexterity</option>
+              <option value="Constitution">Constitution</option>
+              <option value="Intelligence">Intelligence</option>
+              <option value="Wisdom">Wisdom</option>
+              <option value="Charisma">Charisma</option>
+            </select></label>
+          </td>
+          <td>
+            <div id="assignresult5"></div>
+          </td>
         </tr>
        </table>
        <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>

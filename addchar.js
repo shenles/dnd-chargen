@@ -1,12 +1,12 @@
-var rollsToShow;
-var scoresToAssign;
-var abilityScoresFinal;
+var rollsToShow = [];
+var scoresToAssign = [];
+var abilityScoresFinal = [];
 var initStat;
 var speedStat;
 var hpmaxStat;
-var saveScores;
-var allRaces;
-var allSkills;
+var saveScores = [];
+var allRaces = [];
+var allSkills = [];
 var racefinal;
 var classfinal;
 var bgfinal;
@@ -122,6 +122,48 @@ function setupScores() {
     abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
 }
 
+setupBackgrounds();
+setupRaces();
+setupClasses();
+setupScores();
+
+const selectAssign0 = document.querySelector('#num0');
+const selectAssign1 = document.querySelector('#num1');
+const selectAssign2 = document.querySelector('#num2');
+const selectAssign3 = document.querySelector('#num3');
+const selectAssign4 = document.querySelector('#num4');
+const selectAssign5 = document.querySelector('#num5');
+
+selectAssign0.addEventListener('change', (event) => {
+  const res0 = document.querySelector('#assignresult0');
+  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final0').textContent}`;
+});
+
+selectAssign1.addEventListener('change', (event) => {
+  const res1 = document.querySelector('#assignresult1');
+  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final1').textContent}`;
+});
+
+selectAssign2.addEventListener('change', (event) => {
+  const res2 = document.querySelector('#assignresult2');
+  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final2').textContent}`;
+});
+
+selectAssign3.addEventListener('change', (event) => {
+  const res3 = document.querySelector('#assignresult3');
+  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final3').textContent}`;
+});
+
+selectAssign4.addEventListener('change', (event) => {
+  const res4 = document.querySelector('#assignresult4');
+  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final4').textContent}`;
+});
+
+selectAssign5.addEventListener('change', (event) => {
+  const res5 = document.querySelector('#assignresult5');
+  res0.textContent = `Your ${event.target.value} is ${document.querySelector('#final5').textContent}`;
+});
+
 // Rolls numDice number of dice, with each die of numSides dimension.
 // Returns an array (sorted descending) of the numbers rolled.
 function rollDice(numDice, numSides) {
@@ -147,7 +189,6 @@ function showRoll(rolloption) {
   if (rolloption == 1) {
 
      rollsToShow = [];
-
      // roll 4d6 and add up the 3 highest numbers 
      // do this 6 times
      for (let i = 0; i < 6; i++) {
@@ -155,7 +196,6 @@ function showRoll(rolloption) {
         let currTotal = currArray[0] + currArray[1] + currArray[2];
         rollsToShow.push(currTotal);
      }  
-
      // sort descending
      rollsToShow.sort(function(a, b) {return b - a});
 
@@ -169,7 +209,6 @@ function showRoll(rolloption) {
       let idToGet = "roll".concat(i.toString());
       document.getElementById(idToGet).innerHTML = rollsToShow[i];
   }
-
   // display scores
   for (let i = 0; i < 6; i++) {
       let idToGet = "final".concat(i.toString());
@@ -414,8 +453,3 @@ function doneWithStats() {
    document.getElementById('afterStats').style.display = "block";
    document.getElementById('finishStats').style.display = "none";
 }
-
-setupBackgrounds();
-setupRaces();
-setupClasses();
-setupScores();
