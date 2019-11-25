@@ -265,11 +265,11 @@ if (isset($_SESSION['user_id'])) {
        <p class="p-indent">Scores available to increase:</p>
        <table id="raceTableAssign">
         <tr>
-          <td id="halfElf0"></td>
-          <td id="halfElf1"></td>
-          <td id="halfElf2"></td>
-          <td id="halfElf3"></td>
-          <td id="halfElf4"></td>
+          <td class="showcurrscore" id="halfElf0"></td>
+          <td class="showcurrscore" id="halfElf1"></td>
+          <td class="showcurrscore" id="halfElf2"></td>
+          <td class="showcurrscore" id="halfElf3"></td>
+          <td class="showcurrscore" id="halfElf4"></td>
         </tr>
         <tr>
           <td>

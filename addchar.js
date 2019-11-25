@@ -128,7 +128,7 @@ var boxes = [false, false, false, false, false];
 
 for (let i = 0; i < selectIncrease.length; i++) {
    selectIncrease[i].addEventListener('change', (event) => {
-      boxes[i] = event.target.value;
+      boxes[i] = event.target.checked;
    });
 }
 
@@ -227,11 +227,9 @@ function checkAbilityScores() {
         findscoreobj.value = scoresToAssign[i];
     }
 
-     console.log(abilityScoresFinal);
-     
-     var matchrace;
+    var matchrace;
 
-     for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
+    for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
 
         matchrace = allRaces[raceidx];
         // find the chosen race in the array of all races
@@ -280,39 +278,6 @@ function checkAbilityScores() {
      } 
 
 } 
-
-function incrAbility(abilityIdx, incrOrDecr) {
-  var desiredValue;
-  saveScores = [];
-
-  for (let i = 0; i < 6; i++) {
-     saveScores.push(abilityScoresFinal[i].value);
-  } 
-
-  if (incrOrDecr == 1) {
-     desiredValue = abilityScoresFinal[abilityIdx].value + 1; 
-     // cannot increase any one stat by more than 1
-     if (desiredValue - saveScores[abilityIdx] > 1) {
-        alert("This score cannot be increased more than once.");  
-     } else {
-        abilityScoresFinal[abilityIdx].value = desiredValue;
-     } 
-
-  } else {
-     desiredValue = abilityScoresFinal[abilityIdx].value - 1;
-     // cannot decrease below original score
-     if (desiredValue >= saveScores[abilityIdx]) {
-        abilityScoresFinal[abilityIdx].value = desiredValue; 
-     } 
-  }
-
-  // display new scores; Charisma remains unchanged
-  for (let i = 0; i < 5; i++) {
-      let idToGet = "halfElf".concat(i.toString());
-      document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
-  }
-
-}
 
 // Calculates the ability score modifier for a given ability score.
 function calcModifier(score) {
@@ -392,6 +357,11 @@ function checkRaceIncreases() {
 
   var statsRaised = 0; 
 
+  for (let i = 0; i < boxes.length; i++) {
+     if (boxes[i] == true) {
+        statsRaised += 1;
+     }
+  }
 
   if (statsRaised != 2) {
      alert("You must increase exactly two scores by 1 each.");
