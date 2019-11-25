@@ -128,7 +128,8 @@ var boxes = [false, false, false, false, false];
 
 for (let i = 0; i < selectIncrease.length; i++) {
    selectIncrease[i].addEventListener('change', (event) => {
-      boxes[i] = event.target.checked;
+      console.log(event.target.value);
+      boxes[i] = event.target.value;
    });
 }
 
