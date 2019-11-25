@@ -115,11 +115,20 @@ var charisma = new Score(5, "Charisma", 0, -1);
 abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
 
 var selectAssign = document.querySelectorAll('.assignr');
-var assigns = [null, null, null, null, null, null];
+var assigns = ["Strength", "Strength", "Strength", "Strength", "Strength", "Strength"];
 
 for (let i = 0; i < selectAssign.length; i++) {
    selectAssign[i].addEventListener('change', (event) => {
       assigns[i] = event.target.value;
+   });
+}
+
+var selectIncrease = document.querySelectorAll('.choiceincr');
+var boxes = [false, false, false, false, false];
+
+for (let i = 0; i < selectIncrease.length; i++) {
+   selectIncrease[i].addEventListener('change', (event) => {
+      boxes[i] = event.target.value;
    });
 }
 
@@ -193,6 +202,7 @@ function showScores() {
 function checkAbilityScores() {
     // alert user of invalid or incomplete score assignments
     console.log(assigns);
+    console.log(scoresToAssign);
     var counts = {"Strength": 0, "Dexterity": 0, "Constitution": 0, "Intelligence": 0, "Wisdom": 0, "Charisma": 0};
 
     for (let i = 0; i < assigns.length; i++) {
@@ -208,9 +218,25 @@ function checkAbilityScores() {
           return;
        }
     }
-
-
-     console.log(scoresToAssign);
+    // assign the scores
+    for (let i = 0; i < assigns.length; i++) {
+       switch(assigns[i]) {
+          case "Strength":
+             abilityScoresFinal[0].value = scoresToAssign[i];
+          case "Dexterity":
+             abilityScoresFinal[1].value = scoresToAssign[i];
+          case "Constitution":
+             abilityScoresFinal[2].value = scoresToAssign[i];
+          case "Intelligence":
+             abilityScoresFinal[3].value = scoresToAssign[i];
+          case "Wisdom":
+             abilityScoresFinal[4].value = scoresToAssign[i];
+          case "Charisma":
+             abilityScoresFinal[5].value = scoresToAssign[i];
+          default:
+             console.log("issue with score assignment");
+       }
+    }
 
      var matchrace;
 
@@ -371,12 +397,10 @@ function finalizeStats() {
 
 function checkRaceIncreases() {
 
+  console.log(boxes);
+
   var statsRaised = 0; 
-  for (let i = 0; i < 6; i++) {
-     if (abilityScoresFinal[i].value > saveScores[i]) {
-        statsRaised += 1;
-     } 
-  }
+
 
   if (statsRaised != 2) {
      alert("You must increase exactly two scores by 1 each.");
