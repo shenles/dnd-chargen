@@ -127,9 +127,10 @@ var selectIncrease = document.querySelectorAll('.choiceincr');
 var boxes = [false, false, false, false, false];
 
 for (let i = 0; i < selectIncrease.length; i++) {
+   console.log(selectIncrease[i]);
    selectIncrease[i].addEventListener('change', (event) => {
-      console.log(event.target.value);
-      boxes[i] = event.target.value;
+      console.log(event.target.checked);
+      boxes[i] = event.target.checked;
    });
 }
 
