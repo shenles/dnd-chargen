@@ -77,61 +77,50 @@ class Character {
    }
 }
 
-function setupRaces() {
-    racefinal = document.getElementById('charraceinfo').innerHTML;
-    var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, [], {0: 2, 5: 1});
-    var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2});
-    var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {4: 1});
-    var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {0: 2});
-    var elf = new Race(5, "Elf", 30, 60, ["Common", "Dwarvish"], -1, [6, 7, 8], {1: 2});
-    var highelf = new Race(6, "High Elf", 30, 60, ["Common", "Dwarvish"], 5, [], {3: 1});
-    var drow = new Race(7, "Drow", 30, 120, ["Common", "Dwarvish"], 5, [], {5: 1});
-    var woodelf = new Race(8, "Wood Elf", 35, 60, ["Common", "Dwarvish"], 5, [], {4: 1});
-    var halfling = new Race(9, "Halfling", 25, 0, ["Common", "Halfling"], -1, [10, 11], {1: 2});
-    var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, ["Common", "Halfling"], 9, [], {5: 1});
-    var stout = new Race(11, "Stout Halfling", 25, 0, ["Common", "Halfling"], 9, [], {2: 1});
-    var gnome = new Race(12, "Gnome", 25, 60, ["Common", "Gnomish"], -1, [13, 14, 15], {3: 2});
-    var forestgnome = new Race(13, "Forest Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {1: 1});
-    var rockgnome = new Race(14, "Rock Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {2: 1});
-    var deepgnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Undercommon"], 12, [], {1: 1});
-    var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, [], {5: 2});
-    var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, [], {0: 2, 2: 1});
-    var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, [], {3: 1, 5: 2});
-    var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
-    allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
+var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, [], {0: 2, 5: 1});
+var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2});
+var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {4: 1});
+var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {0: 2});
+var elf = new Race(5, "Elf", 30, 60, ["Common", "Dwarvish"], -1, [6, 7, 8], {1: 2});
+var highelf = new Race(6, "High Elf", 30, 60, ["Common", "Dwarvish"], 5, [], {3: 1});
+var drow = new Race(7, "Drow", 30, 120, ["Common", "Dwarvish"], 5, [], {5: 1});
+var woodelf = new Race(8, "Wood Elf", 35, 60, ["Common", "Dwarvish"], 5, [], {4: 1});
+var halfling = new Race(9, "Halfling", 25, 0, ["Common", "Halfling"], -1, [10, 11], {1: 2});
+var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, ["Common", "Halfling"], 9, [], {5: 1});
+var stout = new Race(11, "Stout Halfling", 25, 0, ["Common", "Halfling"], 9, [], {2: 1});
+var gnome = new Race(12, "Gnome", 25, 60, ["Common", "Gnomish"], -1, [13, 14, 15], {3: 2});
+var forestgnome = new Race(13, "Forest Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {1: 1});
+var rockgnome = new Race(14, "Rock Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {2: 1});
+var deepgnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Undercommon"], 12, [], {1: 1});
+var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, [], {5: 2});
+var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, [], {0: 2, 2: 1});
+var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, [], {3: 1, 5: 2});
+var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
+allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
+
+allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
+var barbarian = new DndClass(1, "Barbarian", 12, ["light", "medium", "shields"], ["simple", "martial"], [], [0, 2], [2, [1, 3, 7, 10, 11, 17]], -1);
+var bard = new DndClass(2, "Bard", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["choose 3 musical instruments"], [1, 5], [3, "any"], 5);
+
+classfinal = document.getElementById('charclassinfo').innerHTML;
+racefinal = document.getElementById('charraceinfo').innerHTML;
+bgfinal = document.getElementById('charbginfo').innerHTML;
+
+var strength = new Score(0, "Strength", 0, -1);
+var dexterity = new Score(1, "Dexterity", 0, -1);
+var constitution = new Score(2, "Constitution", 0, -1);
+var intelligence = new Score(3, "Intelligence", 0, -1);
+var wisdom = new Score(4, "Wisdom", 0, -1);
+var charisma = new Score(5, "Charisma", 0, -1);
+abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+
+var selectAssign = document.querySelectorAll('.assignr');
+
+for (let i = 0; i < selectAssign.length; i++) {
+   selectAssign[i].addEventListener('change', (event) => {
+     console.log(event.target.value);
+   });
 }
-
-function setupClasses() {
-    classfinal = document.getElementById('charclassinfo').innerHTML;
-    allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
-    var barbarian = new DndClass(1, "Barbarian", 12, ["light", "medium", "shields"], ["simple", "martial"], [], [0, 2], [2, [1, 3, 7, 10, 11, 17]], -1);
-    var bard = new DndClass(2, "Bard", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["choose 3 musical instruments"], [1, 5], [3, "any"], 5);
-}
-
-function setupBackgrounds() {
-    bgfinal = document.getElementById('charbginfo').innerHTML;
-}
-
-function setupScores() {
-    var strength = new Score(0, "Strength", 0, -1);
-    var dexterity = new Score(1, "Dexterity", 0, -1);
-    var constitution = new Score(2, "Constitution", 0, -1);
-    var intelligence = new Score(3, "Intelligence", 0, -1);
-    var wisdom = new Score(4, "Wisdom", 0, -1);
-    var charisma = new Score(5, "Charisma", 0, -1);
-    abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
-}
-
-setupBackgrounds();
-setupRaces();
-setupClasses();
-setupScores();
-
-const selectAssign = document.querySelector('.assignr');
-
-selectAssign.addEventListener('change', (event) => {
-  console.log(event.target.value);
-});
 
 // Rolls numDice number of dice, with each die of numSides dimension.
 // Returns an array (sorted descending) of the numbers rolled.
