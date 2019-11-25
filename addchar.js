@@ -133,7 +133,6 @@ function rollDice(numDice, numSides) {
      // add current result to array
      rollsArray.push(currentDie); 
   } 
-
   // sort array descending
   rollsArray.sort(function(a, b) {return b - a});
   return rollsArray;
@@ -167,19 +166,17 @@ function showRoll(rolloption) {
       let idToGet = "roll".concat(i.toString());
       document.getElementById(idToGet).innerHTML = rollsToShow[i];
   }
-  // display scores
-  for (let i = 0; i < 6; i++) {
-      let idToGet = "final".concat(i.toString());
-      document.getElementById(idToGet).innerHTML = rollsToShow[i];
-  }
-
-  scoresToAssign = rollsToShow.slice(); 
+ 
 }
 
+// show scores after user is done rolling
 function showScores() {
-  // show current scores
-  if (scoresToAssign.length == 0) {
+  if (rollsToShow.length == 0) {
      scoresToAssign = [15, 14, 13, 12, 10, 8];
+  } else {
+     for (let i = 0; i < rollsToShow.length; i++) {
+        scoresToAssign.push(rollsToShow[i]);
+     }
   }
 
   for (let i = 0; i < 6; i++) {
@@ -204,14 +201,12 @@ function setAbility(abilitychoice, whichNum) {
 
 // Validates user's score assignments and adds any extra increases. 
 function checkAbilityScores() {
-
   // copy score values to temp array 
   var tempScores = [];
 
   for (let i = 0; i < 6; i++) {
      tempScores.push(abilityScoresFinal[i].value); 
   }
-
   // sort temp array and check for invalid score choices
   tempScores.sort(function(a, b) {return b - a}); 
   var scoresValid = 1;
@@ -247,7 +242,6 @@ function checkAbilityScores() {
         }
 
      }
-
      // update displayed scores
      for (let i = 0; i < 6; i++) {
          let idToGet = "scoreRace".concat(i.toString());
@@ -321,13 +315,11 @@ function calcModifier(score) {
 }
 
 function finalizeStats() {
-
   // update displayed scores
   for (let i = 0; i < 6; i++) {
       let idToGet = "scoreFinish".concat(i.toString());
       document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
   }
-
   // calculate modifiers based on ability scores
   var plusMods = [];
   var abilityMods = [];
@@ -341,7 +333,6 @@ function finalizeStats() {
         plusMods.push("+".concat(currMod));
      } 
   } 
-
   // update displayed ability modifiers
   for (let i = 0; i < 6; i++) {
       let idToGet = "modifier".concat(i.toString());
@@ -410,4 +401,5 @@ function checkRaceIncreases() {
 function doneWithStats() {
    document.getElementById('afterStats').style.display = "block";
    document.getElementById('finishStats').style.display = "none";
+   document.getElementById('raceAbilityScores').style.display = "none";
 }
