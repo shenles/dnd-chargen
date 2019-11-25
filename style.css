@@ -78,6 +78,10 @@ h3 {
     margin-top: 8px;
 }
 
+#skiprolling {
+    margin-left: 10px;
+}
+
 input[type=submit] {
     margin-left: 12px;
 }

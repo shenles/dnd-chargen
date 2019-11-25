@@ -1,19 +1,5 @@
-var rollsToShow = [];
-var scoresToAssign = [];
-var abilityScoresFinal = [];
-var abilityMods = [];
-var saveScores = [];
-var initStat;
-var speedStat;
-var hpmaxStat; 
-var hitdiceStat;
-var allRaces = [];
-var racefinal = document.getElementById('charraceinfo').innerHTML;
-var classfinal = document.getElementById('charclassinfo').innerHTML;
-
 class Race {
-
-   constructor(id, name, speed, darkvision, langs, baserace, subraces, abilityincreases, hpincrease) {
+   constructor(id, name, speed, darkvision, langs, baserace, subraces, abilityincreases) {
        this.id = id;
        this.name = name;
        this.speed = speed;
@@ -22,52 +8,106 @@ class Race {
        this.baserace = baserace;
        this.subraces = subraces;
        this.abilityincreases = abilityincreases;
-       this.hpincrease = hpincrease;
    }
+}
 
+class DndClass {
+    constructor(id, name, hitdie, armorprofs, weaponprofs, toolprofs, saves, skillprofs, spellability) {
+      this.id = id;
+      this.name = name;
+      this.hitdie = hitdie;
+      this.armorprofs = armorprofs;
+      this.weaponprofs = weaponprofs;
+      this.toolprofs = toolprofs;
+      this.saves = saves;
+      this.skillprofs = skillprofs;
+      this.spellability = spellability;
+    }
+}
+
+class Background {
+   constructor(id, name, langs, skillprofs) {
+      this.id = id;
+      this.name = name;
+      this.langs = langs;
+      this.skillprofs = skillprofs;
+   }
 }
 
 class Score {
-
    constructor(id, name, value, increased) {
       this.id = id;
       this.name = name;
       this.value = value;
       this.increased = increased;
    }
-
 }
 
-var strength = new Score(0, "Strength", 0, -1);
-var dexterity = new Score(1, "Dexterity", 0, -1);
-var constitution = new Score(2, "Constitution", 0, -1);
-var intelligence = new Score(3, "Intelligence", 0, -1);
-var wisdom = new Score(4, "Wisdom", 0, -1);
-var charisma = new Score(5, "Charisma", 0, -1);
+class Character {
+   constructor(id, name, dndclass, race, bg, scores, mods, otherstats, armorprofs, weaponprofs, langs, traits, features, equip, skillprofs, toolprofs) {
+      this.id = id;
+      this.name = name;
+      this.dndclass = dndclass;
+      this.race = race;
+      this.bg = bg;
+      this.scores = scores;
+      this.mods = mods;
+      this.otherstats = otherstats;
+      this.armorprofs = armorprofs;
+      this.weaponprofs = weaponprofs;
+      this.langs = langs;
+      this.traits = traits;
+      this.features = features;
+      this.equip = equip;
+      this.skillprofs = skillprofs;
+      this.toolprofs = toolprofs;
+   }
+}
 
-abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+function setupRaces() {
+    var racefinal = document.getElementById('charraceinfo').innerHTML;
+    var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, [], {0: 2, 5: 1});
+    var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2});
+    var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {4: 1});
+    var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {0: 2});
+    var elf = new Race(5, "Elf", 30, 60, ["Common", "Dwarvish"], -1, [6, 7, 8], {1: 2});
+    var highelf = new Race(6, "High Elf", 30, 60, ["Common", "Dwarvish"], 5, [], {3: 1});
+    var drow = new Race(7, "Drow", 30, 120, ["Common", "Dwarvish"], 5, [], {5: 1});
+    var woodelf = new Race(8, "Wood Elf", 35, 60, ["Common", "Dwarvish"], 5, [], {4: 1});
+    var halfling = new Race(9, "Halfling", 25, 0, ["Common", "Halfling"], -1, [10, 11], {1: 2});
+    var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, ["Common", "Halfling"], 9, [], {5: 1});
+    var stout = new Race(11, "Stout Halfling", 25, 0, ["Common", "Halfling"], 9, [], {2: 1});
+    var gnome = new Race(12, "Gnome", 25, 60, ["Common", "Gnomish"], -1, [13, 14, 15], {3: 2});
+    var forestgnome = new Race(13, "Forest Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {1: 1});
+    var rockgnome = new Race(14, "Rock Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {2: 1});
+    var deepgnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Undercommon"], 12, [], {1: 1});
+    var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, [], {5: 2});
+    var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, [], {0: 2, 2: 1});
+    var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, [], {3: 1, 5: 2});
+    var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
+    var allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
+}
 
-var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, null, {0: 2, 5: 1}, 0);
-var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2}, 0);
-var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, null, {4: 1}, 1);
-var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, ["Common", "Dwarvish"], 2, null, {0: 2}, 0);
-var elf = new Race(5, "Elf", 30, 60, ["Common", "Dwarvish"], -1, [6, 7, 8], {1: 2}, 0);
-var highelf = new Race(6, "High Elf", 30, 60, ["Common", "Dwarvish"], 5, null, {3: 1}, 0);
-var drow = new Race(7, "Drow", 30, 120, ["Common", "Dwarvish"], 5, null, {5: 1}, 0);
-var woodelf = new Race(8, "Wood Elf", 35, 60, ["Common", "Dwarvish"], 5, null, {4: 1}, 0);
-var halfling = new Race(9, "Halfling", 25, 0, ["Common", "Halfling"], -1, [10, 11], {1: 2}, 0);
-var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, ["Common", "Halfling"], 9, null, {5: 1}, 0);
-var stout = new Race(11, "Stout Halfling", 25, 0, ["Common", "Halfling"], 9, null, {2: 1}, 0);
-var gnome = new Race(12, "Gnome", 25, 60, ["Common", "Gnomish"], -1, [13, 14, 15], {3: 2}, 0);
-var forestgnome = new Race(13, "Forest Gnome", 25, 60, ["Common", "Gnomish"], 12, null, {1: 1}, 0);
-var rockgnome = new Race(14, "Rock Gnome", 25, 60, ["Common", "Gnomish"], 12, null, {2: 1}, 0);
-var deepgnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Undercommon"], 12, null, {1: 1}, 0);
-var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, null, {5: 2}, 0);
-var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, null, {0: 2, 2: 1}, 0);
-var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, null, {3: 1, 5: 2}, 0);
-var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, null, {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1}, 0);
+function setupClasses() {
+    var classfinal = document.getElementById('charclassinfo').innerHTML;
+    var allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
+    var barbarian = new DndClass(1, "Barbarian", 12, ["light", "medium", "shields"], ["simple", "martial"], [], [0, 2], [2, [1, 3, 7, 10, 11, 17]], -1);
+    var bard = new DndClass(2, "Bard", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["choose 3 musical instruments"], [1, 5], [3, "any"], 5);
+}
 
-allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
+function setupBackgrounds() {
+    var bgfinal = document.getElementById('charbginfo').innerHTML;
+}
+
+function setupScores() {
+    var strength = new Score(0, "Strength", 0, -1);
+    var dexterity = new Score(1, "Dexterity", 0, -1);
+    var constitution = new Score(2, "Constitution", 0, -1);
+    var intelligence = new Score(3, "Intelligence", 0, -1);
+    var wisdom = new Score(4, "Wisdom", 0, -1);
+    var charisma = new Score(5, "Charisma", 0, -1);
+    var abilityScoresFinal = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+}
 
 // Rolls numDice number of dice, with each die of numSides dimension.
 // Returns an array (sorted descending) of the numbers rolled.
@@ -93,7 +133,7 @@ function showRoll(rolloption) {
   // user chose to re-roll 
   if (rolloption == 1) {
 
-     rollsToShow = [];
+     var rollsToShow = [];
 
      // roll 4d6 and add up the 3 highest numbers 
      // do this 6 times
@@ -113,21 +153,17 @@ function showRoll(rolloption) {
 
   // display rolls
   for (let i = 0; i < 6; i++) {
-
       let idToGet = "roll".concat(i.toString());
       document.getElementById(idToGet).innerHTML = rollsToShow[i];
-
   }
 
   // display scores
   for (let i = 0; i < 6; i++) {
-
       let idToGet = "final".concat(i.toString());
       document.getElementById(idToGet).innerHTML = rollsToShow[i];
-
   }
 
-  scoresToAssign = rollsToShow.slice(); 
+  var scoresToAssign = rollsToShow.slice(); 
 }
 
 function showScores() {
@@ -198,7 +234,7 @@ function checkAbilityScores() {
               }
            }
 
-           speedStat = matchrace.speed;
+           var speedStat = matchrace.speed;
            break;
 
         }
@@ -208,7 +244,6 @@ function checkAbilityScores() {
 
      // update displayed scores
      for (let i = 0; i < 6; i++) {
-
          let idToGet = "scoreRace".concat(i.toString());
          document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
          // if a score was changed, it shows up green
@@ -225,10 +260,8 @@ function checkAbilityScores() {
      if (racefinal == "Half-Elf") {
 
         for (let i = 0; i < 5; i++) {
-
            let idToGet = "halfElf".concat(i.toString());
            document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
-
         }
 
         document.getElementById('halfElfScore').style.display = "block";
@@ -244,6 +277,8 @@ function checkAbilityScores() {
 
 function incrAbility(abilityIdx, incrOrDecr) {
   var desiredValue;
+  var saveScores = [];
+
   for (let i = 0; i < 6; i++) {
      saveScores.push(abilityScoresFinal[i].value);
   } 
@@ -267,10 +302,8 @@ function incrAbility(abilityIdx, incrOrDecr) {
 
   // display new scores; Charisma remains unchanged
   for (let i = 0; i < 5; i++) {
-
       let idToGet = "halfElf".concat(i.toString());
       document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
-
   }
 
 }
@@ -285,14 +318,14 @@ function finalizeStats() {
 
   // update displayed scores
   for (let i = 0; i < 6; i++) {
-
       let idToGet = "scoreFinish".concat(i.toString());
       document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
-
   }
 
   // calculate modifiers based on ability scores
   var plusMods = [];
+  var abilityMods = [];
+
   for (let i = 0; i < 6; i++) {
      let currMod = calcModifier(abilityScoresFinal[i].value);
      abilityMods.push(currMod);
@@ -305,10 +338,8 @@ function finalizeStats() {
 
   // update displayed ability modifiers
   for (let i = 0; i < 6; i++) {
-
       let idToGet = "modifier".concat(i.toString());
-      document.getElementById(idToGet).innerHTML = abilityMods[i];
-
+      document.getElementById(idToGet).innerHTML = plusMods[i];
   }
  
   var maxroll;
@@ -338,14 +369,14 @@ function finalizeStats() {
         maxroll = 0; 
   }
 
-  initStat = plusMods[1];
-  hpmaxStat = maxroll + abilityMods[2];
+  var initStat = plusMods[1];
+  var hpmaxStat = maxroll + abilityMods[2];
 
   if (racefinal == "Hill Dwarf") {
       hpmaxStat += 1;
   }
 
-  hitdiceStat = "1d".concat(maxroll.toString()); 
+  var hitdiceStat = "1d".concat(maxroll.toString()); 
   document.getElementById('initiative').innerHTML = initStat;
   document.getElementById('hpmax').innerHTML = hpmaxStat; 
   document.getElementById('hitdice').innerHTML = hitdiceStat;
@@ -370,6 +401,7 @@ function checkRaceIncreases() {
   }
 }
 
-function startManual() {
-  console.log("starting manual entry of stats");
-} 
+function doneWithStats() {
+   document.getElementById('afterStats').style.display = "block";
+   document.getElementById('finishStats').style.display = "none";
+}

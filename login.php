@@ -49,8 +49,8 @@ if (!empty($_POST)) {
             $_SESSION['user_id'] = $row["id"];
 
             echo "<div class=\"homepage-info\"><p>Login successful</p>";
-            echo "<a href=\"https://dnd-chargen.herokuapp.com/addchar.php\" class=\"btn btn-light\" role=\"button\">Create character</a>";
-            echo "<p></p><a href=\"https://dnd-chargen.herokuapp.com/viewchars.php\" class=\"btn btn-light\" role=\"button\">View saved characters</a>";
+            echo "<a href=\"https://dnd-chargen.herokuapp.com/addchar.php\" class=\"btn\" role=\"button\">Create a character</a>";
+            echo "<p></p><a href=\"https://dnd-chargen.herokuapp.com/viewchars.php\" class=\"btn\" role=\"button\">View saved characters</a>";
 
         } else {
             echo "<p>Login failed</p>";
