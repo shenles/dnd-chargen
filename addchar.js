@@ -128,7 +128,7 @@ $("input[type='checkbox']").change(function() {
     if (this.checked) {
         console.log(this.id);
     }
-}
+});
 
 // Rolls numDice number of dice, with each die of numSides dimension.
 // Returns an array (sorted descending) of the numbers rolled.
