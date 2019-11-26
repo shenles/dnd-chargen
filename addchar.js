@@ -123,15 +123,11 @@ for (let i = 0; i < selectAssign.length; i++) {
    });
 }
 
-var selectIncrease = document.querySelectorAll('.choiceincr');
 var boxes = [false, false, false, false, false];
-
-for (let i = 0; i < selectIncrease.length; i++) {
-   console.log(selectIncrease[i]);
-   selectIncrease[i].addEventListener('change', (event) => {
-      console.log(event.target.checked);
-      boxes[i] = event.target.checked;
-   });
+$("input[type='checkbox']").change(function() {
+    if (this.checked) {
+        console.log(this.id);
+    }
 }
 
 // Rolls numDice number of dice, with each die of numSides dimension.
