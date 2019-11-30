@@ -273,27 +273,27 @@ if (isset($_SESSION['user_id'])) {
         </tr>
         <tr>
           <td>
-           <label>Increase this score:
+           <label>Increase Str:
            <input type="checkbox" name="choiceincr" id="incr0"></input>
            </label>
           </td>
           <td>
-           <label>Increase this score:
+           <label>Increase Dex:
            <input type="checkbox" name="choiceincr" id="incr1"></input>
            </label>
           </td>
           <td>
-           <label>Increase this score:
+           <label>Increase Con:
            <input type="checkbox" name="choiceincr" id="incr2"></input>
            </label>
           </td>
           <td>
-           <label>Increase this score:
+           <label>Increase Int:
            <input type="checkbox" name="choiceincr" id="incr3"></input>
            </label>
           </td>
           <td>
-           <label>Increase this score:
+           <label>Increase Wis:
            <input type="checkbox" name="choiceincr" id="incr4"></input>
            </label>
           </td>
@@ -349,6 +349,8 @@ if (isset($_SESSION['user_id'])) {
                <th>Speed</th>
                <th>Hit Dice</th>
                <th>Hit Point Maximum</th>
+               <th>Spell Attack Modifier</th>
+               <th>Spell Save DC</th>
                <th>Languages Known</th>
              <tr>
              <td class="showfinalscore" id="profbonus"></td>
@@ -356,6 +358,8 @@ if (isset($_SESSION['user_id'])) {
              <td class="showfinalscore" id="speed"></td>
              <td class="showfinalscore" id="hitdice"></td>
              <td class="showfinalscore" id="hpmax"></td>
+             <td class="showfinalscore" id="spatkmod"></td>
+             <td class="showfinalscore" id="spsavedc"></td>
              <td class="showfinalscore" id="langs"></td>
           </table>
        <button class="scoreassign" onclick="doneWithStats()">I'm ready for the next step</button>

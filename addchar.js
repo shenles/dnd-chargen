@@ -4,6 +4,7 @@ var abilityScoresFinal = [];
 var initStat;
 var speedStat;
 var hpmaxStat;
+var profBonus;
 var saveScores = [];
 var allRaces = [];
 var allSkills = [];
@@ -125,8 +126,11 @@ for (let i = 0; i < selectAssign.length; i++) {
 
 var boxes = [false, false, false, false, false];
 $("input[type='checkbox']").change(function() {
+    var boxId = Number(this.id[this.id.length - 1]);
     if (this.checked) {
-        console.log(this.id);
+        boxes[boxId] = true;
+    } else {
+        boxes[boxId] = false;
     }
 });
 
@@ -192,15 +196,13 @@ function showScores() {
       document.getElementById(idToGet).innerHTML = scoresToAssign[i];
   }
 
-  document.getElementById('assignAbilityScores').style.display = "block";
   document.getElementById('initialRolls').style.display = "none";
+  document.getElementById('assignAbilityScores').style.display = "block";
 }
 
 // Validates user's score assignments and adds any extra increases. 
 function checkAbilityScores() {
     // alert user of invalid or incomplete score assignments
-    console.log(assigns);
-    console.log(scoresToAssign);
     var counts = {"Strength": 0, "Dexterity": 0, "Constitution": 0, "Intelligence": 0, "Wisdom": 0, "Charisma": 0};
 
     for (let i = 0; i < assigns.length; i++) {
@@ -254,11 +256,10 @@ function checkAbilityScores() {
          if (abilityScoresFinal[i].increased == 1) {
             document.getElementById(idToGet).style.color = "#5ab260";
          }
-
      }
 
-     document.getElementById('raceAbilityScores').style.display = "block";
      document.getElementById('assignAbilityScores').style.display = "none";
+     document.getElementById('raceAbilityScores').style.display = "block";
 
      // display new scores; Charisma is unchanged, as that ability was already increased previously
      if (racefinal == "Half-Elf") {
@@ -267,7 +268,6 @@ function checkAbilityScores() {
            let idToGet = "halfElf".concat(i.toString());
            document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
         }
-
         document.getElementById('halfElfScore').style.display = "block";
 
      } else {
@@ -309,7 +309,6 @@ function finalizeStats() {
   }
  
   var maxroll;
-
   switch (classfinal) {
      case "Sorcerer":
      case "Wizard":
@@ -337,12 +336,14 @@ function finalizeStats() {
 
   initStat = plusMods[1];
   hpmaxStat = maxroll + abilityMods[2];
+  profBonus = 2;
 
   if (racefinal == "Hill Dwarf") {
       hpmaxStat += 1;
   }
 
   var hitdiceStat = "1d".concat(maxroll.toString()); 
+  document.getElementById('profbonus').innerHTML = "+".concat(profBonus.toString());
   document.getElementById('initiative').innerHTML = initStat;
   document.getElementById('hpmax').innerHTML = hpmaxStat; 
   document.getElementById('hitdice').innerHTML = hitdiceStat;
@@ -352,9 +353,7 @@ function finalizeStats() {
 function checkRaceIncreases() {
 
   console.log(boxes);
-
-  var statsRaised = 0; 
-
+  var statsRaised = 0;
   for (let i = 0; i < boxes.length; i++) {
      if (boxes[i] == true) {
         statsRaised += 1;
@@ -362,8 +361,14 @@ function checkRaceIncreases() {
   }
 
   if (statsRaised != 2) {
-     alert("You must increase exactly two scores by 1 each.");
-  } else {        
+     alert("You must choose exactly two scores to increase.");
+  } else { 
+     // increase each of the two chosen scores by 1 each
+     for (let i = 0; i < boxes.length; i++) {
+        if (boxes[i] == true) {
+           abilityScoresFinal[i] += 1;
+        }
+     }       
      finalizeStats();
      document.getElementById('halfElfScore').style.display = "none"; 
      document.getElementById('finishStats').style.display = "block";
@@ -371,7 +376,7 @@ function checkRaceIncreases() {
 }
 
 function doneWithStats() {
-   document.getElementById('afterStats').style.display = "block";
    document.getElementById('finishStats').style.display = "none";
    document.getElementById('raceAbilityScores').style.display = "none";
+   document.getElementById('afterStats').style.display = "block";
 }
