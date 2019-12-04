@@ -240,23 +240,24 @@ function checkAbilityScores() {
         findscoreobj.value = scoresToAssign[i];
     }
 
-    for (var matchrace in allRaces) {
-        // find the chosen race in the array of all races
-        if (matchrace.name == racefinal) {
-           // check if this race grants any ability score increases
-           for (let i = 0; i < 6; i++) {
-              if (i in matchrace.abilityincreases) {
-                  abilityScoresFinal[i].value += matchrace.abilityincreases[i];
-                  abilityScoresFinal[i].increased = 1;
-              }
-           }
+    // find the chosen race in the array of all races
+    var matchrace = allRaces.find(function(element) {
+       return element.name == racefinal;
+    });
 
-           speedStat = matchrace.speed;
-           break;
-
+    if (matchrace) {
+      // check if this race grants any ability score increases
+      for (let i = 0; i < 6; i++) {
+        if (i in matchrace.abilityincreases) {
+            abilityScoresFinal[i].value += matchrace.abilityincreases[i];
+            abilityScoresFinal[i].increased = 1;
         }
+      }
 
-     }
+      speedStat = matchrace.speed;
+
+    }
+
      // update displayed scores
      for (let i = 0; i < 6; i++) {
          let idToGet = "scoreRace".concat(i.toString());
@@ -319,19 +320,20 @@ function finalizeStats() {
 
   initStat = plusMods[1];
   profBonus = 2;
-  var maxroll = 0;
-  var spatkmod = 0;
-  var spsavedc = 0;
+  var maxroll;
+  var spatkmod;
+  var spsavedc;
 
-  for (var cl in allClasses) {
-     if (cl.name == classfinal) {
-        maxroll = cl.hitdie;
-        if (cl.spellability > -1) {
-           spatkmod = profBonus + abilityMods[cl.spellability];
-           spsavedc = 8 + profBonus + abilityMods[cl.spellability];
-        }
-        break;
-     }
+  var matchclass = allClasses.find(function(element) {
+      return element.name == classfinal;
+  });
+
+  if (matchclass) {
+    maxroll = matchclass.hitdie;
+    if (matchclass.spellability > -1) {
+       spatkmod = profBonus + abilityMods[matchclass.spellability];
+       spsavedc = 8 + profBonus + abilityMods[matchclass.spellability];
+    }
   }
 
   hpmaxStat = maxroll + abilityMods[2];
@@ -364,7 +366,6 @@ function checkRaceIncreases() {
   } 
   // increase each of the two chosen scores by 1 each
   for (let j = 0; j < boxes.length; j++) {
-     console.log(j);
      if (boxes[j] == 1) {
          abilityScoresFinal[j].value += 1;
      }
