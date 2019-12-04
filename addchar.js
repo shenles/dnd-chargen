@@ -7,6 +7,7 @@ var hpmaxStat;
 var profBonus;
 var saveScores = [];
 var allRaces = [];
+var allClasses = [];
 var allSkills = [];
 var racefinal;
 var classfinal;
@@ -101,7 +102,18 @@ allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf,
 
 allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
 var barbarian = new DndClass(1, "Barbarian", 12, ["light", "medium", "shields"], ["simple", "martial"], [], [0, 2], [2, [1, 3, 7, 10, 11, 17]], -1);
-var bard = new DndClass(2, "Bard", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["choose 3 musical instruments"], [1, 5], [3, "any"], 5);
+var bard = new DndClass(2, "Bard", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["choose 3 musical instruments"], [1, 5], [3, ["any"]], 5);
+var cleric = new DndClass(3, "Cleric", 8, ["light", "medium", "shields"], ["simple"], [], [4, 5], [2, [5, 6, 9, 13, 14]], 4);
+var druid = new DndClass(4, "Druid", 8, ["light", "medium", "shields", "no metal"], ["clubs", "daggers", "darts", "javelins", "maces", "quarterstaffs", "scimitars", "sickles", "slings", "spears"], ["herbalism kit"], [3, 4], [2, [2, 1, 6, 9, 10, 11, 14, 17]], 4);
+var fighter = new DndClass(5, "Fighter", 10, ["all armor", "shields"], ["simple", "martial"], [], [0, 2], [2, [0, 1, 3, 5, 6, 7, 11, 17]], 3);
+var monk = new DndClass(6, "Monk", 8, [], ["simple", "shortswords"], ["choose 1 type artisan tools or 1 musical instrument"], [0, 2], [2, [0, 1, 3, 5, 6, 7, 11, 17]], 3);
+var paladin = new DndClass(7, "Paladin", 10, ["all armor", "shields"], ["simple", "martial"], [], [4, 5], [2, [3, 6, 7, 9, 13, 14]], 5);
+var ranger = new DndClass(8, "Ranger", 10, ["light", "medium", "shields"], ["simple", "martial"], [], [0, 1], [3, [1, 3, 6, 8, 10, 11, 16, 17]], 4);
+var rogue = new DndClass(9, "Rogue", 8, ["light"], ["simple", "hand crossbows", "longswords", "rapiers", "shortswords"], ["thieves tools"], [1, 3], [4, [0, 3, 4, 6, 7, 8, 11, 12, 13, 15, 16], 3]);
+var sorcerer = new DndClass(10, "Sorcerer", 6, [], ["daggers", "darts", "slings", "quarterstaffs", "light crossbows"], [], [2, 5], [2, [2, 4, 6, 7, 8, 13, 14]], 5);
+var warlock = new DndClass(11, "Warlock", 8, ["light"], ["simple"], [], [4, 5], [2, [2, 4, 5, 7, 8, 10, 14]], 5);
+var wizard = new DndClass(12, "Wizard", 6, [], ["daggers", "darts", "slings", "quarterstaffs", "light crossbows"], [], [3, 4], [2, [2, 5, 6, 8, 9, 14]], 3);
+allClasses = [barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard];
 
 classfinal = document.getElementById('charclassinfo').innerHTML;
 racefinal = document.getElementById('charraceinfo').innerHTML;
@@ -309,36 +321,25 @@ function finalizeStats() {
       let idToGet = "modifier".concat(i.toString());
       document.getElementById(idToGet).innerHTML = plusMods[i];
   }
- 
-  var maxroll;
-  switch (classfinal) {
-     case "Sorcerer":
-     case "Wizard":
-        maxroll = 6;
-        break;
-     case "Warlock":
-     case "Rogue":
-     case "Monk":
-     case "Druid":
-     case "Cleric":
-     case "Bard":
-        maxroll = 8;
-        break;
-     case "Fighter":
-     case "Paladin":
-     case "Ranger":
-        maxroll = 10;
-        break;
-     case "Barbarian":
-        maxroll = 12;
-        break; 
-     default:
-        maxroll = 0; 
-  }
 
   initStat = plusMods[1];
-  hpmaxStat = maxroll + abilityMods[2];
   profBonus = 2;
+  var maxroll = 0;
+  var spatkmod = 0;
+  var spsavedc = 0;
+
+  for (var cl in allClasses) {
+     if (cl.name == classfinal) {
+        maxroll = cl.hitdie;
+        if (cl.spellability > -1) {
+           spatkmod = profBonus + abilityMods[cl.spellability];
+           spsavedc = 8 + profBonus + abilityMods[cl.spellability];
+        }
+        break;
+     }
+  }
+
+  hpmaxStat = maxroll + abilityMods[2];
 
   if (racefinal == "Hill Dwarf") {
       hpmaxStat += 1;
@@ -350,6 +351,8 @@ function finalizeStats() {
   document.getElementById('hpmax').innerHTML = hpmaxStat; 
   document.getElementById('hitdice').innerHTML = hitdiceStat;
   document.getElementById('speed').innerHTML = speedStat;
+  document.getElementById('spatkmod').innerHTML = spatkmod;
+  document.getElementById('spsavedc').innerHTML = spsavedc;
 }
 
 function checkRaceIncreases() {
@@ -368,7 +371,7 @@ function checkRaceIncreases() {
      // increase each of the two chosen scores by 1 each
      for (let i = 0; i < boxes.length; i++) {
         if (boxes[i] == true) {
-           abilityScoresFinal[i] += 1;
+           abilityScoresFinal[i].value += 1;
         }
      }       
      finalizeStats();
