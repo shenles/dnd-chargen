@@ -425,49 +425,7 @@ if (isset($_SESSION['user_id'])) {
        echo "<p>You have the following proficiencies from your class:</p>\n";
        echo "<p class=\"p-indent\">Armor proficiencies</p>";
 
-       $clsql = "SELECT armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs FROM classes WHERE INSTR(name, '{$chosenclass}') > 0";
-       $clresult = $conn->query($clsql);
 
-       while ($clrow = $clresult->fetch_assoc()) {
-
-          echo "<ul><li>" . $clrow["armorprofs"] . "</li></ul>";
-
-          echo "<p class=\"p-indent\">Weapon proficiencies</p>";
-          echo "<ul><li>" . $clrow["weaponprofs"] . "</li></ul>";
-
-          echo "<p class=\"p-indent\">Tool proficiencies</p>";
-          echo "<ul><li>" . $clrow["toolprofs"] . "</li></ul>";
-
-          echo "<p class=\"p-indent\">Saving throws</p>";
-          echo "<ul><li>" . $clrow["saveprofs"] . "</li></ul>";
-
-          $clprofs = $clrow["skillprofs"];
-       }
-
-       echo "<p class=\"p-indent\">Skill proficiencies</p>\n<table>";
-       $profstringarr = explode(": ", $clprofs);
-       $allprofs = array("Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival");
-
-       if (count($profstringarr) == 1) {
-
-          for ($curr = 0; $curr < count($allprofs); $curr++) {
-            echo "<tr><td>'{$allprofs[$curr]}'</td>\n";
-            echo "<td><input type=\"checkbox\" name=\"chooseskills\" id='{$allprofs[$curr]}'></input></td></tr>\n";
-          }
-
-       } elseif (count($profstringarr) == 2) {
-
-          $profoptions = explode(", ", $profstringarr[1]);
-          $numcheckboxes = count($profoptions);
-
-          for ($ct = 0; $ct < $numcheckboxes; $ct++) {
-              $currProf = $profoptions[$ct];
-              echo "<tr><td>'{$currProf}'</td>\n";
-              echo "<td><input type=\"checkbox\" name=\"chooseskills\" id='{$currProf]}'></input></td></tr>\n";
-          }
-       }
-
-       echo "</table>\n</div>";
 
     }
 
