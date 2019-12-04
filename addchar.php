@@ -449,8 +449,7 @@ if (isset($_SESSION['user_id'])) {
        }
 
        echo "<p class=\"p-indent\">Skill proficiencies</p>\n<table>";
-       $profstringarr = explode(": ", $clprofs);
-       echo "<tr><td>" . $profstringarr . "</td></tr>";
+
        echo "</table>";
 
     }
