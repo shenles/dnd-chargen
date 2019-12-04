@@ -103,6 +103,20 @@ if (isset($_SESSION['user_id'])) {
     </select>
     </label>
     <p></p>
+    <label>Select an alignment for your character:
+    <select name="charalign" id="charalign" required>
+        <option value="None">None</option>
+        <option value="Lawful Good">Lawful Good</option>
+        <option value="Neutral Good">Neutral Good</option>
+        <option value="Chaotic Good">Chaotic Good</option>
+        <option value="Neutral">Neutral</option>
+        <option value="Lawful Neutral">Lawful Neutral</option>
+        <option value="Chaotic Neutral">Chaotic Neutral</option>
+        <option value="Lawful Evil">Lawful Evil</option>
+        <option value="Neutral Evil">Neutral Evil</option>
+        <option value="Chaotic Evil">Chaotic Evil</option>
+    </select>
+    </label>
     <input type="submit" value="Submit">
     </form>
     EOT;
@@ -114,7 +128,7 @@ if (isset($_SESSION['user_id'])) {
 
     if (isset($chosenclass) && isset($chosenrace)) {
 
-       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . "</div>";
+       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . ", alignment " . $alignment . "</div>";
        echo "<span id=\"charraceinfo\" style=\"display:none;\">" . $chosenrace . "</span>";
        echo "<span id=\"charclassinfo\" style=\"display:none;\">" . $chosenclass . "</span>";
        echo "<span id=\"charbginfo\" style=\"display:none;\">" . $chosenbg . "</span>";
@@ -368,7 +382,42 @@ if (isset($_SESSION['user_id'])) {
 
        <div class="homepage-info" id="afterStats" style="display:none;">
        <p>Great! Now let's look at other features & proficiences of your race, class, and background:</p>
+       <p>You have the following proficiencies from your race:</p>
+       <ul>
        EOT;
+
+       $url = getenv('JAWSDB_MARIA_URL');
+       $dbparts = parse_url($url);
+       $hostname = $dbparts['host'];
+       $username = $dbparts['user'];
+       $password = $dbparts['pass'];
+       $database = ltrim($dbparts['path'],'/');
+       // Create connection
+       $conn = new mysqli($hostname, $username, $password, $database);
+       // Check connection
+       if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+       }
+
+       $sql = "SELECT profs FROM races WHERE INSTR(name, '{$chosenrace}') > 0";
+       $result = $conn->query($sql);
+
+       while ($row = $result->fetch_assoc()) {
+          echo "<li>" . $row["profs"] . "</li>";
+       }
+
+       echo "</ul>";
+       echo "<p>You have the following proficiencies from your background:</p>\n<ul>";
+       $bgsql = "SELECT skillprofs,toolprofs FROM backgrounds WHERE INSTR(name, '{$chosenbg}') > 0";
+       $bgresult = $conn->query($bgsql);
+
+       while ($bgrow = $bgresult->fetch_assoc()) {
+          echo "<li>" . $bgrow["skillprofs"] . "</li>";
+          echo "<li>" . $bgrow["toolprofs"] . "</li>";
+       }
+
+       echo "</ul>";
+       echo "<p>Your class allows you to choose additional proficiencies:</p>";
 
     }
 

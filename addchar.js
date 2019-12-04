@@ -347,8 +347,8 @@ function finalizeStats() {
      return element.name == racefinal;
   });
 
-  for (var racelang in raceobj.langs) {
-     langsknown = langsknown.concat(racelang);
+  for (var racelangidx in raceobj.langs) {
+     langsknown = langsknown.concat(raceobj.langs[racelangidx]);
   }
 
   var hitdiceStat = "1d".concat(maxroll.toString()); 
