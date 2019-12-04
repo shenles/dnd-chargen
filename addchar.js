@@ -125,8 +125,10 @@ for (let i = 0; i < selectAssign.length; i++) {
 }
 
 var boxes = [false, false, false, false, false];
+var boxId;
 $("input[type='checkbox']").change(function() {
-    var boxId = Number(this.id[this.id.length - 1]);
+    boxId = Number(this.id[this.id.length - 1]);
+    console.log(boxId);
     if (this.checked) {
         boxes[boxId] = true;
     } else {
