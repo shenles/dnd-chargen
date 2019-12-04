@@ -79,25 +79,25 @@ class Character {
    }
 }
 
-var dragonborn = new Race(1, "Dragonborn", 30, 0, ["Common", "Draconic"], -1, [], {0: 2, 5: 1});
-var dwarf = new Race(2, "Dwarf", 25, 60, ["Common", "Dwarvish"], -1, [3, 4], {2: 2});
-var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {4: 1});
-var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, ["Common", "Dwarvish"], 2, [], {0: 2});
-var elf = new Race(5, "Elf", 30, 60, ["Common", "Dwarvish"], -1, [6, 7, 8], {1: 2});
-var highelf = new Race(6, "High Elf", 30, 60, ["Common", "Dwarvish"], 5, [], {3: 1});
-var drow = new Race(7, "Drow", 30, 120, ["Common", "Dwarvish"], 5, [], {5: 1});
-var woodelf = new Race(8, "Wood Elf", 35, 60, ["Common", "Dwarvish"], 5, [], {4: 1});
-var halfling = new Race(9, "Halfling", 25, 0, ["Common", "Halfling"], -1, [10, 11], {1: 2});
-var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, ["Common", "Halfling"], 9, [], {5: 1});
-var stout = new Race(11, "Stout Halfling", 25, 0, ["Common", "Halfling"], 9, [], {2: 1});
-var gnome = new Race(12, "Gnome", 25, 60, ["Common", "Gnomish"], -1, [13, 14, 15], {3: 2});
-var forestgnome = new Race(13, "Forest Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {1: 1});
-var rockgnome = new Race(14, "Rock Gnome", 25, 60, ["Common", "Gnomish"], 12, [], {2: 1});
-var deepgnome = new Race(15, "Deep Gnome", 25, 120, ["Common", "Gnomish", "Undercommon"], 12, [], {1: 1});
-var halfelf = new Race(16, "Half-Elf", 25, 60, ["Common", "Elvish", "choose 1 extra"], -1, [], {5: 2});
-var halforc = new Race(17, "Half-Orc", 25, 60, ["Common", "Orc"], -1, [], {0: 2, 2: 1});
-var tiefling = new Race(18, "Tiefling", 25, 60, ["Common", "Infernal"], -1, [], {3: 1, 5: 2});
-var human = new Race(19, "Human", 30, 0, ["Common", "choose 1 extra"], -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
+var dragonborn = new Race(1, "Dragonborn", 30, 0, "Common, Draconic", -1, [], {0: 2, 5: 1});
+var dwarf = new Race(2, "Dwarf", 25, 60, "Common, Dwarvish", -1, [3, 4], {2: 2});
+var hilldwarf = new Race(3, "Hill Dwarf", 25, 60, "Common, Dwarvish", 2, [], {4: 1});
+var mtndwarf = new Race(4, "Mountain Dwarf", 25, 60, "Common, Dwarvish", 2, [], {0: 2});
+var elf = new Race(5, "Elf", 30, 60, "Common, Elvish", -1, [6, 7, 8], {1: 2});
+var highelf = new Race(6, "High Elf", 30, 60, "Common, Elvish", 5, [], {3: 1});
+var drow = new Race(7, "Drow", 30, 120, "Common, Elvish", 5, [], {5: 1});
+var woodelf = new Race(8, "Wood Elf", 35, 60, "Common, Elvish", 5, [], {4: 1});
+var halfling = new Race(9, "Halfling", 25, 0, "Common, Halfling", -1, [10, 11], {1: 2});
+var lightfoot = new Race(10, "Lightfoot Halfling", 25, 0, "Common, Halfling", 9, [], {5: 1});
+var stout = new Race(11, "Stout Halfling", 25, 0, "Common, Halfling", 9, [], {2: 1});
+var gnome = new Race(12, "Gnome", 25, 60, "Common, Gnomish", -1, [13, 14, 15], {3: 2});
+var forestgnome = new Race(13, "Forest Gnome", 25, 60, "Common, Gnomish", 12, [], {1: 1});
+var rockgnome = new Race(14, "Rock Gnome", 25, 60, "Common, Gnomish", 12, [], {2: 1});
+var deepgnome = new Race(15, "Deep Gnome", 25, 120, "Common, Gnomish, Undercommon", 12, [], {1: 1});
+var halfelf = new Race(16, "Half-Elf", 25, 60, "Common, Elvish, choose 1 extra", -1, [], {5: 2});
+var halforc = new Race(17, "Half-Orc", 25, 60, "Common, Orc", -1, [], {0: 2, 2: 1});
+var tiefling = new Race(18, "Tiefling", 25, 60, "Common, Infernal", -1, [], {3: 1, 5: 2});
+var human = new Race(19, "Human", 30, 0, "Common, choose 1 extra", -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
 allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
 
 allSkills = {0: "Acrobatics", 1: "Animal Handling", 2: "Arcana", 3: "Athletics", 4: "Deception", 5: "History", 6: "Insight", 7: "Intimidation", 8: "Investigation", 9: "Medicine", 10: "Nature", 11: "Perception", 12: "Performance", 13: "Persuasion", 14: "Religion", 15: "Sleight of Hand", 16: "Stealth", 17: "Survival"};
@@ -347,8 +347,8 @@ function finalizeStats() {
      return element.name == racefinal;
   });
 
-  for (var racelangidx in raceobj.langs) {
-     langsknown = langsknown.concat(raceobj.langs[racelangidx]);
+  for (var racelang in raceobj.langs) {
+     langsknown = langsknown.concat(racelangidx);
   }
 
   var hitdiceStat = "1d".concat(maxroll.toString()); 
