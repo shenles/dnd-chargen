@@ -147,10 +147,6 @@ $("input[type='checkbox']").change(function() {
     }
 });
 
-function hideForm() {
-   document.getElementById('createcharform').style.display = "none";
-}
-
 // Rolls numDice number of dice, with each die of numSides dimension.
 // Returns an array (sorted descending) of the numbers rolled.
 function rollDice(numDice, numSides) {
@@ -214,6 +210,7 @@ function showScores() {
   }
 
   document.getElementById('initialRolls').style.display = "none";
+  document.getElementById('createcharform').style.display = "none";
   document.getElementById('assignAbilityScores').style.display = "block";
 }
 

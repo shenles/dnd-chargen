@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id'])) {
         <option value="Chaotic Evil">Chaotic Evil</option>
     </select>
     </label>
-    <input type="submit" value="Submit" onclick="hideForm()">
+    <input type="submit" value="Submit">
     </form>
     </div>
     EOT;
