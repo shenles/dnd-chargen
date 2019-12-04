@@ -43,6 +43,7 @@ if (isset($_SESSION['user_id'])) {
     EOT;
 
     echo <<<EOT
+    <div id="createcharform">
     <form class="filterform" action="addchar.php" method="post">
     <label>Select a class for your character:
     <select name="charclass" id="charclass" required>
@@ -117,8 +118,9 @@ if (isset($_SESSION['user_id'])) {
         <option value="Chaotic Evil">Chaotic Evil</option>
     </select>
     </label>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" onclick="hideForm()">
     </form>
+    </div>
     EOT;
 
     $chosenclass = $_POST['charclass'];
@@ -417,7 +419,27 @@ if (isset($_SESSION['user_id'])) {
        }
 
        echo "</ul>";
-       echo "<p>Your class allows you to choose additional proficiencies:</p>";
+       echo "<p>You have the following proficiencies from your class:</p>\n<ul>\n";
+       echo "<p class=\"p-indent\">Armor proficiencies</p>";
+
+       $clsql = "SELECT armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs FROM classes WHERE INSTR(name, '{$chosenclass}') > 0";
+       $clresult = $conn->query($clsql);
+       while ($clrow = $clresult->fetch_assoc()) {
+
+          echo "<li>" . $clrow["armorprofs"] . "</li>\n</ul>";
+
+          echo "<p class=\"p-indent\">Weapon proficiencies</p>";
+          echo "<li>" . $clrow["weaponprofs"] . "</li>\n</ul>";
+
+          echo "<p class=\"p-indent\">Tool proficiencies</p>";
+          echo "<li>" . $clrow["toolprofs"] . "</li>\n</ul>";
+
+          echo "<p class=\"p-indent\">Saving throws</p>";
+          echo "<li>" . $clrow["saveprofs"] . "</li>\n</ul>";
+
+          echo "<p class=\"p-indent\">Skill proficiencies</p>";
+          echo "<li>" . $clrow["skillprofs"] . "</li>\n</ul>";
+       }
 
     }
 
