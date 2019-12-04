@@ -424,26 +424,34 @@ if (isset($_SESSION['user_id'])) {
        }
 
        echo "<p>You have the following proficiencies from your class:</p>\n";
-       echo "<p class=\"p-indent\">Armor proficiencies</p>";
-
        $clsql = "SELECT armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs FROM classes WHERE INSTR(name, '{$chosenclass}') > 0";
        $clresult = $conn->query($clsql);
 
        while ($clrow = $clresult->fetch_assoc()) {
 
-          echo "<ul><li>" . $clrow["armorprofs"] . "</li></ul>";
+          if ($clrow["armorprofs"]) {
+             echo "<p class=\"p-indent\">Armor proficiencies</p>";
+             echo "<ul><li>" . $clrow["armorprofs"] . "</li></ul>";
+          }
 
           echo "<p class=\"p-indent\">Weapon proficiencies</p>";
           echo "<ul><li>" . $clrow["weaponprofs"] . "</li></ul>";
 
-          echo "<p class=\"p-indent\">Tool proficiencies</p>";
-          echo "<ul><li>" . $clrow["toolprofs"] . "</li></ul>";
+          if ($clrow["toolprofs"]) {
+             echo "<p class=\"p-indent\">Tool proficiencies</p>";
+             echo "<ul><li>" . $clrow["toolprofs"] . "</li></ul>";
+          }
 
           echo "<p class=\"p-indent\">Saving throws</p>";
           echo "<ul><li>" . $clrow["saveprofs"] . "</li></ul>";
 
           $clprofs = $clrow["skillprofs"];
        }
+
+       echo "<p class=\"p-indent\">Skill proficiencies</p>\n<table>";
+       $profstringarr = explode(": ", $clprofs);
+       echo "<tr><td>" . $profstringarr . "</td></tr>";
+       echo "</table>";
 
     }
 
