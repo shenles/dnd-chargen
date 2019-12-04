@@ -409,14 +409,15 @@ if (isset($_SESSION['user_id'])) {
 
        echo "</ul>";
 
-       if ($chosenbg) {
+       if ($chosenbg != "None") {
           echo "<p>You have the following proficiencies from your background:</p>\n<ul>";
-          $bgsql = "SELECT skillprofs,toolprofs FROM backgrounds WHERE INSTR(name, '{$chosenbg}') > 0";
+          $bgsql = "SELECT skillprofs,toolprofs,langs FROM backgrounds WHERE INSTR(name, '{$chosenbg}') > 0";
           $bgresult = $conn->query($bgsql);
 
           while ($bgrow = $bgresult->fetch_assoc()) {
              echo "<li>" . $bgrow["skillprofs"] . "</li>";
              echo "<li>" . $bgrow["toolprofs"] . "</li>";
+             echo "<li>" . $bgrow["langs"] . " additional languages</li>";
           }
        
           echo "</ul>";
@@ -425,7 +426,24 @@ if (isset($_SESSION['user_id'])) {
        echo "<p>You have the following proficiencies from your class:</p>\n";
        echo "<p class=\"p-indent\">Armor proficiencies</p>";
 
+       $clsql = "SELECT armorprofs,weaponprofs,toolprofs,saveprofs,skillprofs FROM classes WHERE INSTR(name, '{$chosenclass}') > 0";
+       $clresult = $conn->query($clsql);
 
+       while ($clrow = $clresult->fetch_assoc()) {
+
+          echo "<ul><li>" . $clrow["armorprofs"] . "</li></ul>";
+
+          echo "<p class=\"p-indent\">Weapon proficiencies</p>";
+          echo "<ul><li>" . $clrow["weaponprofs"] . "</li></ul>";
+
+          echo "<p class=\"p-indent\">Tool proficiencies</p>";
+          echo "<ul><li>" . $clrow["toolprofs"] . "</li></ul>";
+
+          echo "<p class=\"p-indent\">Saving throws</p>";
+          echo "<ul><li>" . $clrow["saveprofs"] . "</li></ul>";
+
+          $clprofs = $clrow["skillprofs"];
+       }
 
     }
 
