@@ -277,13 +277,11 @@ function checkAbilityScores() {
 
      // display new scores; Charisma is unchanged, as that ability was already increased previously
      if (racefinal == "Half-Elf") {
-
         for (let i = 0; i < 5; i++) {
            let idToGet = "halfElf".concat(i.toString());
            document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
         }
         document.getElementById('halfElfScore').style.display = "block";
-
      } else {
         finalizeStats();
         document.getElementById('finishStats').style.display = "block";
@@ -346,14 +344,9 @@ function finalizeStats() {
       hpmaxStat += 1;
   }
 
-  var langsknown = "";
   var raceobj = allRaces.find(function(element) {
      return element.name == racefinal;
   });
-
-  for (var racelang in raceobj.langs) {
-     langsknown = langsknown.concat(racelangidx);
-  }
 
   var hitdiceStat = "1d".concat(maxroll.toString()); 
   document.getElementById('profbonus').innerHTML = "+".concat(profBonus.toString());
@@ -363,7 +356,7 @@ function finalizeStats() {
   document.getElementById('speed').innerHTML = speedStat;
   document.getElementById('spatkmod').innerHTML = "+".concat(spatkmod.toString());
   document.getElementById('spsavedc').innerHTML = spsavedc;
-  document.getElementById('langs').innerHTML = langsknown;
+  document.getElementById('langs').innerHTML = raceobj.langs;
 }
 
 function checkRaceIncreases() {
