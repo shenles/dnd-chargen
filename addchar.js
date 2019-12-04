@@ -136,15 +136,14 @@ for (let i = 0; i < selectAssign.length; i++) {
    });
 }
 
-var boxes = [false, false, false, false, false];
+var boxes = [-1, -1, -1, -1, -1];
 var boxId;
 $("input[type='checkbox']").change(function() {
     boxId = Number(this.id[this.id.length - 1]);
-    console.log(boxId);
     if (this.checked) {
-        boxes[boxId] = true;
+        boxes[boxId] = 1;
     } else {
-        boxes[boxId] = false;
+        boxes[boxId] = -1;
     }
 });
 
@@ -357,27 +356,26 @@ function finalizeStats() {
 
 function checkRaceIncreases() {
 
-  console.log(boxes);
   var statsRaised = 0;
   for (let i = 0; i < boxes.length; i++) {
-     if (boxes[i] == true) {
+     if (boxes[i] == 1) {
         statsRaised += 1;
      }
   }
 
   if (statsRaised != 2) {
      alert("You must choose exactly two scores to increase.");
-  } else { 
-     // increase each of the two chosen scores by 1 each
-     for (let i = 0; i < boxes.length; i++) {
-        if (boxes[i] == true) {
-           abilityScoresFinal[i].value += 1;
-        }
-     }       
-     finalizeStats();
-     document.getElementById('halfElfScore').style.display = "none"; 
-     document.getElementById('finishStats').style.display = "block";
-  }
+  } 
+  // increase each of the two chosen scores by 1 each
+  for (var j = 0; j < boxes.length; j++) {
+     if (boxes[j] == 1) {
+         abilityScoresFinal[j].value += 1;
+     }
+  }       
+  finalizeStats();
+  document.getElementById('halfElfScore').style.display = "none"; 
+  document.getElementById('finishStats').style.display = "block";
+  
 }
 
 function doneWithStats() {
