@@ -281,7 +281,6 @@ function checkAbilityScores() {
         document.getElementById('halfElfScore').style.display = "block";
      } else {
         finalizeStats();
-        document.getElementById('finishStats').style.display = "block";
      } 
 
 } 
@@ -354,6 +353,8 @@ function finalizeStats() {
   document.getElementById('spatkmod').innerHTML = "+".concat(spatkmod.toString());
   document.getElementById('spsavedc').innerHTML = spsavedc;
   document.getElementById('langs').innerHTML = raceobj.langs;
+  document.getElementById('raceAbilityScores').style.display = "none";
+  document.getElementById('finishStats').style.display = "block";
 }
 
 function checkRaceIncreases() {
@@ -373,12 +374,10 @@ function checkRaceIncreases() {
      if (boxes[j] == 1) {
          abilityScoresFinal[j].value += 1;
      }
-  }       
+  }  
+
+  document.getElementById('halfElfScore').style.display = "none";     
   finalizeStats();
-  document.getElementById('halfElfScore').style.display = "none"; 
-  document.getElementById('raceAbilityScores').style.display = "none";
-  document.getElementById('finishStats').style.display = "block";
-  
 }
 
 function doneWithStats() {
