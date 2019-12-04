@@ -342,14 +342,24 @@ function finalizeStats() {
       hpmaxStat += 1;
   }
 
+  var langsknown = "";
+  var raceobj = allRaces.find(function(element) {
+     return element.name == racefinal;
+  });
+
+  for (var racelang in raceobj.langs) {
+     langsknown = langsknown.concat(racelang);
+  }
+
   var hitdiceStat = "1d".concat(maxroll.toString()); 
   document.getElementById('profbonus').innerHTML = "+".concat(profBonus.toString());
   document.getElementById('initiative').innerHTML = initStat;
   document.getElementById('hpmax').innerHTML = hpmaxStat; 
   document.getElementById('hitdice').innerHTML = hitdiceStat;
   document.getElementById('speed').innerHTML = speedStat;
-  document.getElementById('spatkmod').innerHTML = spatkmod;
+  document.getElementById('spatkmod').innerHTML = "+".concat(spatkmod.toString());
   document.getElementById('spsavedc').innerHTML = spsavedc;
+  document.getElementById('langs').innerHTML = langsknown;
 }
 
 function checkRaceIncreases() {
