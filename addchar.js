@@ -240,11 +240,7 @@ function checkAbilityScores() {
         findscoreobj.value = scoresToAssign[i];
     }
 
-    var matchrace;
-
-    for (let raceidx = 0; raceidx < allRaces.length; raceidx++) {
-
-        matchrace = allRaces[raceidx];
+    for (var matchrace in allRaces) {
         // find the chosen race in the array of all races
         if (matchrace.name == racefinal) {
            // check if this race grants any ability score increases
@@ -367,13 +363,15 @@ function checkRaceIncreases() {
      alert("You must choose exactly two scores to increase.");
   } 
   // increase each of the two chosen scores by 1 each
-  for (var j = 0; j < boxes.length; j++) {
+  for (let j = 0; j < boxes.length; j++) {
+     console.log(j);
      if (boxes[j] == 1) {
          abilityScoresFinal[j].value += 1;
      }
   }       
   finalizeStats();
   document.getElementById('halfElfScore').style.display = "none"; 
+  document.getElementById('raceAbilityScores').style.display = "none";
   document.getElementById('finishStats').style.display = "block";
   
 }
