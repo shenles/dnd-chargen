@@ -272,6 +272,7 @@ if (isset($_SESSION['user_id'])) {
              <td class="showcurrscore" id="scoreRace4"></td>
              <td class="showcurrscore" id="scoreRace5"></td></tr>
           </table>
+          <button class="scoreassign" onclick="beginRaceIncreases()">Continue</button>
        </div>
 
        </div>
@@ -449,7 +450,7 @@ if (isset($_SESSION['user_id'])) {
        }
 
        echo "<p class=\"p-indent\">Skill proficiencies</p>\n<table>";
-
+       echo "<tr><td>" . $clprofs . "</td></tr>";
        echo "</table>";
 
     }

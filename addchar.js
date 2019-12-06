@@ -272,6 +272,9 @@ function checkAbilityScores() {
      document.getElementById('assignAbilityScores').style.display = "none";
      document.getElementById('raceAbilityScores').style.display = "block";
 
+} 
+
+function beginRaceIncreases() {
      // display new scores; Charisma is unchanged, as that ability was already increased previously
      if (racefinal == "Half-Elf") {
         for (let i = 0; i < 5; i++) {
@@ -281,9 +284,8 @@ function checkAbilityScores() {
         document.getElementById('halfElfScore').style.display = "block";
      } else {
         finalizeStats();
-     } 
-
-} 
+     }
+}
 
 // Calculates the ability score modifier for a given ability score.
 function calcModifier(score) {
@@ -366,7 +368,7 @@ function checkRaceIncreases() {
      }
   }
 
-  if (statsRaised != 2) {
+  if (statsRaised != 2 && racefinal == "Half-Elf") {
      alert("You must choose exactly two scores to increase.");
   } 
   // increase each of the two chosen scores by 1 each
