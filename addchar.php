@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id'])) {
         <option value="Chaotic Evil">Chaotic Evil</option>
     </select>
     </label>
-    <input type="submit" value="Submit">
+    <button type="submit" class="btn btn-outline-secondary">Submit</button>
     </form>
     </div>
     EOT;
@@ -152,7 +152,7 @@ if (isset($_SESSION['user_id'])) {
              <span class="oneroll" id="roll5">8</span></p>
        </div>
 
-       <button onclick="showScores()">Done rolling</button>
+       <button type="button" class="btn btn-outline-secondary" onclick="showScores()">Done rolling</button>
        </div>
        
        <div class="homepage-info" id="assignAbilityScores" style="display:none;">
