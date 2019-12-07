@@ -139,8 +139,9 @@ if (isset($_SESSION['user_id'])) {
        echo <<<EOT
        <div class="homepage-info" id="initialRolls">
        <p>First, roll your ability scores, or use the default rolls:</p>
-       <button class="leftassign" onclick="showRoll(1)">Re-roll</button><button class="leftassign" onclick="showRoll(2)">Use defaults</button>
-       <a href="https://dnd-chargen.herokuapp.com/addmanual.php" class="btn btn-secondary" id="skiprolling" role="button">Skip this step & manually enter stats</a>
+       <button type="button" class="btn btn-outline-secondary" onclick="showRoll(1)">Re-roll</button>
+       <button type="button" class="btn btn-outline-secondary" onclick="showRoll(2)">Use defaults</button>
+       <a href="https://dnd-chargen.herokuapp.com/addmanual.php" class="btn btn-outline-secondary" id="skiprolling" role="button">Skip this step & manually enter stats</a>
        <p class="p-unique">Your current rolls:</p>
        <div class="rollresults" id="abilityrolls">
           <p><span class="oneroll" id="roll0">15</span>
@@ -246,7 +247,7 @@ if (isset($_SESSION['user_id'])) {
              </tr>
           </table>
        </div>
-       <button class="scoreassign" onclick="checkAbilityScores()">Done assigning scores</button>
+       <button type="button" class="btn btn-outline-secondary" onclick="checkAbilityScores()">Done assigning scores</button>
        </div>
 
        <div class="homepage-info" id="raceAbilityScores" style="display:none;">
@@ -272,7 +273,7 @@ if (isset($_SESSION['user_id'])) {
              <td class="showcurrscore" id="scoreRace4"></td>
              <td class="showcurrscore" id="scoreRace5"></td></tr>
           </table>
-          <button class="scoreassign" onclick="beginRaceIncreases()">Continue</button>
+          <button type="button" class="btn btn-outline-secondary" onclick="beginRaceIncreases()">Continue</button>
        </div>
 
        </div>
@@ -316,7 +317,7 @@ if (isset($_SESSION['user_id'])) {
           </td>
         </tr>
        </table>
-       <button class="scoreassign" onclick="checkRaceIncreases()">Done choosing increases</button> 
+       <button type="button" class="btn btn-outline-secondary" onclick="checkRaceIncreases()">Done choosing increases</button> 
        </div>
 
        <div class="homepage-info" id="finishStats" style="display:none;">
@@ -379,7 +380,7 @@ if (isset($_SESSION['user_id'])) {
              <td class="showfinalscore" id="spsavedc"></td>
              <td class="showfinalscore" id="langs"></td>
           </table>
-       <button class="scoreassign" onclick="doneWithStats()">I'm ready for the next step</button>
+       <button type="button" class="btn btn-outline-secondary" onclick="doneWithStats()">I'm ready for the next step</button>
        </div>
 
        <div class="homepage-info" id="afterStats" style="display:none;">
