@@ -68,7 +68,7 @@
         <input type="checkbox" id="transmutation" name="school[]" value="Transmutation">
         <label for="transmutation">Transmutation</label>
 
-     <input type="submit" id="submitfilterschool" value="Filter by school" />
+     <button type="submit" class="btn btn-outline-secondary" id="submitfilterschool">Filter by school</button>
      </form>
      <p></p>
 
@@ -104,7 +104,7 @@
         <input type="checkbox" id="fighter" name="chooseclass[]" value="Wizard">
         <label for="fighter">Fighter (Eldritch Knight)</label>
 
-     <input type="submit" id="submitfilterclass" value="Filter by class" />
+     <button type="submit" class="btn btn-outline-secondary" id="submitfilterclass">Filter by class</button>
      </form>
      <p></p>
 
@@ -121,7 +121,7 @@
          <option value="7">7</option>
          <option value="8">8</option>
          <option value="9">9</option>  
-     <input type="submit" id="submitfilterlevel" value="Filter by level" />
+     <button type="submit" class="btn btn-outline-secondary" id="submitfilterlevel">Filter by level</button>
      </form>
      <p></p>
 
@@ -155,7 +155,7 @@
            <option value="Y">Y</option>
            <option value="Z">Z</option>
 
-     <input type="submit" id="submitfilterletter" value="Filter by letter" />
+     <button type="submit" class="btn btn-outline-secondary" id="submitfilterletter">Filter by letter</button>
      </form>
 
    </div>

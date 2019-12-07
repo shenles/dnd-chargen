@@ -89,7 +89,7 @@
         <input type="radio" id="otherequip" name="equiptype" value="other">
         <label for="otherequip">all other equipment</label>
 
-     <input type="submit" id="submitfilterequip" value="Filter by category" />
+     <button type="submit" class="btn btn-outline-secondary" id="submitfiltercategory">Filter by category</button>
      </form>
 
    </div>
