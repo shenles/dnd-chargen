@@ -119,6 +119,13 @@ if (isset($_SESSION['user_id'])) {
     </select>
     </label>
     <p></p>
+    <label for="levelform">Enter your level:</label>
+    <input id="levelform" type="number" min="1" max="20">
+    <p></p>
+    <label for="hpform">Enter your max HP:</label>
+    <input id="hpform" type="number" min="1" max="600">
+
+    <p>Enter your ability scores:</p>
     <label for="strform">Strength score:</label>
     <input id="strform" type="number" min="3" max="18">
     
@@ -127,7 +134,7 @@ if (isset($_SESSION['user_id'])) {
     
     <label for="conform">Constitution score:</label>
     <input id="conform" type="number" min="3" max="18">
-    <p></p>
+    
     <label for="intform">Intelligence score:</label>
     <input id="intform" type="number" min="3" max="18">
     
@@ -136,62 +143,61 @@ if (isset($_SESSION['user_id'])) {
     
     <label for="chaform">Charisma score:</label>
     <input id="chaform" type="number" min="3" max="18">
-
-    <div id="skillsmanual">
-      <input type="checkbox" id="acrobatics" name="acrobatics">
+    <p>Select your skill proficiencies:</p>
+      <input type="checkbox" id="acrobatics" name="skillmanualselect" value="Acrobatics">
       <label for="acrobatics">Acrobatics</label>
 
-      <input type="checkbox" id="animalhandling" name="animalhandling">
+      <input type="checkbox" id="animalhandling" name="skillmanualselect" value="Animal Handling">
       <label for="animalhandling">Animal Handling</label>
 
-      <input type="checkbox" id="arcana" name="arcana">
+      <input type="checkbox" id="arcana" name="skillmanualselect" value="Arcana">
       <label for="arcana">Arcana</label>
 
-      <input type="checkbox" id="athletics" name="athletics">
+      <input type="checkbox" id="athletics" name="skillmanualselect" value="Athletics">
       <label for="athletics">Athletics</label>
 
-      <input type="checkbox" id="deception" name="deception">
+      <input type="checkbox" id="deception" name="skillmanualselect" value="Deception">
       <label for="deception">Deception</label>
 
-      <input type="checkbox" id="history" name="history">
+      <input type="checkbox" id="history" name="skillmanualselect" value="History">
       <label for="history">History</label>
-      <p></p>
-      <input type="checkbox" id="insight" name="insight">
+      
+      <input type="checkbox" id="insight" name="skillmanualselect" value="Insight">
       <label for="insight">Insight</label>
  
-      <input type="checkbox" id="intimidation" name="intimidation">
+      <input type="checkbox" id="intimidation" name="skillmanualselect" value="Intimidation">
       <label for="intimidation">Intimidation</label>
 
-      <input type="checkbox" id="investigation" name="investigation">
+      <input type="checkbox" id="investigation" name="skillmanualselect" value="Investigation">
       <label for="investigation">Investigation</label>
-
-      <input type="checkbox" id="medicine" name="medicine">
+      <p></p>
+      <input type="checkbox" id="medicine" name="skillmanualselect" value="Medicine">
       <label for="medicine">Medicine</label>
 
-      <input type="checkbox" id="nature" name="nature">
+      <input type="checkbox" id="nature" name="skillmanualselect" value="Nature">
       <label for="nature">Nature</label>
 
-      <input type="checkbox" id="perception" name="perception">
+      <input type="checkbox" id="perception" name="skillmanualselect" value="Perception">
       <label for="perception">Perception</label>
-      <p></p>
-      <input type="checkbox" id="performance" name="performance">
+      
+      <input type="checkbox" id="performance" name="skillmanualselect" value="Performance">
       <label for="performance">Performance</label>
 
-      <input type="checkbox" id="persuasion" name="persuasion">
+      <input type="checkbox" id="persuasion" name="skillmanualselect" value="Persuasion">
       <label for="persuasion">Persuasion</label>
 
-      <input type="checkbox" id="religion" name="religion">
+      <input type="checkbox" id="religion" name="skillmanualselect" value="Religion">
       <label for="religion">Religion</label>
 
-      <input type="checkbox" id="sleightofhand" name="sleightofhand">
+      <input type="checkbox" id="sleightofhand" name="skillmanualselect" value="Sleight of Hand">
       <label for="sleightofhand">Sleight of Hand</label>
 
-      <input type="checkbox" id="stealth" name="stealth">
+      <input type="checkbox" id="stealth" name="skillmanualselect" value="Stealth">
       <label for="stealth">Stealth</label>
 
-      <input type="checkbox" id="survival" name="survival">
+      <input type="checkbox" id="survival" name="skillmanualselect" value="Survival">
       <label for="survival">Survival</label>
-    </div>
+      <p></p>
     <button type="submit" class="btn btn-outline-secondary">Submit</button>
     </form>
     </div>

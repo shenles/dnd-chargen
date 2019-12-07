@@ -90,6 +90,14 @@ input[type=radio] {
     margin-left: 6px;
 }
 
+input[name="skillmanualselect"] {
+    margin-right: 8px;
+}
+
+input[type=number] {
+    margin-right: 8px;
+}
+
 table {
     margin-left: 40px;
     border-collapse: collapse;
