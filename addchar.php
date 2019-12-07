@@ -273,7 +273,7 @@ if (isset($_SESSION['user_id'])) {
              <td class="showcurrscore" id="scoreRace4"></td>
              <td class="showcurrscore" id="scoreRace5"></td></tr>
           </table>
-          <button type="button" class="btn btn-outline-secondary" onclick="beginRaceIncreases()">Continue</button>
+          <button type="button" class="btn btn-outline-secondary" id="continue1" onclick="beginRaceIncreases()">Continue</button>
        </div>
 
        </div>
@@ -380,7 +380,7 @@ if (isset($_SESSION['user_id'])) {
              <td class="showfinalscore" id="spsavedc"></td>
              <td class="showfinalscore" id="langs"></td>
           </table>
-       <button type="button" class="btn btn-outline-secondary" onclick="doneWithStats()">I'm ready for the next step</button>
+       <button type="button" class="btn btn-outline-secondary" id="continue2" onclick="doneWithStats()">I'm ready for the next step</button>
        </div>
 
        <div class="homepage-info" id="afterStats" style="display:none;">
@@ -432,25 +432,25 @@ if (isset($_SESSION['user_id'])) {
        while ($clrow = $clresult->fetch_assoc()) {
 
           if ($clrow["armorprofs"]) {
-             echo "<p class=\"p-indent\">Armor proficiencies</p>";
+             echo "<p class=\"p-indent2\">Armor proficiencies</p>";
              echo "<ul><li>" . $clrow["armorprofs"] . "</li></ul>";
           }
 
-          echo "<p class=\"p-indent\">Weapon proficiencies</p>";
+          echo "<p class=\"p-indent2\">Weapon proficiencies</p>";
           echo "<ul><li>" . $clrow["weaponprofs"] . "</li></ul>";
 
           if ($clrow["toolprofs"]) {
-             echo "<p class=\"p-indent\">Tool proficiencies</p>";
+             echo "<p class=\"p-indent2\">Tool proficiencies</p>";
              echo "<ul><li>" . $clrow["toolprofs"] . "</li></ul>";
           }
 
-          echo "<p class=\"p-indent\">Saving throws</p>";
+          echo "<p class=\"p-indent2\">Saving throws</p>";
           echo "<ul><li>" . $clrow["saveprofs"] . "</li></ul>";
 
           $clprofs = $clrow["skillprofs"];
        }
 
-       echo "<p class=\"p-indent\">Skill proficiencies</p>\n<table>";
+       echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table>";
        echo "<tr><td>" . $clprofs . "</td></tr>";
        echo "</table>";
 

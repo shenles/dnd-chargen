@@ -38,6 +38,11 @@ h3 {
     margin-left: 40px;
 }
 
+.pages-info {
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
 .filterform {
     margin-left: 40px;
 }
@@ -74,7 +79,14 @@ h3 {
     margin-top: 20px;
 }
 
-#rollTableAssign {
+.p-indent2 {
+    font-size: 1.2em;
+    color: #89b7e5;
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+#rollTableAssign, #continue1, #continue2 {
     margin-top: 8px;
 }
 
@@ -84,7 +96,7 @@ h3 {
 
 button[type=submit] {
     margin-left: 20px;
-    margin-top: 6px;
+    margin-top: 4px;
 }
 
 input[type=radio] { 
@@ -100,6 +112,7 @@ input[type=number] {
 }
 
 table {
+    margin-left: 10px;
     border-collapse: collapse;
 }
 

@@ -39,7 +39,7 @@
     </div>   
    </nav>
 
-   <div class="homepage-info">
+   <div class="pages-info">
      <h4>Filter results</h4>
      <p></p>
      By category:
