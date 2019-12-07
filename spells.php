@@ -121,6 +121,7 @@
          <option value="7">7</option>
          <option value="8">8</option>
          <option value="9">9</option>  
+     </select>
      <button type="submit" class="btn btn-outline-secondary" id="submitfilterlevel">Filter by level</button>
      </form>
      <p></p>
@@ -154,7 +155,7 @@
            <option value="X">X</option>
            <option value="Y">Y</option>
            <option value="Z">Z</option>
-
+        </select>
      <button type="submit" class="btn btn-outline-secondary" id="submitfilterletter">Filter by letter</button>
      </form>
 
