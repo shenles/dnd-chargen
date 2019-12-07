@@ -121,11 +121,11 @@ if (isset($_SESSION['user_id'])) {
     <p></p>
     <label for="levelform">Enter your level:</label>
     <input id="levelform" type="number" min="1" max="20">
-    <p></p>
+    
     <label for="hpform">Enter your max HP:</label>
     <input id="hpform" type="number" min="1" max="600">
 
-    <p>Enter your ability scores:</p>
+    <p class="p-indent">Enter your ability scores:</p>
     <label for="strform">Strength score:</label>
     <input id="strform" type="number" min="3" max="18">
     
@@ -143,7 +143,7 @@ if (isset($_SESSION['user_id'])) {
     
     <label for="chaform">Charisma score:</label>
     <input id="chaform" type="number" min="3" max="18">
-    <p>Select your skill proficiencies:</p>
+    <p class="p-indent">Select your skill proficiencies:</p>
       <input type="checkbox" id="acrobatics" name="skillmanualselect" value="Acrobatics">
       <label for="acrobatics">Acrobatics</label>
 

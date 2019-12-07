@@ -82,8 +82,9 @@ h3 {
     margin-left: 10px;
 }
 
-input[type=submit] {
-    margin-left: 12px;
+button[type=submit] {
+    margin-left: 20px;
+    margin-top: 6px;
 }
 
 input[type=radio] { 
@@ -91,15 +92,14 @@ input[type=radio] {
 }
 
 input[name="skillmanualselect"] {
-    margin-right: 8px;
+    margin-left: 10px;
 }
 
 input[type=number] {
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
 table {
-    margin-left: 40px;
     border-collapse: collapse;
 }
 
