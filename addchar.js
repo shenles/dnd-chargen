@@ -9,6 +9,11 @@ var saveScores = [];
 var allRaces = [];
 var allClasses = [];
 var allSkills = [];
+var plusMods = [];
+var abilityMods = [];
+var spatkmod;
+var spsavedc;
+var maxroll;
 var racefinal;
 var classfinal;
 var bgfinal;
@@ -254,9 +259,7 @@ function checkAbilityScores() {
             abilityScoresFinal[i].increased = 1;
         }
       }
-
       speedStat = matchrace.speed;
-
     }
 
      // update displayed scores
@@ -271,12 +274,12 @@ function checkAbilityScores() {
 
      document.getElementById('assignAbilityScores').style.display = "none";
      document.getElementById('raceAbilityScores').style.display = "block";
-
 } 
 
 function beginRaceIncreases() {
-     // display new scores; Charisma is unchanged, as that ability was already increased previously
+     // display new scores; extra step for half-elves
      if (racefinal == "Half-Elf") {
+        // Charisma is unchanged, as that ability was already increased previously
         for (let i = 0; i < 5; i++) {
            let idToGet = "halfElf".concat(i.toString());
            document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
@@ -300,9 +303,6 @@ function finalizeStats() {
       document.getElementById(idToGet).innerHTML = abilityScoresFinal[i].value;
   }
   // calculate modifiers based on ability scores
-  var plusMods = [];
-  var abilityMods = [];
-
   for (let i = 0; i < 6; i++) {
      let currMod = calcModifier(abilityScoresFinal[i].value);
      abilityMods.push(currMod);
@@ -320,9 +320,6 @@ function finalizeStats() {
 
   initStat = plusMods[1];
   profBonus = 2;
-  var maxroll;
-  var spatkmod;
-  var spsavedc;
 
   var matchclass = allClasses.find(function(element) {
       return element.name == classfinal;
@@ -333,6 +330,9 @@ function finalizeStats() {
     if (matchclass.spellability > -1) {
        spatkmod = profBonus + abilityMods[matchclass.spellability];
        spsavedc = 8 + profBonus + abilityMods[matchclass.spellability];
+    } else {
+       spatkmod = "None";
+       spsavedc = "None";
     }
   }
 
@@ -352,7 +352,13 @@ function finalizeStats() {
   document.getElementById('hpmax').innerHTML = hpmaxStat; 
   document.getElementById('hitdice').innerHTML = hitdiceStat;
   document.getElementById('speed').innerHTML = speedStat;
-  document.getElementById('spatkmod').innerHTML = "+".concat(spatkmod.toString());
+
+  if (spatkmod != "None") {
+     document.getElementById('spatkmod').innerHTML = "+".concat(spatkmod.toString());
+  } else {
+     document.getElementById('spatkmod').innerHTML = spatkmod;
+  }
+  
   document.getElementById('spsavedc').innerHTML = spsavedc;
   document.getElementById('langs').innerHTML = raceobj.langs;
   document.getElementById('raceAbilityScores').style.display = "none";
