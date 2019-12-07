@@ -61,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
         <option value="Wizard">Wizard</option>
     </select>
     </label>
-    
+    <p></p>
     <label>Select a race for your character:
     <select name="charrace" id="charrace" required>
         <option value="Dragonborn">Dragonborn</option>
@@ -85,7 +85,7 @@ if (isset($_SESSION['user_id'])) {
         <option value="Tiefling">Tiefling</option>
     </select>
     </label>
-    
+    <p></p>
     <label>Select a background for your character:
     <select name="charbg" id="charbg" required>
         <option value="None">None</option>
@@ -103,7 +103,7 @@ if (isset($_SESSION['user_id'])) {
         <option value="Urchin">Urchin</option>
     </select>
     </label>
-    
+    <p></p>
     <label>Select an alignment for your character:
     <select name="charalign" id="charalign" required>
         <option value="None">None</option>
@@ -118,24 +118,80 @@ if (isset($_SESSION['user_id'])) {
         <option value="Chaotic Evil">Chaotic Evil</option>
     </select>
     </label>
-    
+    <p></p>
     <label for="strform">Strength score:</label>
     <input id="strform" type="number" min="3" max="18">
-
+    
     <label for="dexform">Dexterity score:</label>
     <input id="dexform" type="number" min="3" max="18">
-
+    
     <label for="conform">Constitution score:</label>
     <input id="conform" type="number" min="3" max="18">
-
+    <p></p>
     <label for="intform">Intelligence score:</label>
     <input id="intform" type="number" min="3" max="18">
-
+    
     <label for="wisform">Wisdom score:</label>
     <input id="wisform" type="number" min="3" max="18">
-
+    
     <label for="chaform">Charisma score:</label>
     <input id="chaform" type="number" min="3" max="18">
+
+    <div id="skillsmanual">
+      <input type="checkbox" id="acrobatics" name="acrobatics">
+      <label for="acrobatics">Acrobatics</label>
+
+      <input type="checkbox" id="animalhandling" name="animalhandling">
+      <label for="animalhandling">Animal Handling</label>
+
+      <input type="checkbox" id="arcana" name="arcana">
+      <label for="arcana">Arcana</label>
+
+      <input type="checkbox" id="athletics" name="athletics">
+      <label for="athletics">Athletics</label>
+
+      <input type="checkbox" id="deception" name="deception">
+      <label for="deception">Deception</label>
+
+      <input type="checkbox" id="history" name="history">
+      <label for="history">History</label>
+      <p></p>
+      <input type="checkbox" id="insight" name="insight">
+      <label for="insight">Insight</label>
+ 
+      <input type="checkbox" id="intimidation" name="intimidation">
+      <label for="intimidation">Intimidation</label>
+
+      <input type="checkbox" id="investigation" name="investigation">
+      <label for="investigation">Investigation</label>
+
+      <input type="checkbox" id="medicine" name="medicine">
+      <label for="medicine">Medicine</label>
+
+      <input type="checkbox" id="nature" name="nature">
+      <label for="nature">Nature</label>
+
+      <input type="checkbox" id="perception" name="perception">
+      <label for="perception">Perception</label>
+      <p></p>
+      <input type="checkbox" id="performance" name="performance">
+      <label for="performance">Performance</label>
+
+      <input type="checkbox" id="persuasion" name="persuasion">
+      <label for="persuasion">Persuasion</label>
+
+      <input type="checkbox" id="religion" name="religion">
+      <label for="religion">Religion</label>
+
+      <input type="checkbox" id="sleightofhand" name="sleightofhand">
+      <label for="sleightofhand">Sleight of Hand</label>
+
+      <input type="checkbox" id="stealth" name="stealth">
+      <label for="stealth">Stealth</label>
+
+      <input type="checkbox" id="survival" name="survival">
+      <label for="survival">Survival</label>
+    </div>
     <button type="submit" class="btn btn-outline-secondary">Submit</button>
     </form>
     </div>
