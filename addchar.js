@@ -99,9 +99,9 @@ var gnome = new Race(12, "Gnome", 25, 60, "Common, Gnomish", -1, [13, 14, 15], {
 var forestgnome = new Race(13, "Forest Gnome", 25, 60, "Common, Gnomish", 12, [], {1: 1});
 var rockgnome = new Race(14, "Rock Gnome", 25, 60, "Common, Gnomish", 12, [], {2: 1});
 var deepgnome = new Race(15, "Deep Gnome", 25, 120, "Common, Gnomish, Undercommon", 12, [], {1: 1});
-var halfelf = new Race(16, "Half-Elf", 25, 60, "Common, Elvish, choose 1 extra", -1, [], {5: 2});
-var halforc = new Race(17, "Half-Orc", 25, 60, "Common, Orc", -1, [], {0: 2, 2: 1});
-var tiefling = new Race(18, "Tiefling", 25, 60, "Common, Infernal", -1, [], {3: 1, 5: 2});
+var halfelf = new Race(16, "Half-Elf", 30, 60, "Common, Elvish, choose 1 extra", -1, [], {5: 2});
+var halforc = new Race(17, "Half-Orc", 30, 60, "Common, Orc", -1, [], {0: 2, 2: 1});
+var tiefling = new Race(18, "Tiefling", 30, 60, "Common, Infernal", -1, [], {3: 1, 5: 2});
 var human = new Race(19, "Human", 30, 0, "Common, choose 1 extra", -1, [], {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1});
 allRaces = [dragonborn, dwarf, hilldwarf, mtndwarf, elf, highelf, drow, woodelf, halfling, lightfoot, stout, gnome, forestgnome, rockgnome, deepgnome, halfelf, halforc, tiefling, human];
 
@@ -376,6 +376,7 @@ function checkRaceIncreases() {
 
   if (statsRaised != 2 && racefinal == "Half-Elf") {
      alert("You must choose exactly two scores to increase.");
+     return;
   } 
   // increase each of the two chosen scores by 1 each
   for (let j = 0; j < boxes.length; j++) {

@@ -317,7 +317,7 @@ if (isset($_SESSION['user_id'])) {
           </td>
         </tr>
        </table>
-       <button type="button" class="btn btn-outline-secondary" onclick="checkRaceIncreases()">Done choosing increases</button> 
+       <button type="button" class="btn btn-outline-secondary" id="nextstep1" onclick="checkRaceIncreases()">Done choosing increases</button> 
        </div>
 
        <div class="homepage-info" id="finishStats" style="display:none;">
