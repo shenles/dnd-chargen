@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id'])) {
 
        $currentuser = $_SESSION['user_id']; 
 
-       $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {'$currentuser'}"; 
+       $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {$currentuser}"; 
 
        $result = $conn->query($sql);
 

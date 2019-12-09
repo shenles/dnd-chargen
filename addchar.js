@@ -376,17 +376,17 @@ function checkRaceIncreases() {
 
   if (statsRaised != 2 && racefinal == "Half-Elf") {
      alert("You must choose exactly two scores to increase.");
-     return;
-  } 
-  // increase each of the two chosen scores by 1 each
-  for (let j = 0; j < boxes.length; j++) {
-     if (boxes[j] == 1) {
-         abilityScoresFinal[j].value += 1;
-     }
-  }  
+  } else {
+    // increase each of the two chosen scores by 1 each
+    for (let j = 0; j < boxes.length; j++) {
+       if (boxes[j] == 1) {
+           abilityScoresFinal[j].value += 1;
+       }
+    }  
 
-  document.getElementById('halfElfScore').style.display = "none";     
-  finalizeStats();
+    document.getElementById('halfElfScore').style.display = "none";     
+    finalizeStats();
+  }
 }
 
 function doneWithStats() {
