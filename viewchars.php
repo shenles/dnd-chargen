@@ -75,16 +75,20 @@ if (isset($_SESSION['user_id'])) {
 
        $currentuser = $_SESSION['user_id']; 
 
-       $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {$currentuser}"; 
+       $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {$currentuser} AND display = 1"; 
 
        $result = $conn->query($sql);
 
        while ($row = $result->fetch_assoc()) {
-               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Edit</a></td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Delete</a></td><td><a href=\"https://dnd-chargen.herokuapp.com/index.php\" class=\"btn btn-light\" role=\"button\">Level up</a></td>\n</tr>\n"; 
-
+               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n<td><a href=\"editchar.php\" class=\"btn btn-outline-secondary\" role=\"button\" name=\"editbtn\" value=\"" . $row["char_id"] . "\">Edit</a></td>\n<td><button class=\"btn btn-outline-secondary\" value=\"" . $row["char_id"] . "\" name=\"deletebtn\">Delete</button></td>\n<td><a href=\"viewcharinfo.php\" class=\"btn btn-outline-secondary\" role=\"button\" name=\"detailbtn\" value=\"" . $row["char_id"] . "\">View details</td>\n<td>\n<a href=\"levelup.php\" class=\"btn btn-outline-secondary\" role=\"button\" name=\"levelbtn\" value=\"" . $row["char_id"] . "\">Level up</a></td>\n</tr>\n";
        }
-       echo "</table>";
-       echo "</body>\n</html>";
+       echo <<<EOT
+       </table>
+       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+       <script src="viewchars.js"></script>
+       </body>
+       </html>
+       EOT;
 
 } else {
 

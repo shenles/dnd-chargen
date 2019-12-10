@@ -94,7 +94,7 @@ h3 {
     margin-left: 10px;
 }
 
-button[type=submit], button[name="nextstep1"] {
+button[type=submit], button[id="nextstep1"] {
     margin-left: 15px;
 }
 
