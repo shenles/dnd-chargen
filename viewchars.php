@@ -75,16 +75,16 @@ if (isset($_SESSION['user_id'])) {
 
        $currentuser = $_SESSION['user_id']; 
        $delcharid = $_POST['delcharid'];
-       echo "<script>console.log(" . $delcharid . ")</script>";
+       echo "<script>console.log(" . $delcharid . ");</script>";
 
        if ($delcharid != NULL && INSTR($delcharid, "delete") > 0) {
 
             $pos = strpos($delcharid, "delete");
-            echo "<script>console.log(" . $pos . ")</script>";
+            echo "<script>console.log(" . $pos . ");</script>";
             $startidx = $pos + 6;
             $endidx = strlen($delcharid);
             $rowidstr = substr($delcharid, $startidx, $endidx - $startidx);
-            echo "<script>console.log(" . $rowidstr . ")</script>";
+            echo "<script>console.log(" . $rowidstr . ");</script>";
             $rowidnum = intval($rowidstr);
 
             $sql = "UPDATE characters SET display = 0 WHERE char_id = {$rowidnum}"; 
@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id'])) {
                $viewid = "view" . $row["char_id"];
                $levelupid = "levelup" . $row["char_id"];
 
-               echo "\n<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n<td><a href=\"editchar.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"" . $editid . "\">Edit</a></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"deleteChar(" . $deleteid . ")\" id=\"" . $deleteid . "\">Delete</button></td>\n<td><a href=\"viewcharinfo.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"" . $viewid . "\">View details</td>\n<td><a href=\"levelup.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"" . $levelupid . "\">Level up</a></td>\n</tr>\n";
+               echo "\n<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n<td><a href=\"editchar.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"" . $editid . "\">Edit</a></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"deleteChar(" . "\"" . $deleteid . "\"" . ")\" id=\"" . $deleteid . "\">Delete</button></td>\n<td><a href=\"viewcharinfo.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"" . $viewid . "\">View details</td>\n<td><a href=\"levelup.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"" . $levelupid . "\">Level up</a></td>\n</tr>\n";
        }
        echo <<<EOT
        </table>
