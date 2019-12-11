@@ -17,22 +17,20 @@ if ($conn->connect_error) {
 
 if (isset($_SESSION['user_id'])) {
 
-	function chooseDisplay($charid) {
-		if (INSTR($charid, "delete") > 0) {
-                $currentuser = $_SESSION['user_id'];
+	$charid = $_POST['charid'];
+	$currentuser = $_SESSION['user_id'];
 
-                $pos = strpos($charid, "delete");
-                $startidx = $pos + 1;
-                $endidx = strlen($charid);
-                $rowidstr = substr($charid, $startidx, $endidx - $startidx);
-                $rowidnum = intval($rowidstr);
+	if (INSTR($charid, "delete") > 0) {
 
-                $sql = "DELETE FROM characters WHERE char_id = {$rowidnum}"; 
-                $result = $conn->query($sql);
-		}
+        $pos = strpos($charid, "delete");
+        $startidx = $pos + 1;
+        $endidx = strlen($charid);
+        $rowidstr = substr($charid, $startidx, $endidx - $startidx);
+        $rowidnum = intval($rowidstr);
+
+        $sql = "UPDATE characters SET display = 0 WHERE char_id = {$rowidnum}"; 
+        $result = $conn->query($sql);
 	}
-
-	chooseDisplay($_POST['charid']);
 
 } else {
 	header("Location: https://dnd-chargen.herokuapp.com/login.php");

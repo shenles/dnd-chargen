@@ -1,6 +1,7 @@
 function deleteChar() {
 
 	var btnVal = $(this).id;
+	console.log(btnVal);
 
 	$.ajax({
 		type: "POST",
