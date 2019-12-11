@@ -102,7 +102,7 @@ input[type=radio] {
     margin-left: 6px;
 }
 
-input[name="skillmanualselect"], input[name="chooseclass[]"], input[name="school[]"], input[name="race"], input[name="featureclass"] {
+input[name="skillmanualselect"], input[name="chooseclass[]"], input[name="school[]"], input[name="race[]"], input[name="featureclass[]"] {
     margin-left: 10px;
 }
 

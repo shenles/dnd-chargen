@@ -1,13 +1,12 @@
-$('#deletechar').click(function() {
+function deleteChar() {
 
-	var btnValue = $(this).val();
-	var btnType = $(this).name;
+	var btnVal = $(this).id;
 
 	$.ajax({
 		type: "POST",
 		url: "deletechar.php",
-		data: {charid: btnValue, charaction: btnType}
+		data: {charid: btnVal}
 	}).done(function() {
 		alert("completed");
 	});
-});
+}
