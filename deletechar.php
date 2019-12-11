@@ -17,12 +17,11 @@ if ($conn->connect_error) {
 
 if (isset($_SESSION['user_id'])) {
 
-    echo "<html><head></head><body>";
-
 	if ($deletecharid) {
 
         $sql = "UPDATE characters SET display = 0 WHERE char_id = {$deletecharid} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
+        echo "<html><head><title>Delete character</title></head><body>";
         echo "<p>Character deleted</p>";
 
         echo <<<EOT
