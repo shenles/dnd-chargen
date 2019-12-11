@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id'])) {
 
 	if ($deletecharid) {
 
-        $sql = "DELETE FROM characters WHERE char_id = {$deletecharid} AND user_id = {$currentuser}"; 
+        $sql = "UPDATE characters SET display = 0 WHERE char_id = {$deletecharid} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
         echo "<p>Character deleted</p>";
 
