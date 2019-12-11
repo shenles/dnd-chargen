@@ -23,7 +23,6 @@ if (isset($_SESSION['user_id'])) {
 
                 $sql = "UPDATE characters SET display = 0 WHERE char_id = {$charid}"; 
                 $result = $conn->query($sql);
-                break;
 		}
 	}
 

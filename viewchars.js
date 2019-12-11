@@ -1,7 +1,7 @@
 $('.button').click(function() {
 
 	var btnValue = $(this).val();
-	var btnType = $(this.)name();
+	var btnType = $(this).name();
 
 	$.ajax({
 		type: "POST",
