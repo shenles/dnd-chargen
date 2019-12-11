@@ -75,13 +75,16 @@ if (isset($_SESSION['user_id'])) {
 
        $currentuser = $_SESSION['user_id']; 
        $delcharid = $_POST['delcharid'];
+       echo "<script>console.log(" . $delcharid . ")</script>";
 
-       if (INSTR($delcharid, "delete") > 0) {
+       if ($delcharid != NULL && INSTR($delcharid, "delete") > 0) {
 
             $pos = strpos($delcharid, "delete");
+            echo "<script>console.log(" . $pos . ")</script>";
             $startidx = $pos + 6;
             $endidx = strlen($delcharid);
             $rowidstr = substr($delcharid, $startidx, $endidx - $startidx);
+            echo "<script>console.log(" . $rowidstr . ")</script>";
             $rowidnum = intval($rowidstr);
 
             $sql = "UPDATE characters SET display = 0 WHERE char_id = {$rowidnum}"; 
