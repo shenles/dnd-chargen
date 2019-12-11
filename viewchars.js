@@ -6,5 +6,7 @@ function deleteChar(toDelete) {
 		type: "POST",
 		url: "deletechar.php",
 		data: {'delcharid': toDelete}
+	}).done(function() {
+		window.location.reload();
 	});
 } 

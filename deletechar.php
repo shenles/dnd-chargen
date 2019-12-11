@@ -17,18 +17,6 @@ if ($conn->connect_error) {
 
 if (isset($_SESSION['user_id'])) {
 
-    echo <<<EOT
-    <!DOCTYPE html>
-    <html lang="en">
-       <head>
-       <title>D&D Database</title>
-       <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel="stylesheet" type="text/css" href="./style.css"> 
-       </head>
-       <body>
-    EOT;
-
     $currentuser = $_SESSION['user_id'];
 
 	if (isset($_POST['delcharid']) {
@@ -37,13 +25,6 @@ if (isset($_SESSION['user_id'])) {
 
         $sql = "UPDATE characters SET display = 0 WHERE char_id = {$todelete} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
-        echo "<p>Character deleted</p>";
-
-        echo <<<EOT
-        <meta http-equiv="refresh" content="3; URL=https://dnd-chargen.herokuapp.com/viewchars.php">
-        <meta name="keywords" content="automatic redirection">
-        <p>Now returning to Characters page...</p></body></html>
-        EOT;
 
 	}
 
