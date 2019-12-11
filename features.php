@@ -70,7 +70,7 @@
 
         <input type="checkbox" id="halfelf" name="race[]" value="Half-Elf">
         <label for="halfelf">Half-Elf</label>
-
+        <p></p>
         <input type="checkbox" id="halforc" name="race[]" value="Half-Orc">
         <label for="halforc">Half-Orc</label>
 
