@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <title>D&D Database</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="./style.css"> 
+   </head>
+    
+   <body>
+
 <?php
 
 session_start();
@@ -21,7 +32,6 @@ if (isset($_SESSION['user_id'])) {
 
         $sql = "UPDATE characters SET display = 0 WHERE char_id = {$deletecharid} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
-        echo "<html><head><title>Delete character</title></head><body>";
         echo "<p>Character deleted</p>";
 
         echo <<<EOT
@@ -30,7 +40,6 @@ if (isset($_SESSION['user_id'])) {
         <p>Now returning to Characters page...</p>
         EOT;
 
-        echo "</body></html>";
 	}
 
 } else {
@@ -38,3 +47,6 @@ if (isset($_SESSION['user_id'])) {
 }
 
 ?>
+
+</body>
+</html>
