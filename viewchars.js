@@ -1,12 +1,11 @@
-function deleteChar() {
+function deleteChar(toDelete) {
 
-	var btnVal = $(this).id;
-	console.log(btnVal);
+	console.log(toDelete);
 
 	$.ajax({
 		type: "POST",
-		url: "deletechar.php",
-		data: {'charid': btnVal}
+		url: "viewchars.php",
+		data: {'delcharid': toDelete}
 	}).done(function() {
 		alert("completed");
 	});
