@@ -22,6 +22,7 @@ if (isset($_SESSION['user_id'])) {
 	if (isset($_POST['delcharid']) {
 
         $todelete = $_POST['delcharid'];
+        echo "<script>console.log(" . $todelete . ");</script>";
 
         $sql = "UPDATE characters SET display = 0 WHERE char_id = {$todelete} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
