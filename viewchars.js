@@ -7,6 +7,6 @@ function deleteChar(toDelete) {
 		url: "deletechar.php",
 		data: {'delcharid': toDelete}
 	}).done(function() {
-		window.location.reload();
+		window.location.reload(true);
 	});
 } 

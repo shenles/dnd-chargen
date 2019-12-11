@@ -15,14 +15,13 @@ if ($conn->connect_error) {
    die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_SESSION['user_id'])) {
+$currentuser = $_SESSION['user_id'];
 
-    $currentuser = $_SESSION['user_id'];
+if ($currentuser) {
 
-	if (isset($_POST['delcharid']) {
+    $todelete = $_POST['delcharid'];
 
-        $todelete = $_POST['delcharid'];
-        echo "<script>console.log(" . $todelete . ");</script>";
+	if ($todelete) {
 
         $sql = "UPDATE characters SET display = 0 WHERE char_id = {$todelete} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
