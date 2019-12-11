@@ -1,4 +1,4 @@
-$('.button').click(function() {
+$('#deletechar').click(function() {
 
 	var btnValue = $(this).val();
 	var btnType = $(this).name();

@@ -177,12 +177,12 @@
         $featrace = $_POST['race'];
         $featclass = $_POST['featureclass'];
 
-        if (!isset(featrace) && !isset(featclass)) {
+        if (!isset($featrace) && !isset($featclass)) {
             $sql = "SELECT name,classassoc,raceassoc,descrip FROM features";
-        } elseif (isset(featrace)) {
+        } elseif (isset($featrace)) {
             $getraces = join("','", $featrace);
             $sql = "SELECT name,classassoc,raceassoc,descrip FROM features WHERE raceassoc IN ('$getraces')";
-        } elseif (isset(featclass)) {
+        } elseif (isset($featclass)) {
             $getclasses = join("','", $featclass);
             $sql = "SELECT name,classassoc,raceassoc,descrip FROM features WHERE classassoc IN ('$getclasses')";
         }

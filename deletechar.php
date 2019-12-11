@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id'])) {
 		if ($charaction == "deletebtn") {
                 $currentuser = $_SESSION['user_id']; 
 
-                $sql = "UPDATE characters SET display = 0 WHERE char_id = {$charid}"; 
+                $sql = "DELETE FROM characters WHERE char_id = {$charid}"; 
                 $result = $conn->query($sql);
 		}
 	}
