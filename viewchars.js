@@ -4,9 +4,7 @@ function deleteChar(toDelete) {
 
 	$.ajax({
 		type: "POST",
-		url: "viewchars.php",
+		url: "deletechar.php",
 		data: {'delcharid': toDelete}
-	}).done(function() {
-		alert("completed");
 	});
 }

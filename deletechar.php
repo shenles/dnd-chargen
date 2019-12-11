@@ -17,19 +17,24 @@ if ($conn->connect_error) {
 
 if (isset($_SESSION['user_id'])) {
 
-	$charid = $_POST['charid'];
+    echo "<html><head></head><body>";
+
+	$chartodelete = $_POST['delcharid'];
 	$currentuser = $_SESSION['user_id'];
 
-	if (INSTR($charid, "delete") > 0) {
+	if (isset($chartodelete)) {
 
-        $pos = strpos($charid, "delete");
-        $startidx = $pos + 1;
-        $endidx = strlen($charid);
-        $rowidstr = substr($charid, $startidx, $endidx - $startidx);
-        $rowidnum = intval($rowidstr);
-
-        $sql = "UPDATE characters SET display = 0 WHERE char_id = {$rowidnum}"; 
+        $sql = "DELETE FROM characters WHERE char_id = {$chartodelete} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
+        echo "<p>Character deleted</p>";
+
+        echo <<<EOT
+        <meta http-equiv="refresh" content="3; URL=https://dnd-chargen.herokuapp.com/viewchars.php">
+        <meta name="keywords" content="automatic redirection">
+        <p>Automatically returning to Characters page...</p>
+        EOT;
+
+        echo "</body></html>";
 	}
 
 } else {
