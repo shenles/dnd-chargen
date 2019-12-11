@@ -19,12 +19,11 @@ if (isset($_SESSION['user_id'])) {
 
     echo "<html><head></head><body>";
 
-	$chartodelete = $_POST['delcharid'];
 	$currentuser = $_SESSION['user_id'];
 
-	if (isset($chartodelete)) {
+	if ($deletecharid != NULL) {
 
-        $sql = "DELETE FROM characters WHERE char_id = {$chartodelete} AND user_id = {$currentuser}"; 
+        $sql = "DELETE FROM characters WHERE char_id = {$deletecharid} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
         echo "<p>Character deleted</p>";
 
