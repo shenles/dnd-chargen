@@ -75,12 +75,12 @@ if (isset($_SESSION['user_id'])) {
 
        $currentuser = $_SESSION['user_id']; 
 
-       $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {$currentuser} AND display = 1"; 
+       $sql = "SELECT char_id,charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {$currentuser}"; 
 
        $result = $conn->query($sql);
 
        while ($row = $result->fetch_assoc()) {
-               echo "<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n<td><a href=\"editchar.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"editchar" . $row["char_id"] . "\">Edit</a></td>\n<td><button class=\"btn btn-outline-secondary\" id=\"delete" . $row["char_id"] . "\" onclick=\"deleteChar()\">Delete</button></td>\n<td><a href=\"viewcharinfo.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"viewdetails" . $row["char_id"] . "\">View details</td>\n<td>\n<a href=\"levelup.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"levelup" . $row["char_id"] . "\">Level up</a></td>\n</tr>\n";
+               echo "\n<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td>\n<td><a href=\"editchar.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"editchar" . $row["char_id"] . "\">Edit</a></td>\n<td><button class=\"btn btn-outline-secondary\" id=\"delete" . $row["char_id"] . "\" onclick=\"deleteChar()\">Delete</button></td>\n<td><a href=\"viewcharinfo.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"viewdetails" . $row["char_id"] . "\">View details</td>\n<td><a href=\"levelup.php\" class=\"btn btn-outline-secondary\" role=\"button\" id=\"levelup" . $row["char_id"] . "\">Level up</a></td>\n</tr>\n";
        }
        echo <<<EOT
        </table>
