@@ -19,9 +19,7 @@ if (isset($_SESSION['user_id'])) {
 
     echo "<html><head></head><body>";
 
-	$currentuser = $_SESSION['user_id'];
-
-	if ($deletecharid != NULL) {
+	if ($deletecharid) {
 
         $sql = "DELETE FROM characters WHERE char_id = {$deletecharid} AND user_id = {$currentuser}"; 
         $result = $conn->query($sql);
@@ -30,7 +28,7 @@ if (isset($_SESSION['user_id'])) {
         echo <<<EOT
         <meta http-equiv="refresh" content="3; URL=https://dnd-chargen.herokuapp.com/viewchars.php">
         <meta name="keywords" content="automatic redirection">
-        <p>Automatically returning to Characters page...</p>
+        <p>Now returning to Characters page...</p>
         EOT;
 
         echo "</body></html>";
