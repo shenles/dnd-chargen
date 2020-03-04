@@ -428,9 +428,18 @@ function doneCreatingChar() {
    //data.append('spslots', null);
    //data.append('spknown', null);
 
-   var xhttp = new XMLHttpRequest();
-   xhttp.open("POST", "insert.php", true);
-   xhttp.send(data);
+   var xhr = new XMLHttpRequest();
+   xhr.open("POST", "insert.php", true);
+   xhr.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+         // Request finished
+         console.log("finished");
+      } else {
+         console.log(this.readyState);
+         console.log(this.status);
+      }
+   }
+   xhr.send(data);
 
    document.getElementById('afterStats').style.display = "none";
    document.getElementById('viewCreated').style.display = "block";
