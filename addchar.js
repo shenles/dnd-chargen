@@ -417,16 +417,16 @@ function doneCreatingChar() {
    data.append('armorprofs', matchclass.armorprofs);
    data.append('charbg', bgfinal);
    data.append('langs', matchrace.langs);
-   data.append('equip', null);
-   data.append('classfeatures', null);
-   data.append('bgfeatures', null);
-   data.append('traits', null);
-   data.append('spclass', null);
-   data.append('spabil', matchclass.spellability);
-   data.append('spsavedc', spsavedc);
-   data.append('spatkbonus', spatkmod);
-   data.append('spslots', null);
-   data.append('spknown', null);
+   //data.append('equip', null);
+   //data.append('classfeatures', null);
+   //data.append('bgfeatures', null);
+   //data.append('traits', null);
+   //data.append('spclass', null);
+   //data.append('spabil', matchclass.spellability);
+   //data.append('spsavedc', spsavedc);
+   //data.append('spatkbonus', spatkmod);
+   //data.append('spslots', null);
+   //data.append('spknown', null);
 
    var xhttp = new XMLHttpRequest();
    xhttp.open("POST", "insert.php", true);

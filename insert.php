@@ -35,10 +35,10 @@ if (isset($_SESSION['user_id'])) {
     $clfeats = NULL;
     $bgfeats = NULL;
     $traits = NULL;
-    $spclass = $_POST['spclass'];
-    $spabil = $_POST['spabil'];
-    $spsavedc = $_POST['spsavedc'];
-    $spatkbonus = $_POST['spatkbonus'];
+    $spclass = NULL;
+    $spabil = NULL;
+    $spsavedc = NULL;
+    $spatkbonus = NULL;
     $spslots = NULL;
     $spknown = NULL;
     $disp = 1;
@@ -65,6 +65,7 @@ if (isset($_SESSION['user_id'])) {
 
     $stmt->execute();
     $stmt->close();
+    $conn->close();
     
 }
 
