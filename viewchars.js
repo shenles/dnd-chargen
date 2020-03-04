@@ -14,26 +14,20 @@ function deleteChar(toDelete) {
 function viewChar(toView) {
 
 	console.log(toView);
-	//document.getElementById('chviewform').submit();
-	//document.createElement('dummyform').submit.call(document.chviewform);
-	HTMLFormElement.prototype.submit.call(document.getElementById('chviewform'));
+	document.getElementById('viewcharid').requestSubmit();
 
 }
 
 function editChar(toEdit) {
 
 	console.log(toEdit);
-	//document.getElementById('chviewform').submit();
-	//document.createElement('dummyform').submit.call(document.chviewform);
-	HTMLFormElement.prototype.submit.call(document.getElementById('chviewform'));
+	document.getElementById('viewcharid').requestSubmit();
 
 }
 
 function levelUpChar(toLevelUp) {
 
 	console.log(toLevelUp);
-	//document.getElementById('chviewform').submit();
-	//document.createElement('dummyform').submit.call(document.chviewform);
-	HTMLFormElement.prototype.submit.call(document.getElementById('chviewform'));
+	document.getElementById('viewcharid').requestSubmit();
 
 }
