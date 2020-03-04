@@ -55,26 +55,15 @@ if (isset($_SESSION['user_id'])) {
     }
 
     $currentuser = $_SESSION['user_id'];
-    $displayid = -1;
+    $displayid = NULL;
 
-    if ($currentuser) {
+    if (isset($_POST['viewcharid'])) {
 
-        if (isset($_POST['viewcharid'])) {
+        $displayid = $_POST['viewcharid'];
 
-            $displayid = $_POST['viewcharid'];
-
-        } elseif (isset($_POST['editcharid'])) {
-            
-            $displayid = $_POST['editcharid'];
-
-        } elseif (isset($_POST['levelupcharid'])) {
-            
-            $displayid = $_POST['levelupcharid'];
-
-        }
     }
 
-    if ($displayid > -1) {
+    if ($displayid != NULL) {
         $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs,spellclass,spellabil,spellsavedc,spellatkbonus FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";
     }
 

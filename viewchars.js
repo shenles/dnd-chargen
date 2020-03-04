@@ -14,41 +14,20 @@ function deleteChar(toDelete) {
 function viewChar(toView) {
 
 	console.log(toView);
-
-	$.ajax({
-		type: "POST",
-		url: "chardetail.php",
-		data: {'viewcharid': toView}
-	}).done(function() {
-		window.location.href("chardetail.php");
-	});
+	document.getElementById('chviewform').submit();
 
 }
 
 function editChar(toEdit) {
 
 	console.log(toEdit);
-
-	$.ajax({
-		type: "POST",
-		url: "chardetail.php",
-		data: {'editcharid': toEdit}
-	}).done(function() {
-		window.location.href("chardetail.php");
-	});
+	document.getElementById('chviewform').submit();
 
 }
 
 function levelUpChar(toLevelUp) {
 
 	console.log(toLevelUp);
-
-	$.ajax({
-		type: "POST",
-		url: "chardetail.php",
-		data: {'levelupcharid': toLevelUp}
-	}).done(function() {
-		window.location.href("chardetail.php");
-	});
+	document.getElementById('chviewform').submit();
 
 }

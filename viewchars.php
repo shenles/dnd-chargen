@@ -87,14 +87,17 @@ if (isset($_SESSION['user_id'])) {
                $viewid = "view" . $cid;
                $levelupid = "levelup" . $cid;
 
-               if ($cid) {
+               if ($cid != NULL) {
 
                   echo "\n<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><button class=\"btn btn-outline-secondary\" onclick=\"editChar(" . $cid . ")\" id=\"" . $editid . "\">Edit</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"deleteChar(" . $cid . ")\" id=\"" . $deleteid . "\">Delete</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"viewChar(" . $cid . ")\" id=\"" . $viewid . "\">View details</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"levelUpChar(" . $cid . ")\" id=\"" . $levelupid . "\">Level up</button></td>\n</tr>\n";
                }
        }
 
+       echo "</table>\n";
+       echo "<form method=\"post\" action=\"chardetail.php\">\n";
+       echo "<input type=\"hidden\" name=\"viewcharid\" id=\"chviewform\" value=\"" . $cid . "\"></form>";
+
        echo <<<EOT
-       </table>
        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
        <script src="viewchars.js"></script>
        </body>
