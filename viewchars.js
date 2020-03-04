@@ -20,7 +20,7 @@ function viewChar(toView) {
 		url: "chardetail.php",
 		data: {'viewcharid': toView}
 	}).done(function() {
-		window.location.assign("https://dnd-chargen.herokuapp.com/chardetail.php");
+		window.location.href("chardetail.php");
 	});
 
 }
@@ -34,7 +34,7 @@ function editChar(toEdit) {
 		url: "chardetail.php",
 		data: {'editcharid': toEdit}
 	}).done(function() {
-		window.location.assign("https://dnd-chargen.herokuapp.com/chardetail.php");
+		window.location.href("chardetail.php");
 	});
 
 }
@@ -48,7 +48,7 @@ function levelUpChar(toLevelUp) {
 		url: "chardetail.php",
 		data: {'levelupcharid': toLevelUp}
 	}).done(function() {
-		window.location.assign("https://dnd-chargen.herokuapp.com/chardetail.php");
+		window.location.href("chardetail.php");
 	});
 
 }
