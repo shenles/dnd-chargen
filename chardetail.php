@@ -4,8 +4,6 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
-    console_log("reached detail");
-
     echo <<<EOT
     <html>
     <head>
@@ -156,6 +154,8 @@ if (isset($_SESSION['user_id'])) {
           echo "<p class=\"p-indent2\">Weapon proficiencies</p><p id=\"showweapons\">" . $chweapons . "</p>";
           echo "<p class=\"p-indent2\">Tool proficiencies</p><p id=\"showtools\">" . $chtools . "</p></div>";
 
+} else {
+     header("Location: https://dnd-chargen.herokuapp.com/login.php");
 }
 
 ?>

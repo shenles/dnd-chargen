@@ -436,7 +436,7 @@ function doneCreatingChar() {
    //data.append('spknown', null);
 
    var xhttp = new XMLHttpRequest();
-   xhttp.open("POST", "insert.php", true);
+   xhttp.open("POST", "./insert.php", true);
    
    xhttp.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {

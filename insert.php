@@ -4,8 +4,6 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
-    console_log("reached insert");
-
     $charname = $_POST['charname'];
     $charclass = $_POST['charclass'];
     $charrace = $_POST['charrace'];
@@ -67,6 +65,8 @@ if (isset($_SESSION['user_id'])) {
     $stmt->close();
     $conn->close();
     
+} else {
+     header("Location: https://dnd-chargen.herokuapp.com/login.php");
 }
 
 ?>
