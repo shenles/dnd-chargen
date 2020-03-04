@@ -112,6 +112,8 @@ if (isset($_SESSION['user_id'])) {
         $chspmod = $row["spellatkbonus"];
     }
 
+    $conn->close();
+
     echo <<<EOT
     <div class="homepage-info">
        <p class="p-indent">Ability scores</p>

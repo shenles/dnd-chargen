@@ -1,5 +1,7 @@
 function deleteChar(toDelete) {
 
+	console.log(toDelete);
+
 	$.ajax({
 		type: "POST",
 		url: "deletechar.php",
@@ -10,6 +12,8 @@ function deleteChar(toDelete) {
 }
 
 function viewChar(toView) {
+
+	console.log(toView);
 
 	$.ajax({
 		type: "POST",
@@ -23,6 +27,8 @@ function viewChar(toView) {
 
 function editChar(toEdit) {
 
+	console.log(toEdit);
+
 	$.ajax({
 		type: "POST",
 		url: "chardetail.php",
@@ -34,6 +40,8 @@ function editChar(toEdit) {
 }
 
 function levelUpChar(toLevelUp) {
+
+	console.log(toLevelUp);
 
 	$.ajax({
 		type: "POST",
