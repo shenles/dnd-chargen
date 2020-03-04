@@ -394,3 +394,9 @@ function doneWithStats() {
    document.getElementById('raceAbilityScores').style.display = "none";
    document.getElementById('afterStats').style.display = "block";
 }
+
+function doneCreatingChar() {
+   document.getElementById('afterStats').style.display = "none";
+   document.getElementById('pageheader1').style.display = "none";
+   document.getElementById('viewCreated').style.display = "block";
+}

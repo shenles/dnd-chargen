@@ -130,7 +130,7 @@ if (isset($_SESSION['user_id'])) {
 
     if (isset($chosenclass) && isset($chosenrace)) {
 
-       echo "<div class=\"homepage-info\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . ", alignment " . $alignment . "</div>";
+       echo "<div class=\"homepage-info\" id=\"pageheader1\">Now creating character of class " . $chosenclass . ", race " . $chosenrace . ", background " . $chosenbg . ", alignment " . $alignment . "</div>";
        echo "<span id=\"charraceinfo\" style=\"display:none;\">" . $chosenrace . "</span>";
        echo "<span id=\"charclassinfo\" style=\"display:none;\">" . $chosenclass . "</span>";
        echo "<span id=\"charbginfo\" style=\"display:none;\">" . $chosenbg . "</span>";
@@ -453,10 +453,31 @@ if (isset($_SESSION['user_id'])) {
        echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table>";
        echo "<tr><td>" . $clprofs . "</td></tr>";
        echo "</table>";
+       echo <<<EOT
+       <button type="button" class="btn btn-outline-secondary" id="donechar1" onclick="doneCreatingChar()">Finish creating character</button>
+       </div>
+       <div class="homepage-info" id="viewCreated" style="display:none;">
+       <p>Your character has been created!</p>
+       <a href="https://dnd-chargen.herokuapp.com/viewchars.php" role="button">See my characters</a>
+       <a href="https://dnd-chargen.herokuapp.com/addchar.php" role="button">Create another character</a>
+       </div>
+       EOT;
 
     }
 
     echo <<<EOT
+    <script>
+       $(document).ready(function(){
+           $('#donechar1').click(function(){
+               $.post('insert.php',
+                   {},
+                   function(data, status) {
+                      alert(data + "\n" + status);
+               });
+           });
+       });
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="addchar.js"></script>
     </body>
