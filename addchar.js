@@ -142,6 +142,15 @@ $("input[type='checkbox']").change(function() {
     }
 });
 
+// find the chosen race in the array of all races
+var matchrace = allRaces.find(function(element) {
+    return element.name == racefinal;
+});
+
+var matchclass = allClasses.find(function(element) {
+    return element.name == classfinal;
+});
+
 // Rolls numDice number of dice, with each die of numSides dimension.
 // Returns an array (sorted descending) of the numbers rolled.
 function rollDice(numDice, numSides) {
@@ -236,11 +245,6 @@ function checkAbilityScores() {
         findscoreobj.value = scoresToAssign[i];
     }
 
-    // find the chosen race in the array of all races
-    var matchrace = allRaces.find(function(element) {
-       return element.name == racefinal;
-    });
-
     if (matchrace) {
       // check if this race grants any ability score increases
       for (let i = 0; i < 6; i++) {
@@ -310,10 +314,6 @@ function finalizeStats() {
 
   initStat = plusMods[1];
   profBonus = 2;
-
-  var matchclass = allClasses.find(function(element) {
-      return element.name == classfinal;
-  });
 
   if (matchclass) {
     maxroll = matchclass.hitdie;

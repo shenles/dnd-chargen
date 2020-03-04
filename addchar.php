@@ -458,6 +458,8 @@ if (isset($_SESSION['user_id'])) {
        echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table class=\"table-indent1\">";
        echo "<tr><td>" . $clprofs . "</td></tr>";
        echo "</table><br>";
+       $conn->close();
+       
        echo <<<EOT
        <button type="button" class="btn btn-outline-secondary" id="donechar1" onclick="doneCreatingChar()">Finish creating character</button>
        </div>
