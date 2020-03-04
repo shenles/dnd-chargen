@@ -75,20 +75,22 @@ if (isset($_SESSION['user_id'])) {
 
        $currentuser = $_SESSION['user_id'];
 
-       $sql = "SELECT char_id,charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus FROM characters WHERE user_id = {$currentuser} AND display = 1"; 
+       $sql = "SELECT charname,class,race,background,alignment,level,hp,ac,hitdice,initiative,profbonus,char_id FROM characters WHERE user_id = {$currentuser} AND display = 1"; 
 
        $result = $conn->query($sql);
 
        while ($row = $result->fetch_assoc()) {
 
                $cid = $row["char_id"];
-
                $deleteid = "delete" . $cid;
                $editid = "edit" . $cid;
                $viewid = "view" . $cid;
                $levelupid = "levelup" . $cid;
 
-               echo "\n<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><button class=\"btn btn-outline-secondary\" onclick=\"editChar(" . $cid . ")\" id=\"" . $editid . "\">Edit</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"deleteChar(" . $cid . ")\" id=\"" . $deleteid . "\">Delete</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"viewChar(" . $cid . ")\" id=\"" . $viewid . "\">View details</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"levelUpChar(" . $cid . ")\" id=\"" . $levelupid . "\">Level up</button></td>\n</tr>\n";
+               if ($cid) {
+
+                  echo "\n<tr>\n<td>" . $row["charname"] . "</td>\n<td>" . $row["class"] . "</td>\n<td>" . $row["race"] . "</td>\n<td>" . $row["background"] . "</td>\n<td>" . $row["alignment"] . "</td>\n<td>" . $row["level"] . "</td>\n<td>" . $row["hp"] . "</td>\n<td>" . $row["ac"] . "</td>\n<td>" . $row["hitdice"] . "</td>\n<td>" . $row["initiative"] . "</td>\n<td>" . $row["profbonus"] . "</td><td><button class=\"btn btn-outline-secondary\" onclick=\"editChar(" . $cid . ")\" id=\"" . $editid . "\">Edit</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"deleteChar(" . $cid . ")\" id=\"" . $deleteid . "\">Delete</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"viewChar(" . $cid . ")\" id=\"" . $viewid . "\">View details</button></td>\n<td><button class=\"btn btn-outline-secondary\" onclick=\"levelUpChar(" . $cid . ")\" id=\"" . $levelupid . "\">Level up</button></td>\n</tr>\n";
+               }
        }
 
        echo <<<EOT
