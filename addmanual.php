@@ -45,6 +45,9 @@ if (isset($_SESSION['user_id'])) {
     echo <<<EOT
     <div id="manualcharform">
     <form class="filterform" action="addmanual.php" method="post">
+    <label>Enter a name for your character:
+    <input type="text" name="charname" maxlength="30">
+    </label><p></p>
     <label>Select a class for your character:
     <select name="charclass" id="charclass" required>
         <option value="Barbarian">Barbarian</option>

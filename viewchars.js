@@ -1,7 +1,5 @@
 function deleteChar(toDelete) {
 
-	console.log(toDelete);
-
 	$.ajax({
 		type: "POST",
 		url: "deletechar.php",
@@ -9,4 +7,40 @@ function deleteChar(toDelete) {
 	}).done(function() {
 		window.location.reload(true);
 	});
-} 
+}
+
+function viewChar(toView) {
+
+	$.ajax({
+		type: "POST",
+		url: "chardetail.php",
+		data: {'viewcharid': toView}
+	}).done(function() {
+		window.location.assign("https://dnd-chargen.herokuapp.com/chardetail.php");
+	});
+
+}
+
+function editChar(toEdit) {
+
+	$.ajax({
+		type: "POST",
+		url: "chardetail.php",
+		data: {'editcharid': toEdit}
+	}).done(function() {
+		window.location.assign("https://dnd-chargen.herokuapp.com/chardetail.php");
+	});
+
+}
+
+function levelUpChar(toLevelUp) {
+
+	$.ajax({
+		type: "POST",
+		url: "chardetail.php",
+		data: {'levelupcharid': toLevelUp}
+	}).done(function() {
+		window.location.assign("https://dnd-chargen.herokuapp.com/chardetail.php");
+	});
+
+}

@@ -28,6 +28,8 @@ if ($currentuser) {
 
 	}
 
+    $conn->close();
+
 } else {
 	header("Location: https://dnd-chargen.herokuapp.com/login.php");
 }

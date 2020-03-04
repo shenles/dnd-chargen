@@ -385,7 +385,8 @@ if (isset($_SESSION['user_id'])) {
              <td class="showfinalscore" id="spsavedc"></td>
              <td class="showfinalscore" id="langs"></td>
           </table>
-       <button type="button" class="btn btn-outline-secondary" id="continue2" onclick="doneWithStats()">I'm ready for the next step</button>
+          <p></p>
+          <button type="button" class="btn btn-outline-secondary" id="continue2" onclick="doneWithStats()">I'm ready for the next step</button>
        </div>
 
        <div class="homepage-info" id="afterStats" style="display:none;">
@@ -457,16 +458,17 @@ if (isset($_SESSION['user_id'])) {
 
        echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table class=\"table-indent1\">";
        echo "<tr><td>" . $clprofs . "</td></tr>";
-       echo "</table><br>";
+       echo "</table><p></p>";
        $conn->close();
-       
+
        echo <<<EOT
        <button type="button" class="btn btn-outline-secondary" id="donechar1" onclick="doneCreatingChar()">Finish creating character</button>
        </div>
        <div class="homepage-info" id="viewCreated" style="display:none;">
        <p>Your character has been created!</p>
-       <a href="https://dnd-chargen.herokuapp.com/viewchars.php" role="button">See my characters</a>
-       <a href="https://dnd-chargen.herokuapp.com/addchar.php" role="button">Create another character</a>
+       <a href="https://dnd-chargen.herokuapp.com/viewchars.php" class="btn btn-outline-secondary" role="button">See my characters</a>
+       <p></p>
+       <a href="https://dnd-chargen.herokuapp.com/addchar.php" class="btn btn-outline-secondary" role="button">Create another character</a>
        </div>
        EOT;
 
