@@ -65,7 +65,7 @@ if (isset($_SESSION['user_id'])) {
 
     $stmt->execute();
     $stmt->close();
-    //$conn->close();
+    
 }
 
 ?>

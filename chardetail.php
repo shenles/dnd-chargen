@@ -4,6 +4,8 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
 
+    console_log("reached detail");
+
     echo <<<EOT
     <html>
     <head>
@@ -100,8 +102,6 @@ if (isset($_SESSION['user_id'])) {
         $chspdc = $row["spellsavedc"];
         $chspmod = $row["spellatkbonus"];
     }
-
-    $conn->close();
 
     echo <<<EOT
     <div class="homepage-info">
