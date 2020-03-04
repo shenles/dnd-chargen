@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id'])) {
     <form class="filterform" action="addchar.php" method="post">
     <label>Enter a name for your character:
     <input type="text" name="charname" maxlength="30">
-    </label>
+    </label><p></p>
     <label>Select a class for your character:
     <select name="charclass" id="charclass" required>
         <option value="Barbarian">Barbarian</option>
@@ -455,7 +455,7 @@ if (isset($_SESSION['user_id'])) {
           $clprofs = $clrow["skillprofs"];
        }
 
-       echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table>";
+       echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table class=\"table-indent1\">";
        echo "<tr><td>" . $clprofs . "</td></tr>";
        echo "</table><br>";
        echo <<<EOT

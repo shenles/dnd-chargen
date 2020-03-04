@@ -86,6 +86,10 @@ h3 {
     margin-top: 20px;
 }
 
+.table-indent1 {
+    margin-left: 35px;
+}
+
 #rollTableAssign, button[id="continue1"], button[id="continue2"] {
     margin-top: 8px;
 }
