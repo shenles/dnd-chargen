@@ -1,5 +1,5 @@
 var rollsToShow = [], scoresToAssign = [], abilityScoresFinal = [];
-var initStat, speedStat, hpmaxStat, profBonus;
+var initStat, speedStat, hpmaxStat, profBonus, hitdiceStat;
 var saveScores = [], allRaces = [], allClasses = [];
 var allSkills = [], plusMods = [], abilityMods = [];
 var spatkmod, spsavedc, maxroll;
@@ -332,7 +332,7 @@ function finalizeStats() {
       hpmaxStat += 1;
   }
 
-  var hitdiceStat = "1d".concat(maxroll.toString()); 
+  hitdiceStat = "1d".concat(maxroll.toString()); 
   document.getElementById('profbonus').innerHTML = "+".concat(profBonus.toString());
   document.getElementById('initiative').innerHTML = initStat;
   document.getElementById('hpmax').innerHTML = hpmaxStat; 
