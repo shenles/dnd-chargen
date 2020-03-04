@@ -471,9 +471,7 @@ if (isset($_SESSION['user_id'])) {
            $('#donechar1').click(function(){
                $.post('insert.php',
                    {},
-                   function(data, status) {
-                      alert(data + "\n" + status);
-               });
+               );
            });
        });
     </script>
