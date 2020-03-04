@@ -31,16 +31,16 @@ if (isset($_SESSION['user_id'])) {
     $armor = $_POST['armorprofs'];
     $bg = $_POST['charbg'];
     $langs = $_POST['langs']; 
-    $eq = $_POST['equip'];
-    $clfeats = NULL;
-    $bgfeats = NULL;
-    $traits = NULL;
-    $spclass = NULL;
-    $spabil = NULL;
-    $spsavedc = NULL;
-    $spatkbonus = NULL;
-    $spslots = NULL;
-    $spknown = NULL;
+    $eq = '';
+    $clfeats = '';
+    $bgfeats = '';
+    $traits = '';
+    $spclass = '';
+    $spabil = '';
+    $spsavedc = '';
+    $spatkbonus = '';
+    $spslots = '';
+    $spknown = '';
     $disp = 1;
     $uid = $_SESSION['user_id'];
 
