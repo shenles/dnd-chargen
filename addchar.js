@@ -387,17 +387,24 @@ function doneCreatingChar() {
 
    // add newly finished character to db
    var data = new FormData();
+   var currAC = 10 + abilityScoresFinal[1];
+   var currStr = abilityScoresFinal[0];
+   var currDex = abilityScoresFinal[1];
+   var currCon = abilityScoresFinal[2];
+   var currInt = abilityScoresFinal[3];
+   var currWis = abilityScoresFinal[4];
+   var currCha = abilityScoresFinal[5];
    data.append('charname', namefinal);
    data.append('charclass', classfinal);
    data.append('charrace', racefinal);
    data.append('charalign', alignfinal);
-   data.append('strength', abilityScoresFinal[0]);
-   data.append('dex', abilityScoresFinal[1]);
-   data.append('con', abilityScoresFinal[2]);
-   data.append('intell', abilityScoresFinal[3]);
-   data.append('wis', abilityScoresFinal[4]);
-   data.append('cha', abilityScoresFinal[5]);
-   data.append('ac', 10 + abilityScoresFinal[1]);
+   data.append('strength', currStr);
+   data.append('dex', currDex);
+   data.append('con', currCon);
+   data.append('intell', currInt);
+   data.append('wis', currWis);
+   data.append('cha', currCha);
+   data.append('ac', currAC);
    data.append('hp', hpmaxStat);
    data.append('hitdice', hitdiceStat);
    data.append('profbonus', profBonus);
@@ -428,9 +435,10 @@ function doneCreatingChar() {
    //data.append('spslots', null);
    //data.append('spknown', null);
 
-   var xhr = new XMLHttpRequest();
-   xhr.open("POST", "insert.php", true);
-   xhr.onreadystatechange = function() {
+   var xhttp = new XMLHttpRequest();
+   xhttp.open("POST", "https://dnd-chargen.herokuapp.com/insert.php", true);
+   
+   xhttp.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
          // Request finished
          console.log("finished");
@@ -439,7 +447,7 @@ function doneCreatingChar() {
          console.log(this.status);
       }
    }
-   xhr.send(data);
+   xhttp.send(data);
 
    document.getElementById('afterStats').style.display = "none";
    document.getElementById('viewCreated').style.display = "block";
