@@ -45,6 +45,9 @@ if (isset($_SESSION['user_id'])) {
     echo <<<EOT
     <div id="createcharform">
     <form class="filterform" action="addchar.php" method="post">
+    <label>Enter a name for your character:
+    <input type="text" name="charname" maxlength="30">
+    </label>
     <label>Select a class for your character:
     <select name="charclass" id="charclass" required>
         <option value="Barbarian">Barbarian</option>
@@ -127,6 +130,7 @@ if (isset($_SESSION['user_id'])) {
     $chosenrace = $_POST['charrace'];
     $chosenbg = $_POST['charbg']; 
     $alignment = $_POST['charalign'];
+    $charactername = $_POST['charname'];
 
     if (isset($chosenclass) && isset($chosenrace)) {
 
@@ -135,6 +139,7 @@ if (isset($_SESSION['user_id'])) {
        echo "<span id=\"charclassinfo\" style=\"display:none;\">" . $chosenclass . "</span>";
        echo "<span id=\"charbginfo\" style=\"display:none;\">" . $chosenbg . "</span>";
        echo "<span id=\"charaligninfo\" style=\"display:none;\">" . $alignment . "</span>";
+       echo "<span id=\"charnameinfo\" style=\"display:none;\">" . $charactername . "</span>";
 
        echo <<<EOT
        <div class="homepage-info" id="initialRolls">
@@ -452,7 +457,7 @@ if (isset($_SESSION['user_id'])) {
 
        echo "<p class=\"p-indent2\">Skill proficiencies</p>\n<table>";
        echo "<tr><td>" . $clprofs . "</td></tr>";
-       echo "</table>";
+       echo "</table><br>";
        echo <<<EOT
        <button type="button" class="btn btn-outline-secondary" id="donechar1" onclick="doneCreatingChar()">Finish creating character</button>
        </div>
@@ -466,16 +471,6 @@ if (isset($_SESSION['user_id'])) {
     }
 
     echo <<<EOT
-    <script>
-       $(document).ready(function(){
-           $('#donechar1').click(function(){
-               $.post('insert.php',
-                   {},
-               );
-           });
-       });
-    </script>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="addchar.js"></script>
     </body>

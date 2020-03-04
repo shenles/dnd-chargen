@@ -1,22 +1,10 @@
-var rollsToShow = [];
-var scoresToAssign = [];
-var abilityScoresFinal = [];
-var initStat;
-var speedStat;
-var hpmaxStat;
-var profBonus;
-var saveScores = [];
-var allRaces = [];
-var allClasses = [];
-var allSkills = [];
-var plusMods = [];
-var abilityMods = [];
-var spatkmod;
-var spsavedc;
-var maxroll;
-var racefinal;
-var classfinal;
-var bgfinal;
+var rollsToShow = [], scoresToAssign = [], abilityScoresFinal = [];
+var initStat, speedStat, hpmaxStat, profBonus;
+var saveScores = [], allRaces = [], allClasses = [];
+var allSkills = [], plusMods = [], abilityMods = [];
+var spatkmod, spsavedc, maxroll;
+var racefinal, classfinal, bgfinal, namefinal, alignfinal;
+var armorprofsfinal, weaponprofsfinal, toolprofsfinal, saveprofsfinal, skillprofsfinal;
 
 class Race {
    constructor(id, name, speed, darkvision, langs, baserace, subraces, abilityincreases) {
@@ -123,6 +111,8 @@ allClasses = [barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, ro
 classfinal = document.getElementById('charclassinfo').innerHTML;
 racefinal = document.getElementById('charraceinfo').innerHTML;
 bgfinal = document.getElementById('charbginfo').innerHTML;
+namefinal = document.getElementById('charnameinfo').innerHTML;
+alignfinal = document.getElementById('charaligninfo').innerHTML;
 
 var strength = new Score(0, "Strength", 0, -1);
 var dexterity = new Score(1, "Dexterity", 0, -1);
@@ -342,10 +332,6 @@ function finalizeStats() {
       hpmaxStat += 1;
   }
 
-  var raceobj = allRaces.find(function(element) {
-     return element.name == racefinal;
-  });
-
   var hitdiceStat = "1d".concat(maxroll.toString()); 
   document.getElementById('profbonus').innerHTML = "+".concat(profBonus.toString());
   document.getElementById('initiative').innerHTML = initStat;
@@ -360,7 +346,7 @@ function finalizeStats() {
   }
   
   document.getElementById('spsavedc').innerHTML = spsavedc;
-  document.getElementById('langs').innerHTML = raceobj.langs;
+  document.getElementById('langs').innerHTML = matchrace.langs;
   document.getElementById('raceAbilityScores').style.display = "none";
   document.getElementById('finishStats').style.display = "block";
 }
@@ -390,13 +376,63 @@ function checkRaceIncreases() {
 }
 
 function doneWithStats() {
+
    document.getElementById('finishStats').style.display = "none";
    document.getElementById('raceAbilityScores').style.display = "none";
+   document.getElementById('pageheader1').style.display = "none";
    document.getElementById('afterStats').style.display = "block";
 }
 
 function doneCreatingChar() {
+
+   // add newly finished character to db
+   var data = new FormData();
+   data.append('charname', namefinal);
+   data.append('charclass', classfinal);
+   data.append('charrace', racefinal);
+   data.append('charalign', alignfinal);
+   data.append('strength', abilityScoresFinal[0]);
+   data.append('dex', abilityScoresFinal[1]);
+   data.append('con', abilityScoresFinal[2]);
+   data.append('intell', abilityScoresFinal[3]);
+   data.append('wis', abilityScoresFinal[4]);
+   data.append('cha', abilityScoresFinal[5]);
+   data.append('ac', 10 + abilityScoresFinal[1]);
+   data.append('hp', hpmaxStat);
+   data.append('hitdice', hitdiceStat);
+   data.append('profbonus', profBonus);
+   data.append('initiative', initStat);
+   data.append('speed', speedStat);
+
+   if (matchrace.darkvision == 1) {
+      data.append('darkvision', 'yes');
+   } else {
+      data.append('darkvision', 'no');
+   }
+   
+   data.append('saveprofs', matchclass.saves);
+   data.append('skillprofs', matchclass.skillprofs);
+   data.append('toolprofs', matchclass.toolprofs);
+   data.append('weaponprofs', matchclass.weaponprofs);
+   data.append('armorprofs', matchclass.armorprofs);
+   data.append('charbg', bgfinal);
+   data.append('langs', matchrace.langs);
+   data.append('equip', null);
+   data.append('classfeatures', null);
+   data.append('bgfeatures', null);
+   data.append('traits', null);
+   data.append('spclass', null);
+   data.append('spabil', matchclass.spellability);
+   data.append('spsavedc', spsavedc);
+   data.append('spatkbonus', spatkmod);
+   data.append('spslots', null);
+   data.append('spknown', null);
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.open("POST", "insert.php", true);
+   xhttp.send(data);
+
    document.getElementById('afterStats').style.display = "none";
-   document.getElementById('pageheader1').style.display = "none";
    document.getElementById('viewCreated').style.display = "block";
+
 }
