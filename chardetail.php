@@ -60,13 +60,13 @@ if (isset($_SESSION['user_id'])) {
     $domdoc = new DOMDocument();
     $domdoc->loadHTMLFile("./viewchars.php");
     $displayid = $domdoc->getElementById("chardetaildisplayid")->nodeValue;
-    console_log($displayid);
+    echo "<p>" . $displayid . "</p>";
 
-    /*
     if ($displayid != NULL) {
         $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";
     }
 
+    /*
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
