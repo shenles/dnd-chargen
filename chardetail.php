@@ -62,21 +62,21 @@ if (isset($_SESSION['user_id'])) {
     $spans = $doc->getElementsByTagName('span');
 
     foreach ($spans as $span) {
-        echo "<p>" . $span->nodeValue . "</p>";
+        echo "<div>" . $span->nodeValue . "</div>";
         $displayid = $span->nodeValue;
     }
 
     if ($displayid != -1) {
 
-        echo "<p>" . $displayid . "</p>";
+        echo "<div>" . $displayid . "</div>";
 
         $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";
     
     }
 
-    /*
     $result = $conn->query($sql);
 
+    /*
     while ($row = $result->fetch_assoc()) {
         $chname = $row["charname"];
         $chclass = $row["class"];
