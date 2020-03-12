@@ -59,8 +59,7 @@ if (isset($_SESSION['user_id'])) {
     $displayid = NULL;
 
     $doc = new DOMDocument();
-    $doc->validateOnParse = true;
-    $doc->load('viewchars.php');
+    $doc->loadHTMLFile('https://dnd-chargen.herokuapp.com/viewchars.php');
     $displayid = $doc->getElementById('chardetaildisplayid')->nodeValue;
 
     if ($displayid != NULL) {
