@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
     $displayid = $domdoc->getElementById("chardetaildisplayid")->nodeValue;
 
     if ($displayid != NULL) {
-        $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs,spellclass,spellabil,spellsavedc,spellatkbonus FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";
+        $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";
     }
 
     $result = $conn->query($sql);
@@ -93,10 +93,7 @@ if (isset($_SESSION['user_id'])) {
         $charmor = $row["armorprofs"];
         $chbg = $row["background"];
         $chlangs = $row["langs"];
-        $chspclass = $row["spellclass"];
-        $chspabil = $row["spellabil"];
-        $chspdc = $row["spellsavedc"];
-        $chspmod = $row["spellatkbonus"];
+        
     }
 
     echo <<<EOT
@@ -151,12 +148,6 @@ if (isset($_SESSION['user_id'])) {
           echo "<p class=\"p-indent2\">Armor proficiencies</p><p id=\"showarmor\">" . $charmor . "</p>";
           echo "<p class=\"p-indent2\">Weapon proficiencies</p><p id=\"showweapons\">" . $chweapons . "</p>";
           echo "<p class=\"p-indent2\">Tool proficiencies</p><p id=\"showtools\">" . $chtools . "</p></div>";
-
-          echo <<<EOT
-          <script src="viewchars.js"></script>
-          </body>
-          </html>
-          EOT;
 
 } else {
      header("Location: https://dnd-chargen.herokuapp.com/login.php");
