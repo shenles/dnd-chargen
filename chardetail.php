@@ -153,6 +153,12 @@ if (isset($_SESSION['user_id'])) {
           echo "<p class=\"p-indent2\">Weapon proficiencies</p><p id=\"showweapons\">" . $chweapons . "</p>";
           echo "<p class=\"p-indent2\">Tool proficiencies</p><p id=\"showtools\">" . $chtools . "</p></div>";
 
+          echo <<<EOT
+          <script src="viewchars.js"></script>
+          </body>
+          </html>
+          EOT;
+
 } else {
      header("Location: https://dnd-chargen.herokuapp.com/login.php");
 }
