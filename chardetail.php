@@ -39,6 +39,7 @@ if (isset($_SESSION['user_id'])) {
      </div>   
     </nav>
     <br />
+    <span id="chardetaildisplayid" style="display:none;"></span>
     EOT;
 
     $url = getenv('JAWSDB_MARIA_URL');
@@ -57,11 +58,9 @@ if (isset($_SESSION['user_id'])) {
     $currentuser = $_SESSION['user_id'];
     $displayid = NULL;
 
-    if (isset($_POST['viewcharid'])) {
-
-        $displayid = $_POST['viewcharid'];
-
-    }
+    $domdoc = new DOMDocument();
+    $domdoc->loadHTMLFile("chardetail.php");
+    $displayid = $domdoc->getElementById("chardetaildisplayid")->nodeValue;
 
     if ($displayid != NULL) {
         $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs,spellclass,spellabil,spellsavedc,spellatkbonus FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";

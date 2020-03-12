@@ -14,6 +14,7 @@ function deleteChar(toDelete) {
 function viewChar(toView) {
 
 	console.log(toView);
+	document.getElementById("chardetaildisplayid").innerHTML = toView;
 
 }
 
