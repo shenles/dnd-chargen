@@ -40,6 +40,8 @@ if (isset($_SESSION['user_id'])) {
      </div>   
     </nav>
 
+    <span id="chardetaildisplayid" style="display:none;"></span>
+
     <br />
 
     <div class="entitytable">

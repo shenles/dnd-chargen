@@ -39,7 +39,6 @@ if (isset($_SESSION['user_id'])) {
      </div>   
     </nav>
     <br />
-    <span id="chardetaildisplayid" style="display:none;"></span>
     EOT;
 
     $url = getenv('JAWSDB_MARIA_URL');
@@ -59,7 +58,7 @@ if (isset($_SESSION['user_id'])) {
     $displayid = NULL;
 
     $domdoc = new DOMDocument();
-    $domdoc->loadHTMLFile("chardetail.php");
+    $domdoc->loadHTMLFile("./viewchars.php");
     $displayid = $domdoc->getElementById("chardetaildisplayid")->nodeValue;
 
     if ($displayid != NULL) {

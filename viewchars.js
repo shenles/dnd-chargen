@@ -15,6 +15,7 @@ function viewChar(toView) {
 
 	console.log(toView);
 	document.getElementById("chardetaildisplayid").innerHTML = toView;
+	window.location.href = "./chardetail.php";
 
 }
 
