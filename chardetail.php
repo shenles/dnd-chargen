@@ -58,7 +58,7 @@ if (isset($_SESSION['user_id'])) {
     $displayid = NULL;
 
     $domdoc = new DOMDocument();
-    $domdoc->loadHTMLFile("./viewchars.php");
+    $domdoc->loadHTMLFile("viewchars.php");
     $displayid = $domdoc->getElementById("chardetaildisplayid")->nodeValue;
     echo "<p>" . $displayid . "</p>";
 
