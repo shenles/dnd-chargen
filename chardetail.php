@@ -5,7 +5,6 @@ session_start();
 if (isset($_SESSION['user_id'])) {
 
     echo <<<EOT
-    <!DOCTYPE html>
     <html>
     <head>
     <title>RPG Manager</title>
@@ -56,19 +55,23 @@ if (isset($_SESSION['user_id'])) {
     }
 
     $currentuser = $_SESSION['user_id'];
-    $displayid = NULL;
+    $displayid = -1;
 
-    $doc = new DOMDocument();
+    $doc = new DOMDocument;
     $doc->loadHTMLFile('https://dnd-chargen.herokuapp.com/viewchars.php');
-    $displayid = $doc->getElementById('chardetaildisplayid')->nodeValue;
+    $spans = $doc->getElementsByTagName('span');
 
-    if ($displayid != NULL) {
+    foreach ($spans as $span) {
+        echo "<p>" . $span->nodeValue . "</p>";
+        $displayid = $span->nodeValue;
+    }
 
-        echo "<div>" . $displayid . "</div>";
+    if ($displayid != -1) {
+
+        echo "<p>" . $displayid . "</p>";
 
         $sql = "SELECT charname,class,race,level,alignment,strength,dex,con,intell,wis,cha,ac,hp,hitdice,profbonus,initiative,speed,darkvision,saveprofs,skillprofs,toolprofs,weaponprofs,armorprofs,background,langs FROM characters WHERE char_id = {$displayid} AND user_id = {$currentuser}";
-    } else {
-        echo "<div>none</div>";
+    
     }
 
     /*
