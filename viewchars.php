@@ -5,6 +5,7 @@ session_start();
 if (isset($_SESSION['user_id'])) {
 
     echo <<<EOT
+    <!DOCTYPE html>
     <html>
     <head>
     <title>RPG Manager</title>
